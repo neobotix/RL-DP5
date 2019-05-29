@@ -1,5 +1,0 @@
-string Sender
-uint32 JointId
----
-string JointName
-uint32 JointType

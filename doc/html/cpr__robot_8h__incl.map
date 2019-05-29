@@ -1,8 +1,0 @@
-<map id="cpr_robot.h" name="cpr_robot.h">
-<area shape="rect" id="node27" href="$Bus_8h.html" title="cpr_robot/Bus.h" alt="" coords="3089,80,3203,107"/>
-<area shape="rect" id="node28" href="$MotorModule_8h.html" title="cpr_robot/MotorModule.h" alt="" coords="3228,80,3395,107"/>
-<area shape="rect" id="node29" href="$Joint_8h.html" title="cpr_robot/Joint.h" alt="" coords="3419,80,3537,107"/>
-<area shape="rect" id="node30" href="$Robot_8h.html" title="cpr_robot/Robot.h" alt="" coords="3561,80,3688,107"/>
-<area shape="rect" id="node31" href="$igus__4DOF__SV_8h.html" title="cpr_robot/igus_4DOF_SV.h" alt="" coords="3712,80,3895,107"/>
-<area shape="rect" id="node32" href="$CPRMover6_8h.html" title="cpr_robot/CPRMover6.h" alt="" coords="3919,80,4082,107"/>
-</map>

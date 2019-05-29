@@ -1,5 +1,0 @@
-string Sender
-uint32 CommandId
-float64 PayloadFloat
-int64 PayloadInt
----

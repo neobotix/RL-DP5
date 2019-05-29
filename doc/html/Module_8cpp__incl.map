@@ -1,9 +1,0 @@
-<map id="Module.cpp" name="Module.cpp">
-<area shape="rect" id="node2" href="$cpr__robot_8h.html" title="cpr_robot.h" alt="" coords="1492,80,1579,107"/>
-<area shape="rect" id="node28" href="$Bus_8h.html" title="cpr_robot/Bus.h" alt="" coords="3089,155,3203,181"/>
-<area shape="rect" id="node29" href="$Module_8h.html" title="cpr_robot/Module.h" alt="" coords="3227,155,3361,181"/>
-<area shape="rect" id="node30" href="$Joint_8h.html" title="cpr_robot/Joint.h" alt="" coords="3385,155,3504,181"/>
-<area shape="rect" id="node31" href="$Robot_8h.html" title="cpr_robot/Robot.h" alt="" coords="3528,155,3655,181"/>
-<area shape="rect" id="node32" href="$igus__4DOF__SV_8h.html" title="cpr_robot/igus_4DOF_SV.h" alt="" coords="3679,155,3861,181"/>
-<area shape="rect" id="node33" href="$CPRMover6_8h.html" title="cpr_robot/CPRMover6.h" alt="" coords="3886,155,4049,181"/>
-</map>
