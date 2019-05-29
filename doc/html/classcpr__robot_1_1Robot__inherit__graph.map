@@ -1,0 +1,4 @@
+<map id="cpr_robot::Robot" name="cpr_robot::Robot">
+<area shape="rect" id="node2" href="$classcpr__robot_1_1CPRMover6.html" title="Class representing a Mover6 robot from Commonplace Robotics GmbH. " alt="" coords="5,80,161,107"/>
+<area shape="rect" id="node3" href="$classcpr__robot_1_1igus__4DOF__SV.html" title="Class representing a robolink 4DOF small version robot from igus. " alt="" coords="185,80,360,107"/>
+</map>

@@ -1,0 +1,23 @@
+actions: []
+authors: ''
+brief: ''
+bugtracker: ''
+depends:
+- catkin
+- roscpp
+- std_msgs
+- sensor_msgs
+- control_msgs
+- rviz
+description: The cpr_robot package
+license: BSD
+maintainers: Roland Tomasi <support@cpr-robots.com>
+msgs:
+- RobotState
+package_type: package
+repo_url: ''
+srvs:
+- GetJointInfo
+- RobotCommand
+- GetRobotInfo
+url: ''
