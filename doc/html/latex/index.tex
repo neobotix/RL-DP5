@@ -1,0 +1,120 @@
+\section{Introduction}\label{index_intro_sec}
+The R\+OS support package from Commonplace Robotics GmbH provides integration for C\+PR Mover and igus Robolink robots into the R\+OS ecosystem. It features\+: 
+\begin{DoxyItemize}
+\item Classes that can be used to control robots using R\+OS topics. 
+\item U\+R\+DF robot definition files, that can for example be used to visualize the state of C\+PR robots in R\+Viz or similar tools. 
+\item A simple R\+Viz plugin allowing to control C\+PR robots from within R\+Viz. 
+\item Running example targetting the igus robolink 4\+D\+OF, small version. 
+\item Running example targetting the C\+PR Mover6. 
+\end{DoxyItemize}\section{Getting started}\label{index_getstarted}
+\subsection{System Requirements}\label{index_requirements}
+
+\begin{DoxyItemize}
+\item The package has been developed and tested on Ubuntu 18.\+04 with R\+OS melodic using the G\+NU 8.\+3 C++ toolchain. 
+\item A C++17 capable compiler will be required in any case. 
+\item In order to physically connect robots you will need a U\+SB to C\+AN adapter, testing was done with an {\tt adapter from P\+E\+AK System}. 
+\item We recommend setting your system locale to E\+N-\/\+US because some R\+OS components seem to have trouble parsing floating point numbers in X\+ML files, if commas are used instead of points to separate the fractional part of floating point numbers by the system locale. 
+\item We recommend having a good C++ editor of your choice at hands, the command line examples on this page will assume {\tt Microsoft Visual Studio Code} is installed on your machine -\/ it is what has been used during developement of the package in conjunction with the following plugins\+: 
+\begin{DoxyItemize}
+\item {\tt C/\+C++ Intelli\+Sense, debugging, and code browsing} 
+\item {\tt C\+Make langage support} 
+\item {\tt Extended C\+Make support} 
+\item {\tt Development support for Robot Operating System} 
+\end{DoxyItemize}
+\end{DoxyItemize}\subsection{Installation}\label{index_install}
+\subsubsection{1. Prerequisites}\label{index_step1}
+
+\begin{DoxyItemize}
+\item Make sure to have R\+OS melodic (or later) properly installed and configured on your machine. The {\tt instructions} provided from the {\tt R\+OS wiki} might be helpful doing so. 
+\item The package is designed to be built using {\tt catkin\+\_\+make}. You will need a properly configured {\tt catkin workspace}. This {\tt tutorial} may be helpful setting it up. 
+\end{DoxyItemize}\subsubsection{2. Clone and build the repository}\label{index_step2}
+The source code for the package can be downloaded from our {\tt github repository}. 
+\begin{DoxyEnumerate}
+\item Clone the package sources by typing the following commands into a terminal from within the root folder of your catkin workspace\+: 
+\begin{DoxyCode}
+cd src
+git clone https://github.com/CPR-Robots/cpr\_robot 
+cd ..
+\end{DoxyCode}
+  
+\item It may be advisable to reconfigure the C\+Make cache and clean the build folder. To do so, from within the root folder of your catkin workspace, type the following into a terminal\+: 
+\begin{DoxyCode}
+catkin\_make clean
+catkin\_make rebuild\_cache
+\end{DoxyCode}
+  
+\item Now it is time to actually build the package. From within the root folder of your catkin workspace type the following into a terminal\+: 
+\begin{DoxyCode}
+catkin\_make
+\end{DoxyCode}
+  
+\item Finally let\textquotesingle{}s install the package. From within the root folder of your catkin workspace type the following into a terminal\+: 
+\begin{DoxyCode}
+catkin\_make install
+\end{DoxyCode}
+  
+\end{DoxyEnumerate}\subsubsection{3. Run the examples}\label{index_step3}
+
+\begin{DoxyEnumerate}
+\item Make sure the robot ist connected to your computer via your C\+AN to U\+SB adapter and powered on.  
+\item The C\+AN interface on your computer needs to be started, whenever the C\+AN to U\+SB adapter has been plugged in or the computer has started up. To do so, type the following into a terminal\+: 
+\begin{DoxyCode}
+sudo modprobe can\_dev
+sudo modprobe can
+sudo modprobe can\_raw
+sudo ip link set can0 type can bitrate 500000
+sudo ifconfig can0 up
+\end{DoxyCode}
+ It may be advisable to have a small shellscript with these commands, typing them again each time the adapter hase been plugged in may be cumbersome after a while.  
+\item Run the R\+Viz plugin with one of the example robot nodes. 
+\begin{DoxyItemize}
+\item To control an igus robolink 4\+D\+OF, small version robot type the following into a terminal\+: 
+\begin{DoxyCode}
+roslaunch cpr\_robot igus\_4DOF\_SV.launch
+\end{DoxyCode}
+ 
+\item If you want to control a C\+PR Mover6 robot, type the following into a terminal\+: 
+\begin{DoxyCode}
+roslaunch cpr\_robot CPRMover6.launch
+\end{DoxyCode}
+  
+\end{DoxyItemize}
+\end{DoxyEnumerate}\subsubsection{4. Take a look at the source code}\label{index_step4}
+
+\begin{DoxyEnumerate}
+\item Go to the package source folder\+: 
+\begin{DoxyCode}
+roscd cpr\_robot
+\end{DoxyCode}
+  
+\item Open the folder using an editor (in this example Visual Studio Code is used)\+: 
+\begin{DoxyCode}
+code .
+\end{DoxyCode}
+  
+\item Have fun playing around with it.  
+\end{DoxyEnumerate}\section{Overview}\label{index_ovrview}
+\subsection{The Robot node}\label{index_rbotnode}
+See the files \doxyref{main\+\_\+\+C\+P\+R\+Mover6.\+cpp}{p.}{main__CPRMover6_8cpp} or \doxyref{main\+\_\+igus\+\_\+4\+D\+O\+F\+\_\+\+S\+V.\+cpp}{p.}{main__igus__4DOF__SV_8cpp} in order to have a working example on how to set up a R\+OS node that will allow to integrate robots from igus or C\+PR into R\+OS. The general way to do it, is to instantiate a class that has been derived from the abstract Robot base class, then within a standard R\+OS spinning loop subsequently call the Read, Publish\+State and Write methods\+:
+
+
+\begin{DoxyCode}
+cpr_robot::CPRMover6 robot;
+robot.Init();
+ros::Rate loop\_rate(10);
+\textcolor{keywordflow}{while} (ros::ok())
+\{
+  robot.Read();
+  robot.PublishState();
+  robot.Write();
+  ros::spinOnce();
+  loop\_rate.sleep();
+\}
+\end{DoxyCode}
+\subsection{The R\+Viz plugin}\label{index_rvizplug}
+The complete source code for the R\+Viz plugin is contained in the files \doxyref{Robot\+Panel.\+cpp}{p.}{RobotPanel_8cpp} and \doxyref{Joint\+Control.\+cpp}{p.}{JointControl_8cpp} and their respective headers. You can use these a a starting point for the developement of your own plugin. Note that you will have to run 
+\begin{DoxyCode}
+catkin\_make install
+\end{DoxyCode}
+ for Panels (and other R\+Viz plugins) to become accesible from within R\+Viz.\subsection{Dataflow schema}\label{index_diag}
+ 

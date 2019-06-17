@@ -20,7 +20,7 @@ CPR robots in RViz or similar tools.</LI>
 <LI>A C++17 capable compiler will be required in any case.</LI>
 <LI>In order to physically connect robots you will need a USB to CAN adapter, testing was done with an <A HREF="https://www.peak-system.com/PCAN-USB.199.0.html">adapter from PEAK System</A>.</LI>
 <LI>We recommend setting your system locale to EN-US because
-some ROS components seem to have trouble parsing floating point numbers in XML files if commas are used instead of points to separate the fractional part of floating point numbers by the system locale.</LI>
+some ROS components seem to have trouble parsing floating point numbers in XML files, if commas are used instead of points to separate the fractional part of floating point numbers by the system locale.</LI>
 <LI>We recommend having a good C++ editor of your
 choice at hands, the command line examples on this page will assume <A HREF="https://code.visualstudio.com/">Microsoft Visual Studio Code</A> is installed on your machine - it is what has been used during developement of the package in conjunction with the following plugins:
 <UL>
@@ -78,7 +78,7 @@ catkin_make install
 Make sure the robot ist connected to your computer via your CAN to USB adapter and powered on.
 </LI>
 <LI>
-The CAN interface on your computer needs to be started whenever the CAN to USB adapter has been plugged in or the computer has started up. To do so type
+The CAN interface on your computer needs to be started, whenever the CAN to USB adapter has been plugged in or the computer has started up. To do so, type
 the following into a terminal:
 \code{.sh}
 sudo modprobe can_dev
@@ -96,7 +96,7 @@ Run the RViz plugin with one of the example robot nodes.
 \code{.sh}
 roslaunch cpr_robot igus_4DOF_SV.launch
 \endcode</LI>
-<LI>If you want to control a CPR Mover6 robot type the following into a terminal:
+<LI>If you want to control a CPR Mover6 robot, type the following into a terminal:
 \code{.sh}
 roslaunch cpr_robot CPRMover6.launch
 \endcode
@@ -123,4 +123,38 @@ code .
 Have fun playing around with it.
 </LI>
 </OL>
+
+\section ovrview Overview
+
+\subsection rbotnode The Robot node
+
+See the files main_CPRMover6.cpp or main_igus_4DOF_SV.cpp in order to have a working example on how to set up a ROS node that will allow to integrate robots from igus or CPR into ROS. The general way to do it, is
+to instantiate a class that has been derived from the abstract Robot base class, then within a standard ROS spinning loop subsequently call the Read, PublishState and Write methods:
+
+\code{.cpp}
+  cpr_robot::CPRMover6 robot;
+  robot.Init();
+  ros::Rate loop_rate(10);
+  while (ros::ok())
+  {
+    robot.Read();
+    robot.PublishState();
+    robot.Write();
+    ros::spinOnce();
+    loop_rate.sleep();
+  }
+\endcode
+
+\subsection rvizplug The RViz plugin
+
+The complete source code for the RViz plugin is contained in the files RobotPanel.cpp and JointControl.cpp and their respective headers. You can use these a a starting point for the developement of your own plugin. Note that you will have to run
+\code{.sh}
+catkin_make install
+\endcode
+for Panels (and other RViz plugins) to become accesible from within RViz.
+
+\subsection diag Dataflow schema
+
+\image html Diagram.png
+
 */

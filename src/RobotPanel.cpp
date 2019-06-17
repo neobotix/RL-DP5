@@ -219,9 +219,9 @@ namespace cpr_rviz
     }
 
     //! \brief Sends a command to the robot using the /RobotCommand ROS service.
-    //! \param The ID of the command that will be sent.
-    //! \param A floating point number that may be provided as data with the command.
-    //! \param An integer number that may be provided as data with the command.
+    //! \param commandId The ID of the command that will be sent.
+    //! \param payloadFloat A floating point number that may be provided as data with the command.
+    //! \param payloadInt An integer number that may be provided as data with the command.
     cpr_robot::RobotCommandResponse RobotPanel::RobotCommand(const uint32_t commandId, const double payloadFloat, const int64_t payloadInt)
     {
         cpr_robot::RobotCommand srv;

@@ -1,0 +1,1061 @@
+\section{cpr\+\_\+robot\+:\+:Joint Class Reference}
+\label{classcpr__robot_1_1Joint}\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+
+
+Represents a single joint of a robot.  
+
+
+
+
+{\ttfamily \#include $<$cpr\+\_\+robot.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ Disable\+Motor} ()
+\begin{DoxyCompactList}\small\item\em Will send a command to disable motor motion to the firmware of the module that is controlling the motor of the joint. \end{DoxyCompactList}\item 
+void \textbf{ Enable\+Motor} ()
+\begin{DoxyCompactList}\small\item\em Will send a command to enable motor motion to the firmware of the module that is controlling the motor of the joint. \end{DoxyCompactList}\item 
+double \textbf{ get\+\_\+\+Current\+Effort} () const
+\begin{DoxyCompactList}\small\item\em Gets the effort that is put into moving the joing. Currently not implemented. \end{DoxyCompactList}\item 
+double \textbf{ get\+\_\+\+Current\+Position} () const
+\begin{DoxyCompactList}\small\item\em Gets the current position of the joint. \end{DoxyCompactList}\item 
+double \textbf{ get\+\_\+\+Current\+Velocity} () const
+\begin{DoxyCompactList}\small\item\em Gets the current angular velocity of the joint. \end{DoxyCompactList}\item 
+double \textbf{ get\+\_\+\+Desired\+Velocity} () const
+\begin{DoxyCompactList}\small\item\em Gets the desired angular velocity of the joint. \end{DoxyCompactList}\item 
+uint8\+\_\+t \textbf{ get\+\_\+\+Error\+Flags} () const
+\begin{DoxyCompactList}\small\item\em Gets the error flags that are currently reported by the firmware in the module that is controlling the motor of the joint. \end{DoxyCompactList}\item 
+double \textbf{ get\+\_\+\+Gear\+Ratio} () const
+\begin{DoxyCompactList}\small\item\em Gets the current gear ratio that is used during conversion from encoder position to joint position. \end{DoxyCompactList}\item 
+bool \textbf{ get\+\_\+\+Is\+Referenced} () const
+\begin{DoxyCompactList}\small\item\em Allows to determine if the joint has been referenced. \end{DoxyCompactList}\item 
+const std\+::string \& \textbf{ get\+\_\+\+Joint\+Name} () const
+\begin{DoxyCompactList}\small\item\em Gets the name of the joint used when communicating over R\+OS topics and services. \end{DoxyCompactList}\item 
+double \textbf{ get\+\_\+\+Max\+Position} () const
+\begin{DoxyCompactList}\small\item\em Gets the upper position bound of the joint. \end{DoxyCompactList}\item 
+double \textbf{ get\+\_\+\+Max\+Veclocity} () const
+\begin{DoxyCompactList}\small\item\em Gets the maximum allowed angular velocity of the joint. \end{DoxyCompactList}\item 
+double \textbf{ get\+\_\+\+Min\+Position} () const
+\begin{DoxyCompactList}\small\item\em Gets the lower position bound of the joint. \end{DoxyCompactList}\item 
+int32\+\_\+t \textbf{ get\+\_\+\+Motor\+Offset} () const
+\begin{DoxyCompactList}\small\item\em Gets the zero position of the motor. \end{DoxyCompactList}\item 
+int32\+\_\+t \textbf{ get\+\_\+\+Ticks\+Per\+Motor\+Rotation} () const
+\begin{DoxyCompactList}\small\item\em Gets the current number of ticks per motor rotation used during conversion from encoder position to joint position. \end{DoxyCompactList}\item 
+void \textbf{ Init} ()
+\begin{DoxyCompactList}\small\item\em Initializes the joint. \end{DoxyCompactList}\item 
+\textbf{ Joint} (\textbf{ Bus} \&can\+Bus, const uint32\+\_\+t module\+Id)
+\begin{DoxyCompactList}\small\item\em Constructs an instance of the \doxyref{Joint}{p.}{classcpr__robot_1_1Joint} class. \end{DoxyCompactList}\item 
+void \textbf{ Publish\+State} (sensor\+\_\+msgs\+::\+Joint\+State \&msg)
+\begin{DoxyCompactList}\small\item\em Used when publishing joint states. \end{DoxyCompactList}\item 
+void \textbf{ Read} ()
+\begin{DoxyCompactList}\small\item\em Reads the current state of the joint from the firmware in the module that is controlling the motor of the joint. \end{DoxyCompactList}\item 
+void \textbf{ set\+\_\+\+Gear\+Ratio} (const double ratio)
+\begin{DoxyCompactList}\small\item\em Sets the current gear ratio that is used during conversion from encoder position to joint position. \end{DoxyCompactList}\item 
+void \textbf{ set\+\_\+\+Joint\+Name} (const std\+::string \&joint\+Name)
+\begin{DoxyCompactList}\small\item\em Sets the name of the joint used when communicating over R\+OS topics and services. \end{DoxyCompactList}\item 
+void \textbf{ set\+\_\+\+Max\+Position} (const double position)
+\begin{DoxyCompactList}\small\item\em Sets the upper position bound of the joint. \end{DoxyCompactList}\item 
+void \textbf{ set\+\_\+\+Max\+Velocity} (const double velocity)
+\begin{DoxyCompactList}\small\item\em Sets the maximum allowed angular velocity of the joint. \end{DoxyCompactList}\item 
+void \textbf{ set\+\_\+\+Min\+Position} (const double position)
+\begin{DoxyCompactList}\small\item\em Sets the lower position bound of the joint. \end{DoxyCompactList}\item 
+void \textbf{ set\+\_\+\+Motor\+Offset} (const int32\+\_\+t ticks)
+\begin{DoxyCompactList}\small\item\em Sets the zero position of the motor. \end{DoxyCompactList}\item 
+void \textbf{ set\+\_\+\+Ticks\+Per\+Motor\+Rotation} (const int32\+\_\+t ticks)
+\begin{DoxyCompactList}\small\item\em Sets the current number of ticks per motor rotation used during conversion from encoder position to joint position. \end{DoxyCompactList}\item 
+void \textbf{ Set\+Zero} ()
+\begin{DoxyCompactList}\small\item\em Will send a command to reset the encoder position for the joint to the firmware of the module that is controlling the motor of the joint. \end{DoxyCompactList}\item 
+void \textbf{ Start} ()
+\begin{DoxyCompactList}\small\item\em Will start the communication with the firmware of the module that is controlling the motor of the joint. \end{DoxyCompactList}\item 
+void \textbf{ Start\+Referencing} ()
+\begin{DoxyCompactList}\small\item\em Will send a command to begin the referencing procedure for the joint to the firmware of the module that is controlling the motor of the joint. \end{DoxyCompactList}\item 
+void \textbf{ Stop} ()
+\begin{DoxyCompactList}\small\item\em Will stop the communication with the firmware of the module that is controlling the motor of the joint. \end{DoxyCompactList}\item 
+void \textbf{ Write} (double override)
+\begin{DoxyCompactList}\small\item\em Sends the current motion commands to the firmware in the module that is controlling the motor of the joint. \end{DoxyCompactList}\item 
+virtual \textbf{ $\sim$\+Joint} ()
+\begin{DoxyCompactList}\small\item\em The destructor of the \doxyref{Joint}{p.}{classcpr__robot_1_1Joint} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint8\+\_\+t \textbf{ D\+A\+T\+A\+B\+I\+T\+\_\+\+R\+E\+F\+E\+R\+E\+N\+C\+ED} =0x80
+\begin{DoxyCompactList}\small\item\em Status bit indicating that the joint has been referenced. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \textbf{ On\+Init} ()
+\begin{DoxyCompactList}\small\item\em Initialization. Should only be called after the parameters (gear ratio, ticks per motor rotation) have been set. \end{DoxyCompactList}\item 
+virtual void \textbf{ On\+Read} ()
+\begin{DoxyCompactList}\small\item\em Reads the current state of the joint from the firmware. \end{DoxyCompactList}\item 
+virtual void \textbf{ On\+Write} (double override)
+\begin{DoxyCompactList}\small\item\em Sends the current motion commands to the firmware in the module that is controlling the motor of the joint. This virtual function is intended to be overridable by derived classes, but should then be called from the override. \end{DoxyCompactList}\item 
+int32\+\_\+t \textbf{ Position\+To\+Ticks} (const double position) const
+\begin{DoxyCompactList}\small\item\em Converts a joint position to a motor position. \end{DoxyCompactList}\item 
+double \textbf{ Ticks\+To\+Position} (const int32\+\_\+t ticks) const
+\begin{DoxyCompactList}\small\item\em Converts a motor position to a joint position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ Joint\+Jog\+Callback} (const control\+\_\+msgs\+::\+Joint\+Jog \&msg)
+\begin{DoxyCompactList}\small\item\em Callback for received messages on the /\+Joint\+Jog R\+OS topic. \end{DoxyCompactList}\item 
+double \textbf{ Read\+Position} (uint8\+\_\+t \&time\+Stamp, std\+::chrono\+::high\+\_\+resolution\+\_\+clock\+::time\+\_\+point \&reception\+Time, uint8\+\_\+t \&error\+Flags, uint8\+\_\+t \&data\+Bits)
+\begin{DoxyCompactList}\small\item\em Returns the position of the joint according to the last update received from the firmware that is controlling the motor of the joint. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \textbf{ m\+\_\+b\+Referenced}
+\begin{DoxyCompactList}\small\item\em Flag indicating whether the joint is reported as referenced by the firmware. \end{DoxyCompactList}\item 
+double \textbf{ m\+\_\+\+Current\+Effort}
+\begin{DoxyCompactList}\small\item\em Reserved for future use with closed loop joints. Currently always zero. \end{DoxyCompactList}\item 
+double \textbf{ m\+\_\+\+Current\+Position}
+\begin{DoxyCompactList}\small\item\em The current position of the joint computed from the encoder position and joint parameters in degrees. \end{DoxyCompactList}\item 
+double \textbf{ m\+\_\+\+Current\+Velocity}
+\begin{DoxyCompactList}\small\item\em The current angular velocity of the joint computed from the change in encoder position and joint parameters in degrees per second. \end{DoxyCompactList}\item 
+double \textbf{ m\+\_\+\+Desired\+Velocity}
+\begin{DoxyCompactList}\small\item\em The desired angular velocity of the joint in radians per second. \end{DoxyCompactList}\item 
+uint8\+\_\+t \textbf{ m\+\_\+\+Error\+Flags}
+\begin{DoxyCompactList}\small\item\em The error flags reported by the firmware of the module that is controlling the joint. \end{DoxyCompactList}\item 
+double \textbf{ m\+\_\+\+Gear\+Ratio}
+\begin{DoxyCompactList}\small\item\em The total gear ratio of the joint. \end{DoxyCompactList}\item 
+ros\+::\+Subscriber \textbf{ m\+\_\+\+Joint\+Jog\+Subscriber}
+\begin{DoxyCompactList}\small\item\em The R\+OS subscriber for the /\+Joint\+Jog topic which will receive jog messages. \end{DoxyCompactList}\item 
+std\+::string \textbf{ m\+\_\+\+Joint\+Name}
+\begin{DoxyCompactList}\small\item\em The name used for this joint when communicating over R\+OS topics and services. \end{DoxyCompactList}\item 
+uint8\+\_\+t \textbf{ m\+\_\+\+Last\+Time\+Stamp}
+\begin{DoxyCompactList}\small\item\em The timestamp of the last status message received from the firmware in the module that is controlling the joint. \end{DoxyCompactList}\item 
+std\+::chrono\+::high\+\_\+resolution\+\_\+clock\+::time\+\_\+point \textbf{ m\+\_\+\+Last\+Update}
+\begin{DoxyCompactList}\small\item\em The time at which the last status message has been received from the firmware in the module that is controlling the joint. \end{DoxyCompactList}\item 
+double \textbf{ m\+\_\+\+Max\+Velocity}
+\begin{DoxyCompactList}\small\item\em The maximum angular velocity of the joint in radians per second. \end{DoxyCompactList}\item 
+ros\+::\+Node\+Handle \textbf{ m\+\_\+\+Node}
+\begin{DoxyCompactList}\small\item\em A handle to the current R\+OS node. \end{DoxyCompactList}\item 
+\textbf{ Motor\+Module} $\ast$ \textbf{ m\+\_\+p\+Module}
+\begin{DoxyCompactList}\small\item\em Pointer to an instance of the \doxyref{Motor\+Module}{p.}{classcpr__robot_1_1MotorModule} class which represents the module and firmware driving the motor for the joint. \end{DoxyCompactList}\item 
+int32\+\_\+t \textbf{ m\+\_\+\+Ticks\+Per\+Motor\+Rotation}
+\begin{DoxyCompactList}\small\item\em The number of encoder ticks representing exactly one rotation of the motor that is driving this joint. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represents a single joint of a robot. 
+
+This class contains information about the current state of the joint (position, speed) as well as the parameters for the joint (gear ratio, ticks per motor rotation). Conversion between encoder ticks and the actual position of the joint (measured in degrees) is done by this class. 
+
+Definition at line 9 of file Joint.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{classcpr__robot_1_1Joint_a624d26c85789eada0b78d4748ec53d31}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!Joint@{Joint}}
+\index{Joint@{Joint}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{Joint()}
+{\footnotesize\ttfamily cpr\+\_\+robot\+::\+Joint\+::\+Joint (\begin{DoxyParamCaption}\item[{\textbf{ Bus} \&}]{can\+Bus,  }\item[{const uint32\+\_\+t}]{module\+Id }\end{DoxyParamCaption})}
+
+
+
+Constructs an instance of the \doxyref{Joint}{p.}{classcpr__robot_1_1Joint} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em can\+Bus} & An instance of the \doxyref{Bus}{p.}{classcpr__robot_1_1Bus} class which will be used for communication with the firmware in the module that is controlling the motor of the joint. \\
+\hline
+{\em module\+Id} & The Id of the module that is controlling the motor of this joint. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 10 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a899b6077763552761845ab31f79214a1}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!````~Joint@{$\sim$\+Joint}}
+\index{````~Joint@{$\sim$\+Joint}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{$\sim$\+Joint()}
+{\footnotesize\ttfamily cpr\+\_\+robot\+::\+Joint\+::$\sim$\+Joint (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+The destructor of the \doxyref{Joint}{p.}{classcpr__robot_1_1Joint} class. 
+
+
+
+Definition at line 35 of file Joint.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{classcpr__robot_1_1Joint_a2cd4f2b6f903b9dc0a1c0efdd3730ebc}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!Disable\+Motor@{Disable\+Motor}}
+\index{Disable\+Motor@{Disable\+Motor}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{Disable\+Motor()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Joint\+::\+Disable\+Motor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Will send a command to disable motor motion to the firmware of the module that is controlling the motor of the joint. 
+
+
+
+Definition at line 317 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a0525e748656f30822b053cada12a5c28}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!Enable\+Motor@{Enable\+Motor}}
+\index{Enable\+Motor@{Enable\+Motor}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{Enable\+Motor()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Joint\+::\+Enable\+Motor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Will send a command to enable motor motion to the firmware of the module that is controlling the motor of the joint. 
+
+
+
+Definition at line 311 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_ac03ee9878d68ac22e206141a49af61f1}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!get\+\_\+\+Current\+Effort@{get\+\_\+\+Current\+Effort}}
+\index{get\+\_\+\+Current\+Effort@{get\+\_\+\+Current\+Effort}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{get\+\_\+\+Current\+Effort()}
+{\footnotesize\ttfamily double cpr\+\_\+robot\+::\+Joint\+::get\+\_\+\+Current\+Effort (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the effort that is put into moving the joing. Currently not implemented. 
+
+\begin{DoxyReturn}{Returns}
+Always returns zero. 
+\end{DoxyReturn}
+
+
+Definition at line 70 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a8e570ed99b9e53ac085ec9fadd35eaa9}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!get\+\_\+\+Current\+Position@{get\+\_\+\+Current\+Position}}
+\index{get\+\_\+\+Current\+Position@{get\+\_\+\+Current\+Position}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{get\+\_\+\+Current\+Position()}
+{\footnotesize\ttfamily double cpr\+\_\+robot\+::\+Joint\+::get\+\_\+\+Current\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the current position of the joint. 
+
+\begin{DoxyReturn}{Returns}
+The current position in degrees. 
+\end{DoxyReturn}
+
+
+Definition at line 56 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a140b26d969f491c8242231aefa634634}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!get\+\_\+\+Current\+Velocity@{get\+\_\+\+Current\+Velocity}}
+\index{get\+\_\+\+Current\+Velocity@{get\+\_\+\+Current\+Velocity}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{get\+\_\+\+Current\+Velocity()}
+{\footnotesize\ttfamily double cpr\+\_\+robot\+::\+Joint\+::get\+\_\+\+Current\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the current angular velocity of the joint. 
+
+\begin{DoxyReturn}{Returns}
+The current angular velocity in degrees per second. 
+\end{DoxyReturn}
+
+
+Definition at line 63 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a3578f2c7039da34d4c9c14697aea345f}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!get\+\_\+\+Desired\+Velocity@{get\+\_\+\+Desired\+Velocity}}
+\index{get\+\_\+\+Desired\+Velocity@{get\+\_\+\+Desired\+Velocity}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{get\+\_\+\+Desired\+Velocity()}
+{\footnotesize\ttfamily double cpr\+\_\+robot\+::\+Joint\+::get\+\_\+\+Desired\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the desired angular velocity of the joint. 
+
+\begin{DoxyReturn}{Returns}
+The desired angular velocity in degrees per second. 
+\end{DoxyReturn}
+
+
+Definition at line 107 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_aa67b65fe13b6d43f97faf8d97aa2420f}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!get\+\_\+\+Error\+Flags@{get\+\_\+\+Error\+Flags}}
+\index{get\+\_\+\+Error\+Flags@{get\+\_\+\+Error\+Flags}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{get\+\_\+\+Error\+Flags()}
+{\footnotesize\ttfamily uint8\+\_\+t cpr\+\_\+robot\+::\+Joint\+::get\+\_\+\+Error\+Flags (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the error flags that are currently reported by the firmware in the module that is controlling the motor of the joint. 
+
+\begin{DoxyReturn}{Returns}
+Bitfield with the error flags. 
+\end{DoxyReturn}
+
+
+Definition at line 193 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a78b3ad1e3f1a6530ff7aca0268eebf95}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!get\+\_\+\+Gear\+Ratio@{get\+\_\+\+Gear\+Ratio}}
+\index{get\+\_\+\+Gear\+Ratio@{get\+\_\+\+Gear\+Ratio}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{get\+\_\+\+Gear\+Ratio()}
+{\footnotesize\ttfamily double cpr\+\_\+robot\+::\+Joint\+::get\+\_\+\+Gear\+Ratio (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the current gear ratio that is used during conversion from encoder position to joint position. 
+
+\begin{DoxyReturn}{Returns}
+Current gear ratio. 
+\end{DoxyReturn}
+
+
+Definition at line 298 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a438a490b29b4b19817f2a2b8948ad3bd}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!get\+\_\+\+Is\+Referenced@{get\+\_\+\+Is\+Referenced}}
+\index{get\+\_\+\+Is\+Referenced@{get\+\_\+\+Is\+Referenced}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{get\+\_\+\+Is\+Referenced()}
+{\footnotesize\ttfamily bool cpr\+\_\+robot\+::\+Joint\+::get\+\_\+\+Is\+Referenced (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Allows to determine if the joint has been referenced. 
+
+\begin{DoxyReturn}{Returns}
+If the joint is reported as referenced by the firmware returns true, elsewise false. 
+\end{DoxyReturn}
+
+
+Definition at line 29 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a54a2c42a9f717031ca65ef96e774dc09}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!get\+\_\+\+Joint\+Name@{get\+\_\+\+Joint\+Name}}
+\index{get\+\_\+\+Joint\+Name@{get\+\_\+\+Joint\+Name}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{get\+\_\+\+Joint\+Name()}
+{\footnotesize\ttfamily const std\+::string \& cpr\+\_\+robot\+::\+Joint\+::get\+\_\+\+Joint\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the name of the joint used when communicating over R\+OS topics and services. 
+
+\begin{DoxyReturn}{Returns}
+The name of the joint as used in message over /\+Joint\+Jog and /joint\+\_\+states R\+OS topics. 
+\end{DoxyReturn}
+
+
+Definition at line 42 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a0acd393c18e0f4e6443e17c2e925072a}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!get\+\_\+\+Max\+Position@{get\+\_\+\+Max\+Position}}
+\index{get\+\_\+\+Max\+Position@{get\+\_\+\+Max\+Position}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{get\+\_\+\+Max\+Position()}
+{\footnotesize\ttfamily double cpr\+\_\+robot\+::\+Joint\+::get\+\_\+\+Max\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the upper position bound of the joint. 
+
+\begin{DoxyReturn}{Returns}
+The currrent upper bound for the position of the joint in degrees. 
+\end{DoxyReturn}
+
+
+Definition at line 142 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a87fa401b2e67be3bd622c0bed09b0fef}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!get\+\_\+\+Max\+Veclocity@{get\+\_\+\+Max\+Veclocity}}
+\index{get\+\_\+\+Max\+Veclocity@{get\+\_\+\+Max\+Veclocity}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{get\+\_\+\+Max\+Veclocity()}
+{\footnotesize\ttfamily double cpr\+\_\+robot\+::\+Joint\+::get\+\_\+\+Max\+Veclocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the maximum allowed angular velocity of the joint. 
+
+\begin{DoxyReturn}{Returns}
+The currently allowed angular velocity in degrees per second. 
+\end{DoxyReturn}
+
+
+Definition at line 114 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_afd75fadedb39663cf1ed1ea2b345e315}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!get\+\_\+\+Min\+Position@{get\+\_\+\+Min\+Position}}
+\index{get\+\_\+\+Min\+Position@{get\+\_\+\+Min\+Position}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{get\+\_\+\+Min\+Position()}
+{\footnotesize\ttfamily double cpr\+\_\+robot\+::\+Joint\+::get\+\_\+\+Min\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the lower position bound of the joint. 
+
+\begin{DoxyReturn}{Returns}
+The currrent lower bound for the position of the joint in degrees. 
+\end{DoxyReturn}
+
+
+Definition at line 128 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a54378769e81258582e8191fc0bc16085}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!get\+\_\+\+Motor\+Offset@{get\+\_\+\+Motor\+Offset}}
+\index{get\+\_\+\+Motor\+Offset@{get\+\_\+\+Motor\+Offset}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{get\+\_\+\+Motor\+Offset()}
+{\footnotesize\ttfamily int32\+\_\+t cpr\+\_\+robot\+::\+Joint\+::get\+\_\+\+Motor\+Offset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the zero position of the motor. 
+
+\begin{DoxyReturn}{Returns}
+Current offset of the the zero position in encoder ticks. 
+\end{DoxyReturn}
+
+
+Definition at line 156 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_aff5043164fe4b6a8013edb265566bc6f}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!get\+\_\+\+Ticks\+Per\+Motor\+Rotation@{get\+\_\+\+Ticks\+Per\+Motor\+Rotation}}
+\index{get\+\_\+\+Ticks\+Per\+Motor\+Rotation@{get\+\_\+\+Ticks\+Per\+Motor\+Rotation}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{get\+\_\+\+Ticks\+Per\+Motor\+Rotation()}
+{\footnotesize\ttfamily int32\+\_\+t cpr\+\_\+robot\+::\+Joint\+::get\+\_\+\+Ticks\+Per\+Motor\+Rotation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the current number of ticks per motor rotation used during conversion from encoder position to joint position. 
+
+\begin{DoxyReturn}{Returns}
+Current number of encoder ticks representing exactly one motor rotation. 
+\end{DoxyReturn}
+
+
+Definition at line 284 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a893c05463055ae975a60e8dbd643d288}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!Init@{Init}}
+\index{Init@{Init}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{Init()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Joint\+::\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initializes the joint. 
+
+Should be called after all joint parameters (gear ratio, ticks per motor rotation) have been set. Will call the virtual On\+Init method. 
+
+Definition at line 235 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a0df4c7eef1f2708d5a1df02e37d4f77d}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!Joint\+Jog\+Callback@{Joint\+Jog\+Callback}}
+\index{Joint\+Jog\+Callback@{Joint\+Jog\+Callback}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{Joint\+Jog\+Callback()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Joint\+::\+Joint\+Jog\+Callback (\begin{DoxyParamCaption}\item[{const control\+\_\+msgs\+::\+Joint\+Jog \&}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Callback for received messages on the /\+Joint\+Jog R\+OS topic. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The received message. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 91 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_af314a7c4bda98201201ce6c85e141e1f}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!On\+Init@{On\+Init}}
+\index{On\+Init@{On\+Init}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{On\+Init()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Joint\+::\+On\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Initialization. Should only be called after the parameters (gear ratio, ticks per motor rotation) have been set. 
+
+This virtual function is intended to be overridable by derived classes, but should then be called from the override. 
+
+Definition at line 78 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a5229089b4b34099ed5342555ce08abd2}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!On\+Read@{On\+Read}}
+\index{On\+Read@{On\+Read}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{On\+Read()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Joint\+::\+On\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reads the current state of the joint from the firmware. 
+
+This virtual function is intended to be overridable by derived classes, but should then be called from the override. 
+
+Definition at line 171 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a5df47f7a0ee1901f9f8351eaa5333cee}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!On\+Write@{On\+Write}}
+\index{On\+Write@{On\+Write}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{On\+Write()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Joint\+::\+On\+Write (\begin{DoxyParamCaption}\item[{double}]{override }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Sends the current motion commands to the firmware in the module that is controlling the motor of the joint. This virtual function is intended to be overridable by derived classes, but should then be called from the override. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em override} & The override factor applied to the currently desired velocity. Should be a value between 0 and 1. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 221 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a05bf10900f6cfa8c1b78e0612636e175}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!Position\+To\+Ticks@{Position\+To\+Ticks}}
+\index{Position\+To\+Ticks@{Position\+To\+Ticks}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{Position\+To\+Ticks()}
+{\footnotesize\ttfamily int32\+\_\+t cpr\+\_\+robot\+::\+Joint\+::\+Position\+To\+Ticks (\begin{DoxyParamCaption}\item[{const double}]{position }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Converts a joint position to a motor position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & \doxyref{Joint}{p.}{classcpr__robot_1_1Joint} position in radians. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Corresponding motor position in encoder ticks. 
+\end{DoxyReturn}
+
+
+Definition at line 201 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a70e6876e7b53b1764f3275d6ab0bb7a0}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!Publish\+State@{Publish\+State}}
+\index{Publish\+State@{Publish\+State}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{Publish\+State()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Joint\+::\+Publish\+State (\begin{DoxyParamCaption}\item[{sensor\+\_\+msgs\+::\+Joint\+State \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+Used when publishing joint states. 
+
+Will add the current state of the joint to a Joint\+State message that can then be published by the caller, typically on the /joint\+\_\+states R\+OS topic. 
+\begin{DoxyParams}{Parameters}
+{\em msg} & The message to which the state should be added. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 262 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a81679f78d8804ef49bcdb6947a6f290e}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!Read@{Read}}
+\index{Read@{Read}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{Read()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Joint\+::\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads the current state of the joint from the firmware in the module that is controlling the motor of the joint. 
+
+Will call the virtual On\+Read method. 
+
+Definition at line 243 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a8b45ee724ab9e8b379f8ce614aad5c9c}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!Read\+Position@{Read\+Position}}
+\index{Read\+Position@{Read\+Position}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{Read\+Position()}
+{\footnotesize\ttfamily double cpr\+\_\+robot\+::\+Joint\+::\+Read\+Position (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \&}]{time\+Stamp,  }\item[{std\+::chrono\+::high\+\_\+resolution\+\_\+clock\+::time\+\_\+point \&}]{reception\+Time,  }\item[{uint8\+\_\+t \&}]{error\+Flags,  }\item[{uint8\+\_\+t \&}]{data\+Bits }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Returns the position of the joint according to the last update received from the firmware that is controlling the motor of the joint. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time\+Stamp} & The time\+Stamp of the update as received from the firmware. \\
+\hline
+{\em reception\+Time} & Time time at which the update was received from the firmware. \\
+\hline
+{\em error\+Flags} & The error flags reported by the firmware. \\
+\hline
+{\em data\+Bits} & The status bits received from the firmware. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The position of the joint in radians. 
+\end{DoxyReturn}
+
+
+Definition at line 276 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a70750705d1cd35ead6d02d20275a531b}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!set\+\_\+\+Gear\+Ratio@{set\+\_\+\+Gear\+Ratio}}
+\index{set\+\_\+\+Gear\+Ratio@{set\+\_\+\+Gear\+Ratio}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{set\+\_\+\+Gear\+Ratio()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Joint\+::set\+\_\+\+Gear\+Ratio (\begin{DoxyParamCaption}\item[{const double}]{ratio }\end{DoxyParamCaption})}
+
+
+
+Sets the current gear ratio that is used during conversion from encoder position to joint position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ratio} & New gear ratio. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 305 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a66a0e2cbdd5f222bafac25f4c01b3ca8}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!set\+\_\+\+Joint\+Name@{set\+\_\+\+Joint\+Name}}
+\index{set\+\_\+\+Joint\+Name@{set\+\_\+\+Joint\+Name}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{set\+\_\+\+Joint\+Name()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Joint\+::set\+\_\+\+Joint\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{joint\+Name }\end{DoxyParamCaption})}
+
+
+
+Sets the name of the joint used when communicating over R\+OS topics and services. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em joint\+Name} & The name of the joint as used in message over /\+Joint\+Jog and /joint\+\_\+states R\+OS topics. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 49 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_ace02fdff906b085f97b21d30542d57a5}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!set\+\_\+\+Max\+Position@{set\+\_\+\+Max\+Position}}
+\index{set\+\_\+\+Max\+Position@{set\+\_\+\+Max\+Position}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{set\+\_\+\+Max\+Position()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Joint\+::set\+\_\+\+Max\+Position (\begin{DoxyParamCaption}\item[{const double}]{position }\end{DoxyParamCaption})}
+
+
+
+Sets the upper position bound of the joint. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The new upper bound for the position of the joint in degrees. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 149 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a31d7af000c1a4c2963de43e9eb07e9a2}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!set\+\_\+\+Max\+Velocity@{set\+\_\+\+Max\+Velocity}}
+\index{set\+\_\+\+Max\+Velocity@{set\+\_\+\+Max\+Velocity}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{set\+\_\+\+Max\+Velocity()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Joint\+::set\+\_\+\+Max\+Velocity (\begin{DoxyParamCaption}\item[{const double}]{velocity }\end{DoxyParamCaption})}
+
+
+
+Sets the maximum allowed angular velocity of the joint. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em velocity} & The new allowed angular velocity in degrees per second. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 121 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a922b09195ef7a3eb6497695ffd67a72e}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!set\+\_\+\+Min\+Position@{set\+\_\+\+Min\+Position}}
+\index{set\+\_\+\+Min\+Position@{set\+\_\+\+Min\+Position}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{set\+\_\+\+Min\+Position()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Joint\+::set\+\_\+\+Min\+Position (\begin{DoxyParamCaption}\item[{const double}]{position }\end{DoxyParamCaption})}
+
+
+
+Sets the lower position bound of the joint. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The new lower bound for the position of the joint in degrees. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 135 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_acae1e70cf1b034e7ac73a4c3769560b0}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!set\+\_\+\+Motor\+Offset@{set\+\_\+\+Motor\+Offset}}
+\index{set\+\_\+\+Motor\+Offset@{set\+\_\+\+Motor\+Offset}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{set\+\_\+\+Motor\+Offset()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Joint\+::set\+\_\+\+Motor\+Offset (\begin{DoxyParamCaption}\item[{const int32\+\_\+t}]{ticks }\end{DoxyParamCaption})}
+
+
+
+Sets the zero position of the motor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ticks} & New offset of the the zero position in encoder ticks. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 163 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_af46b9bbb83cf215a76d9c6d817beffc2}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!set\+\_\+\+Ticks\+Per\+Motor\+Rotation@{set\+\_\+\+Ticks\+Per\+Motor\+Rotation}}
+\index{set\+\_\+\+Ticks\+Per\+Motor\+Rotation@{set\+\_\+\+Ticks\+Per\+Motor\+Rotation}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{set\+\_\+\+Ticks\+Per\+Motor\+Rotation()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Joint\+::set\+\_\+\+Ticks\+Per\+Motor\+Rotation (\begin{DoxyParamCaption}\item[{const int32\+\_\+t}]{ticks }\end{DoxyParamCaption})}
+
+
+
+Sets the current number of ticks per motor rotation used during conversion from encoder position to joint position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ticks} & New number of encoder ticks representing exactly one motor rotation. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 291 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a12d818f4010f72b482bfdce615238f54}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!Set\+Zero@{Set\+Zero}}
+\index{Set\+Zero@{Set\+Zero}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{Set\+Zero()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Joint\+::\+Set\+Zero (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Will send a command to reset the encoder position for the joint to the firmware of the module that is controlling the motor of the joint. 
+
+
+
+Definition at line 341 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a32252dc0f09283102d330245d36c1610}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!Start@{Start}}
+\index{Start@{Start}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{Start()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Joint\+::\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Will start the communication with the firmware of the module that is controlling the motor of the joint. 
+
+
+
+Definition at line 323 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a50d9ed5f46daeb1ce520adfc05d69935}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!Start\+Referencing@{Start\+Referencing}}
+\index{Start\+Referencing@{Start\+Referencing}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{Start\+Referencing()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Joint\+::\+Start\+Referencing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Will send a command to begin the referencing procedure for the joint to the firmware of the module that is controlling the motor of the joint. 
+
+
+
+Definition at line 335 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a4a368fe4e3bda8a756ea1154bcf97163}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!Stop@{Stop}}
+\index{Stop@{Stop}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{Stop()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Joint\+::\+Stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Will stop the communication with the firmware of the module that is controlling the motor of the joint. 
+
+
+
+Definition at line 329 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a10d1c516c93e1a062cf94721ed2a3b03}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!Ticks\+To\+Position@{Ticks\+To\+Position}}
+\index{Ticks\+To\+Position@{Ticks\+To\+Position}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{Ticks\+To\+Position()}
+{\footnotesize\ttfamily double cpr\+\_\+robot\+::\+Joint\+::\+Ticks\+To\+Position (\begin{DoxyParamCaption}\item[{const int32\+\_\+t}]{ticks }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Converts a motor position to a joint position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ticks} & Motor position in encoder ticks. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Corresponding joint position in radians. 
+\end{DoxyReturn}
+
+
+Definition at line 211 of file Joint.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Joint_a9b62b0ed8dfdb4ba932cdae1370b3d08}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!Write@{Write}}
+\index{Write@{Write}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{Write()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Joint\+::\+Write (\begin{DoxyParamCaption}\item[{double}]{override }\end{DoxyParamCaption})}
+
+
+
+Sends the current motion commands to the firmware in the module that is controlling the motor of the joint. 
+
+Will call the virtual On\+Write method. 
+\begin{DoxyParams}{Parameters}
+{\em override} & The override factor applied to the currently desired velocity. Should be a value between 0 and 1. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 252 of file Joint.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\label{classcpr__robot_1_1Joint_a6ef10911d6217928226ad40b3b35620b}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!D\+A\+T\+A\+B\+I\+T\+\_\+\+R\+E\+F\+E\+R\+E\+N\+C\+ED@{D\+A\+T\+A\+B\+I\+T\+\_\+\+R\+E\+F\+E\+R\+E\+N\+C\+ED}}
+\index{D\+A\+T\+A\+B\+I\+T\+\_\+\+R\+E\+F\+E\+R\+E\+N\+C\+ED@{D\+A\+T\+A\+B\+I\+T\+\_\+\+R\+E\+F\+E\+R\+E\+N\+C\+ED}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{D\+A\+T\+A\+B\+I\+T\+\_\+\+R\+E\+F\+E\+R\+E\+N\+C\+ED}
+{\footnotesize\ttfamily constexpr uint8\+\_\+t cpr\+\_\+robot\+::\+Joint\+::\+D\+A\+T\+A\+B\+I\+T\+\_\+\+R\+E\+F\+E\+R\+E\+N\+C\+ED =0x80\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Status bit indicating that the joint has been referenced. 
+
+
+
+Definition at line 13 of file Joint.\+h.
+
+\mbox{\label{classcpr__robot_1_1Joint_a4da092bb68fa9d4ada9f29ce90d6a1b5}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!m\+\_\+b\+Referenced@{m\+\_\+b\+Referenced}}
+\index{m\+\_\+b\+Referenced@{m\+\_\+b\+Referenced}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{m\+\_\+b\+Referenced}
+{\footnotesize\ttfamily bool cpr\+\_\+robot\+::\+Joint\+::m\+\_\+b\+Referenced\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Flag indicating whether the joint is reported as referenced by the firmware. 
+
+
+
+Definition at line 16 of file Joint.\+h.
+
+\mbox{\label{classcpr__robot_1_1Joint_ab7e08d821b4bfc5a0373414cbbb3e339}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!m\+\_\+\+Current\+Effort@{m\+\_\+\+Current\+Effort}}
+\index{m\+\_\+\+Current\+Effort@{m\+\_\+\+Current\+Effort}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{m\+\_\+\+Current\+Effort}
+{\footnotesize\ttfamily double cpr\+\_\+robot\+::\+Joint\+::m\+\_\+\+Current\+Effort\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Reserved for future use with closed loop joints. Currently always zero. 
+
+
+
+Definition at line 26 of file Joint.\+h.
+
+\mbox{\label{classcpr__robot_1_1Joint_aa822474e44e6ac0486f34130ba7b99d9}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!m\+\_\+\+Current\+Position@{m\+\_\+\+Current\+Position}}
+\index{m\+\_\+\+Current\+Position@{m\+\_\+\+Current\+Position}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{m\+\_\+\+Current\+Position}
+{\footnotesize\ttfamily double cpr\+\_\+robot\+::\+Joint\+::m\+\_\+\+Current\+Position\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The current position of the joint computed from the encoder position and joint parameters in degrees. 
+
+
+
+Definition at line 22 of file Joint.\+h.
+
+\mbox{\label{classcpr__robot_1_1Joint_a592cd8bcfe74f251e230197430492d1f}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!m\+\_\+\+Current\+Velocity@{m\+\_\+\+Current\+Velocity}}
+\index{m\+\_\+\+Current\+Velocity@{m\+\_\+\+Current\+Velocity}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{m\+\_\+\+Current\+Velocity}
+{\footnotesize\ttfamily double cpr\+\_\+robot\+::\+Joint\+::m\+\_\+\+Current\+Velocity\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The current angular velocity of the joint computed from the change in encoder position and joint parameters in degrees per second. 
+
+
+
+Definition at line 24 of file Joint.\+h.
+
+\mbox{\label{classcpr__robot_1_1Joint_ad887b96410906536a29c1b933507b59b}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!m\+\_\+\+Desired\+Velocity@{m\+\_\+\+Desired\+Velocity}}
+\index{m\+\_\+\+Desired\+Velocity@{m\+\_\+\+Desired\+Velocity}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{m\+\_\+\+Desired\+Velocity}
+{\footnotesize\ttfamily double cpr\+\_\+robot\+::\+Joint\+::m\+\_\+\+Desired\+Velocity\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The desired angular velocity of the joint in radians per second. 
+
+
+
+Definition at line 30 of file Joint.\+h.
+
+\mbox{\label{classcpr__robot_1_1Joint_aefe1109a5974ffb681e79c57147ff36e}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!m\+\_\+\+Error\+Flags@{m\+\_\+\+Error\+Flags}}
+\index{m\+\_\+\+Error\+Flags@{m\+\_\+\+Error\+Flags}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{m\+\_\+\+Error\+Flags}
+{\footnotesize\ttfamily uint8\+\_\+t cpr\+\_\+robot\+::\+Joint\+::m\+\_\+\+Error\+Flags\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The error flags reported by the firmware of the module that is controlling the joint. 
+
+
+
+Definition at line 34 of file Joint.\+h.
+
+\mbox{\label{classcpr__robot_1_1Joint_a8ed8e435b58b761bf9f71834d52602a9}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!m\+\_\+\+Gear\+Ratio@{m\+\_\+\+Gear\+Ratio}}
+\index{m\+\_\+\+Gear\+Ratio@{m\+\_\+\+Gear\+Ratio}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{m\+\_\+\+Gear\+Ratio}
+{\footnotesize\ttfamily double cpr\+\_\+robot\+::\+Joint\+::m\+\_\+\+Gear\+Ratio\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The total gear ratio of the joint. 
+
+
+
+Definition at line 28 of file Joint.\+h.
+
+\mbox{\label{classcpr__robot_1_1Joint_a2763db45968efc6e978f9c7119b0e78c}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!m\+\_\+\+Joint\+Jog\+Subscriber@{m\+\_\+\+Joint\+Jog\+Subscriber}}
+\index{m\+\_\+\+Joint\+Jog\+Subscriber@{m\+\_\+\+Joint\+Jog\+Subscriber}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{m\+\_\+\+Joint\+Jog\+Subscriber}
+{\footnotesize\ttfamily ros\+::\+Subscriber cpr\+\_\+robot\+::\+Joint\+::m\+\_\+\+Joint\+Jog\+Subscriber\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The R\+OS subscriber for the /\+Joint\+Jog topic which will receive jog messages. 
+
+
+
+Definition at line 44 of file Joint.\+h.
+
+\mbox{\label{classcpr__robot_1_1Joint_ade16600f46e08cffd4f9d72bfd1bb282}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!m\+\_\+\+Joint\+Name@{m\+\_\+\+Joint\+Name}}
+\index{m\+\_\+\+Joint\+Name@{m\+\_\+\+Joint\+Name}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{m\+\_\+\+Joint\+Name}
+{\footnotesize\ttfamily std\+::string cpr\+\_\+robot\+::\+Joint\+::m\+\_\+\+Joint\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The name used for this joint when communicating over R\+OS topics and services. 
+
+
+
+Definition at line 38 of file Joint.\+h.
+
+\mbox{\label{classcpr__robot_1_1Joint_a9c7abfbbd295ba8dd434c7ec170279a3}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!m\+\_\+\+Last\+Time\+Stamp@{m\+\_\+\+Last\+Time\+Stamp}}
+\index{m\+\_\+\+Last\+Time\+Stamp@{m\+\_\+\+Last\+Time\+Stamp}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{m\+\_\+\+Last\+Time\+Stamp}
+{\footnotesize\ttfamily uint8\+\_\+t cpr\+\_\+robot\+::\+Joint\+::m\+\_\+\+Last\+Time\+Stamp\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The timestamp of the last status message received from the firmware in the module that is controlling the joint. 
+
+
+
+Definition at line 40 of file Joint.\+h.
+
+\mbox{\label{classcpr__robot_1_1Joint_a8e143914f01de10b06417f3658064152}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!m\+\_\+\+Last\+Update@{m\+\_\+\+Last\+Update}}
+\index{m\+\_\+\+Last\+Update@{m\+\_\+\+Last\+Update}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{m\+\_\+\+Last\+Update}
+{\footnotesize\ttfamily std\+::chrono\+::high\+\_\+resolution\+\_\+clock\+::time\+\_\+point cpr\+\_\+robot\+::\+Joint\+::m\+\_\+\+Last\+Update\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The time at which the last status message has been received from the firmware in the module that is controlling the joint. 
+
+
+
+Definition at line 42 of file Joint.\+h.
+
+\mbox{\label{classcpr__robot_1_1Joint_a2a3c49a2aab7a7b20afe28106268e750}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!m\+\_\+\+Max\+Velocity@{m\+\_\+\+Max\+Velocity}}
+\index{m\+\_\+\+Max\+Velocity@{m\+\_\+\+Max\+Velocity}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{m\+\_\+\+Max\+Velocity}
+{\footnotesize\ttfamily double cpr\+\_\+robot\+::\+Joint\+::m\+\_\+\+Max\+Velocity\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The maximum angular velocity of the joint in radians per second. 
+
+
+
+Definition at line 32 of file Joint.\+h.
+
+\mbox{\label{classcpr__robot_1_1Joint_a1109c9bcdd0ca8e32ebf8b19b9eb84e6}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!m\+\_\+\+Node@{m\+\_\+\+Node}}
+\index{m\+\_\+\+Node@{m\+\_\+\+Node}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{m\+\_\+\+Node}
+{\footnotesize\ttfamily ros\+::\+Node\+Handle cpr\+\_\+robot\+::\+Joint\+::m\+\_\+\+Node\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+A handle to the current R\+OS node. 
+
+
+
+Definition at line 18 of file Joint.\+h.
+
+\mbox{\label{classcpr__robot_1_1Joint_a056c464a5860aecbb51b7e0693dd6d89}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!m\+\_\+p\+Module@{m\+\_\+p\+Module}}
+\index{m\+\_\+p\+Module@{m\+\_\+p\+Module}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{m\+\_\+p\+Module}
+{\footnotesize\ttfamily \textbf{ Motor\+Module}$\ast$ cpr\+\_\+robot\+::\+Joint\+::m\+\_\+p\+Module\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to an instance of the \doxyref{Motor\+Module}{p.}{classcpr__robot_1_1MotorModule} class which represents the module and firmware driving the motor for the joint. 
+
+
+
+Definition at line 20 of file Joint.\+h.
+
+\mbox{\label{classcpr__robot_1_1Joint_af242793ddfddbb4dd9d2188ada4f9063}} 
+\index{cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}!m\+\_\+\+Ticks\+Per\+Motor\+Rotation@{m\+\_\+\+Ticks\+Per\+Motor\+Rotation}}
+\index{m\+\_\+\+Ticks\+Per\+Motor\+Rotation@{m\+\_\+\+Ticks\+Per\+Motor\+Rotation}!cpr\+\_\+robot\+::\+Joint@{cpr\+\_\+robot\+::\+Joint}}
+\subsubsection{m\+\_\+\+Ticks\+Per\+Motor\+Rotation}
+{\footnotesize\ttfamily int32\+\_\+t cpr\+\_\+robot\+::\+Joint\+::m\+\_\+\+Ticks\+Per\+Motor\+Rotation\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The number of encoder ticks representing exactly one rotation of the motor that is driving this joint. 
+
+
+
+Definition at line 36 of file Joint.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\textbf{ Joint.\+h}\item 
+\textbf{ Joint.\+cpp}\end{DoxyCompactItemize}

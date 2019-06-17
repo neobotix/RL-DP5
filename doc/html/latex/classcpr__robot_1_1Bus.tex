@@ -1,0 +1,505 @@
+\section{cpr\+\_\+robot\+:\+:Bus Class Reference}
+\label{classcpr__robot_1_1Bus}\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+
+
+Used for communication over the C\+AN bus.  
+
+
+
+
+{\ttfamily \#include $<$cpr\+\_\+robot.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Bus} (const std\+::string \&interface\+Name=\char`\"{}can0\char`\"{})
+\begin{DoxyCompactList}\small\item\em Connects the C\+AN bus and starts a thread that will asynchronuously spin in a read loop. \end{DoxyCompactList}\item 
+const std\+::string \& \textbf{ get\+\_\+\+Interface\+Name} () const
+\begin{DoxyCompactList}\small\item\em Allows to query the interface name that was used to open the socket for communication over the C\+AN bus. \end{DoxyCompactList}\item 
+bool \textbf{ get\+\_\+\+Is\+Connected} () const
+\begin{DoxyCompactList}\small\item\em Provides information about the state of the C\+AN bus. \end{DoxyCompactList}\item 
+struct can\+\_\+frame \textbf{ get\+\_\+\+Last\+Frame} (const canid\+\_\+t id, std\+::chrono\+::high\+\_\+resolution\+\_\+clock\+::time\+\_\+point \&reception\+Time, bool \&b\+Valid)
+\begin{DoxyCompactList}\small\item\em Returns the last frame of a specific C\+AN object ID that was received from the bus. \end{DoxyCompactList}\item 
+double \textbf{ get\+\_\+\+Read\+Timeout} () const
+\begin{DoxyCompactList}\small\item\em Provides information about the timeout for read operations on the C\+AN bus. \end{DoxyCompactList}\item 
+void \textbf{ Start} ()
+\begin{DoxyCompactList}\small\item\em Requests the read loop to be started. \end{DoxyCompactList}\item 
+void \textbf{ Stop} ()
+\begin{DoxyCompactList}\small\item\em Requests to stop the read loop. \end{DoxyCompactList}\item 
+bool \textbf{ Write\+Frame} (const struct can\+\_\+frame \&frame)
+\begin{DoxyCompactList}\small\item\em Writes a frame to the C\+AN bus. \end{DoxyCompactList}\item 
+virtual \textbf{ $\sim$\+Bus} ()
+\begin{DoxyCompactList}\small\item\em Will cause the read loop in case it is spinning. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ Connect} ()
+\begin{DoxyCompactList}\small\item\em Opens a socket for communication over the C\+AN bus. \end{DoxyCompactList}\item 
+void \textbf{ Disconnect} ()
+\begin{DoxyCompactList}\small\item\em Closes the socket that was used for communication over the C\+AN bus. \end{DoxyCompactList}\item 
+void \textbf{ On\+Start} ()
+\begin{DoxyCompactList}\small\item\em Starts the read loop. \end{DoxyCompactList}\item 
+void \textbf{ On\+Stop} ()
+\begin{DoxyCompactList}\small\item\em Signals the read loop to stop spinning. \end{DoxyCompactList}\item 
+void \textbf{ Read\+Loop} ()
+\begin{DoxyCompactList}\small\item\em The read loop. Will keep spinning until a stop is requested by calling the Stop method or destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \textbf{ Read\+Thread} (\textbf{ Bus} $\ast$p\+Bus)
+\begin{DoxyCompactList}\small\item\em The entry point for the reader thread. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \textbf{ m\+\_\+b\+Connected}
+\begin{DoxyCompactList}\small\item\em Flag indicating if the C\+AN bus has been successfully connected through a socket. \end{DoxyCompactList}\item 
+std\+::atomic\+\_\+bool \textbf{ m\+\_\+b\+Is\+Running}
+\begin{DoxyCompactList}\small\item\em Flag indicating if the read loop should continue spinning. \end{DoxyCompactList}\item 
+const std\+::string \textbf{ m\+\_\+\+Interface\+Name}
+\begin{DoxyCompactList}\small\item\em The interface name that will be used when creating the socket for communication over the C\+AN bus. \end{DoxyCompactList}\item 
+struct can\+\_\+frame \textbf{ m\+\_\+\+Last\+Frames\+By\+Id} [0x800]
+\begin{DoxyCompactList}\small\item\em Buffer containing the last received frame of each C\+AN object ID. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+mutex \textbf{ m\+\_\+\+Last\+Frames\+Mutex}
+\begin{DoxyCompactList}\small\item\em Mutex used to protect the buffers containing received frames and their associated timepoints from race conditions. \end{DoxyCompactList}\item 
+std\+::chrono\+::high\+\_\+resolution\+\_\+clock\+::time\+\_\+point \textbf{ m\+\_\+\+Last\+Frame\+Times\+By\+Id} [0x800]
+\begin{DoxyCompactList}\small\item\em Buffer containing the timepoints at which frames of the respective C\+AN object I\+Ds have been received. \end{DoxyCompactList}\item 
+std\+::thread $\ast$ \textbf{ m\+\_\+p\+Read\+Thread}
+\begin{DoxyCompactList}\small\item\em Pointer to the thread that asynchronously runs the read loop. Will be set to nullptr if the read loop is not spinning. \end{DoxyCompactList}\item 
+std\+::mutex \textbf{ m\+\_\+\+Read\+Mutex}
+\begin{DoxyCompactList}\small\item\em Mutex used to ensure that two read operations on the C\+AN bus cannot interfere with each other. \end{DoxyCompactList}\item 
+int \textbf{ m\+\_\+\+Socket}
+\begin{DoxyCompactList}\small\item\em The socket used for communication over the C\+AN bus. \end{DoxyCompactList}\item 
+std\+::mutex \textbf{ m\+\_\+\+Write\+Mutex}
+\begin{DoxyCompactList}\small\item\em Mutex used to ensure that two write operations on the C\+AN bus cannot interfere with each other. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr int32\+\_\+t \textbf{ m\+\_\+\+Read\+Timeout\+Milliseconds} = 50
+\begin{DoxyCompactList}\small\item\em The hardcoded read timeout in milliseconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Used for communication over the C\+AN bus. 
+
+Allows to send frames and will spawn a reader thread that executes a loop that continuously checks for new frames on the C\+AN bus and keeps the last frame of any C\+AN object ID stored in a buffer to be queried at a later time. 
+
+Definition at line 9 of file Bus.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{classcpr__robot_1_1Bus_af191915497eb0c1d44c21964bdfd0ed0}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!Bus@{Bus}}
+\index{Bus@{Bus}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{Bus()}
+{\footnotesize\ttfamily cpr\+\_\+robot\+::\+Bus\+::\+Bus (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{interface\+Name = {\ttfamily \char`\"{}can0\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+Connects the C\+AN bus and starts a thread that will asynchronuously spin in a read loop. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em interface\+Name} & The interface name of the C\+AN bus. Defaults to \char`\"{}can0\char`\"{}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 72 of file Bus.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Bus_a68ace4fd7789b92159dc83901800133e}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!````~Bus@{$\sim$\+Bus}}
+\index{````~Bus@{$\sim$\+Bus}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{$\sim$\+Bus()}
+{\footnotesize\ttfamily cpr\+\_\+robot\+::\+Bus\+::$\sim$\+Bus (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Will cause the read loop in case it is spinning. 
+
+In that case the reader thread will be terminated and joined. 
+
+Definition at line 158 of file Bus.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{classcpr__robot_1_1Bus_ab82446df9b87b1baca8f902f8f6be45b}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!Connect@{Connect}}
+\index{Connect@{Connect}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{Connect()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Bus\+::\+Connect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Opens a socket for communication over the C\+AN bus. 
+
+
+
+Definition at line 164 of file Bus.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Bus_a3d7bd9b86055d8b5b28b0e2750cbf54e}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!Disconnect@{Disconnect}}
+\index{Disconnect@{Disconnect}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{Disconnect()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Bus\+::\+Disconnect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Closes the socket that was used for communication over the C\+AN bus. 
+
+
+
+Definition at line 205 of file Bus.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Bus_a345fa5c1988933d662a6dca09070816d}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!get\+\_\+\+Interface\+Name@{get\+\_\+\+Interface\+Name}}
+\index{get\+\_\+\+Interface\+Name@{get\+\_\+\+Interface\+Name}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{get\+\_\+\+Interface\+Name()}
+{\footnotesize\ttfamily const std\+::string \& cpr\+\_\+robot\+::\+Bus\+::get\+\_\+\+Interface\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Allows to query the interface name that was used to open the socket for communication over the C\+AN bus. 
+
+\begin{DoxyReturn}{Returns}
+The name of the interface. 
+\end{DoxyReturn}
+
+
+Definition at line 227 of file Bus.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Bus_a306dc86e7562ce3c0b12e7787aac5f92}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!get\+\_\+\+Is\+Connected@{get\+\_\+\+Is\+Connected}}
+\index{get\+\_\+\+Is\+Connected@{get\+\_\+\+Is\+Connected}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{get\+\_\+\+Is\+Connected()}
+{\footnotesize\ttfamily bool cpr\+\_\+robot\+::\+Bus\+::get\+\_\+\+Is\+Connected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Provides information about the state of the C\+AN bus. 
+
+\begin{DoxyReturn}{Returns}
+Returns true if the C\+AN bus is connected, elsewise false is returned. 
+\end{DoxyReturn}
+
+
+Definition at line 234 of file Bus.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Bus_a55358a848eaea547e4618f6683765789}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!get\+\_\+\+Last\+Frame@{get\+\_\+\+Last\+Frame}}
+\index{get\+\_\+\+Last\+Frame@{get\+\_\+\+Last\+Frame}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{get\+\_\+\+Last\+Frame()}
+{\footnotesize\ttfamily struct can\+\_\+frame cpr\+\_\+robot\+::\+Bus\+::get\+\_\+\+Last\+Frame (\begin{DoxyParamCaption}\item[{const canid\+\_\+t}]{id,  }\item[{std\+::chrono\+::high\+\_\+resolution\+\_\+clock\+::time\+\_\+point \&}]{reception\+Time,  }\item[{bool \&}]{b\+Valid }\end{DoxyParamCaption})}
+
+
+
+Returns the last frame of a specific C\+AN object ID that was received from the bus. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The C\+AN object ID of the requested frame. \\
+\hline
+{\em reception\+Time} & Will be set to the timepoint at which the frame was received from the bus. \\
+\hline
+{\em b\+Valid} & Will be true if a valid frame of the requested C\+AN object ID has been received. If false no frame of that C\+AN object ID has been received yet. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The last frame of the requested C\+AN object ID that was received from the bus. 
+\end{DoxyReturn}
+
+
+Definition at line 50 of file Bus.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Bus_afa1dd260b445df7cde0e6feacd7e2345}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!get\+\_\+\+Read\+Timeout@{get\+\_\+\+Read\+Timeout}}
+\index{get\+\_\+\+Read\+Timeout@{get\+\_\+\+Read\+Timeout}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{get\+\_\+\+Read\+Timeout()}
+{\footnotesize\ttfamily double cpr\+\_\+robot\+::\+Bus\+::get\+\_\+\+Read\+Timeout (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Provides information about the timeout for read operations on the C\+AN bus. 
+
+Currently the value is hardcoded to 50ms. If no message is received within that time the underlying socket will generate a timeout error, allowing the thread to yield C\+PU time to other processes or threads. \begin{DoxyReturn}{Returns}
+The timeout delay in seconds. 
+\end{DoxyReturn}
+
+
+Definition at line 19 of file Bus.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Bus_a344431f9f3392ae0bdc0fc758de72932}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!On\+Start@{On\+Start}}
+\index{On\+Start@{On\+Start}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{On\+Start()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Bus\+::\+On\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Starts the read loop. 
+
+A reader thread will be spawned that will poll the C\+AN bus asynchronuously. 
+
+Definition at line 94 of file Bus.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Bus_a0485746683401b884f77bd7895d21215}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!On\+Stop@{On\+Stop}}
+\index{On\+Stop@{On\+Stop}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{On\+Stop()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Bus\+::\+On\+Stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Signals the read loop to stop spinning. 
+
+This method will wait until the reader thread terminates and joins. 
+
+Definition at line 130 of file Bus.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Bus_a47185578e833fab3ee3316eb8455da4c}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!Read\+Loop@{Read\+Loop}}
+\index{Read\+Loop@{Read\+Loop}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{Read\+Loop()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Bus\+::\+Read\+Loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The read loop. Will keep spinning until a stop is requested by calling the Stop method or destructor. 
+
+
+
+Definition at line 25 of file Bus.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Bus_a8b26ea2a369a9b8b7e020354b9f906a3}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!Read\+Thread@{Read\+Thread}}
+\index{Read\+Thread@{Read\+Thread}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{Read\+Thread()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Bus\+::\+Read\+Thread (\begin{DoxyParamCaption}\item[{\textbf{ Bus} $\ast$}]{p\+Bus }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+The entry point for the reader thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Bus} & Pointer to the \doxyref{Bus}{p.}{classcpr__robot_1_1Bus} instance that the thread will be associated to. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 8 of file Bus.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Bus_a1625d2813b33734c01d449d222b149f3}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!Start@{Start}}
+\index{Start@{Start}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{Start()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Bus\+::\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Requests the read loop to be started. 
+
+This is a public thread-\/safe wrapper for the private On\+Start method. A reader thread will be spawned that will poll the C\+AN bus asynchronuously. 
+
+Definition at line 85 of file Bus.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Bus_a27a2482794d66082b109c52e2c2669e1}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!Stop@{Stop}}
+\index{Stop@{Stop}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{Stop()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Bus\+::\+Stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Requests to stop the read loop. 
+
+This is a public thread-\/safe wrapper for the private On\+Stop method. The reader thread will be terminated and joined. 
+
+Definition at line 149 of file Bus.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1Bus_a158236a7105fadd88fddb990e87e43d9}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!Write\+Frame@{Write\+Frame}}
+\index{Write\+Frame@{Write\+Frame}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{Write\+Frame()}
+{\footnotesize\ttfamily bool cpr\+\_\+robot\+::\+Bus\+::\+Write\+Frame (\begin{DoxyParamCaption}\item[{const struct can\+\_\+frame \&}]{frame }\end{DoxyParamCaption})}
+
+
+
+Writes a frame to the C\+AN bus. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame} & The frame that will be written to the C\+AN bus. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the operation was successfull, elsewise false. 
+\end{DoxyReturn}
+
+
+Definition at line 62 of file Bus.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\label{classcpr__robot_1_1Bus_aac8e1a6764f7f26980aefe63a5092e39}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!m\+\_\+b\+Connected@{m\+\_\+b\+Connected}}
+\index{m\+\_\+b\+Connected@{m\+\_\+b\+Connected}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{m\+\_\+b\+Connected}
+{\footnotesize\ttfamily bool cpr\+\_\+robot\+::\+Bus\+::m\+\_\+b\+Connected\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Flag indicating if the C\+AN bus has been successfully connected through a socket. 
+
+
+
+Definition at line 23 of file Bus.\+h.
+
+\mbox{\label{classcpr__robot_1_1Bus_aec85ad35abb0e06b6754d9b34f0f040f}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!m\+\_\+b\+Is\+Running@{m\+\_\+b\+Is\+Running}}
+\index{m\+\_\+b\+Is\+Running@{m\+\_\+b\+Is\+Running}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{m\+\_\+b\+Is\+Running}
+{\footnotesize\ttfamily std\+::atomic\+\_\+bool cpr\+\_\+robot\+::\+Bus\+::m\+\_\+b\+Is\+Running\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Flag indicating if the read loop should continue spinning. 
+
+
+
+Definition at line 25 of file Bus.\+h.
+
+\mbox{\label{classcpr__robot_1_1Bus_a2b4e975992be8f2c6e546851cb036327}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!m\+\_\+\+Interface\+Name@{m\+\_\+\+Interface\+Name}}
+\index{m\+\_\+\+Interface\+Name@{m\+\_\+\+Interface\+Name}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{m\+\_\+\+Interface\+Name}
+{\footnotesize\ttfamily const std\+::string cpr\+\_\+robot\+::\+Bus\+::m\+\_\+\+Interface\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The interface name that will be used when creating the socket for communication over the C\+AN bus. 
+
+
+
+Definition at line 19 of file Bus.\+h.
+
+\mbox{\label{classcpr__robot_1_1Bus_ae5b56a2c8ca546d947cdfbfa4b0f58ef}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!m\+\_\+\+Last\+Frames\+By\+Id@{m\+\_\+\+Last\+Frames\+By\+Id}}
+\index{m\+\_\+\+Last\+Frames\+By\+Id@{m\+\_\+\+Last\+Frames\+By\+Id}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{m\+\_\+\+Last\+Frames\+By\+Id}
+{\footnotesize\ttfamily struct can\+\_\+frame cpr\+\_\+robot\+::\+Bus\+::m\+\_\+\+Last\+Frames\+By\+Id[0x800]\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Buffer containing the last received frame of each C\+AN object ID. 
+
+
+
+Definition at line 15 of file Bus.\+h.
+
+\mbox{\label{classcpr__robot_1_1Bus_a4bc31d1d8ccf02315489ffc0605070cb}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!m\+\_\+\+Last\+Frames\+Mutex@{m\+\_\+\+Last\+Frames\+Mutex}}
+\index{m\+\_\+\+Last\+Frames\+Mutex@{m\+\_\+\+Last\+Frames\+Mutex}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{m\+\_\+\+Last\+Frames\+Mutex}
+{\footnotesize\ttfamily std\+::shared\+\_\+mutex cpr\+\_\+robot\+::\+Bus\+::m\+\_\+\+Last\+Frames\+Mutex\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Mutex used to protect the buffers containing received frames and their associated timepoints from race conditions. 
+
+
+
+Definition at line 29 of file Bus.\+h.
+
+\mbox{\label{classcpr__robot_1_1Bus_a6f2c90957d39345df533620645afca7d}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!m\+\_\+\+Last\+Frame\+Times\+By\+Id@{m\+\_\+\+Last\+Frame\+Times\+By\+Id}}
+\index{m\+\_\+\+Last\+Frame\+Times\+By\+Id@{m\+\_\+\+Last\+Frame\+Times\+By\+Id}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{m\+\_\+\+Last\+Frame\+Times\+By\+Id}
+{\footnotesize\ttfamily std\+::chrono\+::high\+\_\+resolution\+\_\+clock\+::time\+\_\+point cpr\+\_\+robot\+::\+Bus\+::m\+\_\+\+Last\+Frame\+Times\+By\+Id[0x800]\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Buffer containing the timepoints at which frames of the respective C\+AN object I\+Ds have been received. 
+
+
+
+Definition at line 17 of file Bus.\+h.
+
+\mbox{\label{classcpr__robot_1_1Bus_a2f5389a90cd579fed75d15d7bc55b650}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!m\+\_\+p\+Read\+Thread@{m\+\_\+p\+Read\+Thread}}
+\index{m\+\_\+p\+Read\+Thread@{m\+\_\+p\+Read\+Thread}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{m\+\_\+p\+Read\+Thread}
+{\footnotesize\ttfamily std\+::thread$\ast$ cpr\+\_\+robot\+::\+Bus\+::m\+\_\+p\+Read\+Thread\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the thread that asynchronously runs the read loop. Will be set to nullptr if the read loop is not spinning. 
+
+
+
+Definition at line 27 of file Bus.\+h.
+
+\mbox{\label{classcpr__robot_1_1Bus_a7a359b89e9afb35241b274f070c1abe1}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!m\+\_\+\+Read\+Mutex@{m\+\_\+\+Read\+Mutex}}
+\index{m\+\_\+\+Read\+Mutex@{m\+\_\+\+Read\+Mutex}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{m\+\_\+\+Read\+Mutex}
+{\footnotesize\ttfamily std\+::mutex cpr\+\_\+robot\+::\+Bus\+::m\+\_\+\+Read\+Mutex\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Mutex used to ensure that two read operations on the C\+AN bus cannot interfere with each other. 
+
+
+
+Definition at line 33 of file Bus.\+h.
+
+\mbox{\label{classcpr__robot_1_1Bus_ac4d39502ea84eb51e3f8dbda75b69539}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!m\+\_\+\+Read\+Timeout\+Milliseconds@{m\+\_\+\+Read\+Timeout\+Milliseconds}}
+\index{m\+\_\+\+Read\+Timeout\+Milliseconds@{m\+\_\+\+Read\+Timeout\+Milliseconds}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{m\+\_\+\+Read\+Timeout\+Milliseconds}
+{\footnotesize\ttfamily constexpr int32\+\_\+t cpr\+\_\+robot\+::\+Bus\+::m\+\_\+\+Read\+Timeout\+Milliseconds = 50\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+The hardcoded read timeout in milliseconds. 
+
+
+
+Definition at line 13 of file Bus.\+h.
+
+\mbox{\label{classcpr__robot_1_1Bus_a69bd82af239f43e416074cb55dafbfea}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!m\+\_\+\+Socket@{m\+\_\+\+Socket}}
+\index{m\+\_\+\+Socket@{m\+\_\+\+Socket}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{m\+\_\+\+Socket}
+{\footnotesize\ttfamily int cpr\+\_\+robot\+::\+Bus\+::m\+\_\+\+Socket\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The socket used for communication over the C\+AN bus. 
+
+
+
+Definition at line 21 of file Bus.\+h.
+
+\mbox{\label{classcpr__robot_1_1Bus_acbfc938000f8ece3cfff6cc55f06db45}} 
+\index{cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}!m\+\_\+\+Write\+Mutex@{m\+\_\+\+Write\+Mutex}}
+\index{m\+\_\+\+Write\+Mutex@{m\+\_\+\+Write\+Mutex}!cpr\+\_\+robot\+::\+Bus@{cpr\+\_\+robot\+::\+Bus}}
+\subsubsection{m\+\_\+\+Write\+Mutex}
+{\footnotesize\ttfamily std\+::mutex cpr\+\_\+robot\+::\+Bus\+::m\+\_\+\+Write\+Mutex\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Mutex used to ensure that two write operations on the C\+AN bus cannot interfere with each other. 
+
+
+
+Definition at line 31 of file Bus.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\textbf{ Bus.\+h}\item 
+\textbf{ Bus.\+cpp}\end{DoxyCompactItemize}

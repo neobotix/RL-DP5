@@ -1,0 +1,574 @@
+\section{cpr\+\_\+rviz\+:\+:Joint\+Control Class Reference}
+\label{classcpr__rviz_1_1JointControl}\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+
+
+Widget that provides motion control for a single robot joint.  
+
+
+
+
+{\ttfamily \#include $<$Joint\+Control.\+h$>$}
+
+
+
+Inheritance diagram for cpr\+\_\+rviz\+:\+:Joint\+Control\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{classcpr__rviz_1_1JointControl__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ Disable} ()
+\begin{DoxyCompactList}\small\item\em Disables all relevant UI elements. \end{DoxyCompactList}\item 
+void \textbf{ Enable} ()
+\begin{DoxyCompactList}\small\item\em Enables all relevant UI elements. \end{DoxyCompactList}\item 
+bool \textbf{ get\+\_\+\+Referenced} () const
+\begin{DoxyCompactList}\small\item\em Gets the referencing state. \end{DoxyCompactList}\item 
+\textbf{ Joint\+Control} (const uint32\+\_\+t joint\+Id, Q\+Widget $\ast$parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxyref{Joint\+Control}{p.}{classcpr__rviz_1_1JointControl} widget. \end{DoxyCompactList}\item 
+void \textbf{ set\+\_\+\+Is\+Referenced} (const bool b\+Referenced)
+\begin{DoxyCompactList}\small\item\em Sets the referencing state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ On\+Stop\+Button\+Clicked} (bool checked=false)
+\begin{DoxyCompactList}\small\item\em Callback slot that is called when the S\+T\+OP button is clicked. \end{DoxyCompactList}\item 
+void \textbf{ On\+Velocity\+Slider\+Value\+Changed} (int value)
+\begin{DoxyCompactList}\small\item\em Callback slot that handles changes to the velocity control slider. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+cpr\+\_\+robot\+::\+Get\+Joint\+Info\+Response \textbf{ Get\+Joint\+Info} ()
+\begin{DoxyCompactList}\small\item\em Queries information about the joint from the /\+Get\+Joint\+Info R\+OS service. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ Initialize\+R\+OS} ()
+\begin{DoxyCompactList}\small\item\em Sets up communication with R\+OS. \end{DoxyCompactList}\item 
+void \textbf{ Initialize\+State} ()
+\begin{DoxyCompactList}\small\item\em Initializes all relevant members. \end{DoxyCompactList}\item 
+void \textbf{ Initialize\+UI} ()
+\begin{DoxyCompactList}\small\item\em Initializes all UI elements. \end{DoxyCompactList}\item 
+void \textbf{ Joint\+State\+Callback} (const sensor\+\_\+msgs\+::\+Joint\+State\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em Callback that handles messages received over the /\+Joint\+State R\+OS topic. \end{DoxyCompactList}\item 
+void \textbf{ On\+Position\+Changed} ()
+\begin{DoxyCompactList}\small\item\em Updates the UI elements associated with position. \end{DoxyCompactList}\item 
+void \textbf{ On\+Velocity\+Changed} ()
+\begin{DoxyCompactList}\small\item\em Updates the UI elements associated with velocity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \textbf{ m\+\_\+b\+Is\+Referenced}
+\begin{DoxyCompactList}\small\item\em Flag indicating whether the joint has been referenced. \end{DoxyCompactList}\item 
+ros\+::\+Service\+Client \textbf{ m\+\_\+\+Get\+Joint\+Info\+Client}
+\begin{DoxyCompactList}\small\item\em Client used to query information about the joint via the /\+Get\+Joint\+Info R\+OS service. \end{DoxyCompactList}\item 
+Q\+Group\+Box \textbf{ m\+\_\+\+Group\+Box}
+\begin{DoxyCompactList}\small\item\em A group box widget that will contain the controls. \end{DoxyCompactList}\item 
+Q\+Form\+Layout \textbf{ m\+\_\+\+Group\+Layout}
+\begin{DoxyCompactList}\small\item\em The layout arranging the controls in the group box. \end{DoxyCompactList}\item 
+uint32\+\_\+t \textbf{ m\+\_\+\+Joint\+Id}
+\begin{DoxyCompactList}\small\item\em The ID of the joint. \end{DoxyCompactList}\item 
+ros\+::\+Publisher \textbf{ m\+\_\+\+Joint\+Jog\+Publisher}
+\begin{DoxyCompactList}\small\item\em Publisher used to publish jog commands over the /\+Joint\+Jog R\+OS topic. \end{DoxyCompactList}\item 
+std\+::string \textbf{ m\+\_\+\+Joint\+Name}
+\begin{DoxyCompactList}\small\item\em The name of the joint as used in R\+OS topics and services. \end{DoxyCompactList}\item 
+ros\+::\+Subscriber \textbf{ m\+\_\+\+Joint\+State\+Subscriber}
+\begin{DoxyCompactList}\small\item\em Subscriber that will listen for joint states on the /joint\+\_\+states R\+OS topic. \end{DoxyCompactList}\item 
+uint32\+\_\+t \textbf{ m\+\_\+\+Joint\+Type}
+\begin{DoxyCompactList}\small\item\em The joint type. Currently this is not used. \end{DoxyCompactList}\item 
+Q\+H\+Box\+Layout \textbf{ m\+\_\+\+Main\+Layout}
+\begin{DoxyCompactList}\small\item\em The top-\/level layout of the widget. \end{DoxyCompactList}\item 
+ros\+::\+Node\+Handle \textbf{ m\+\_\+\+Node}
+\begin{DoxyCompactList}\small\item\em A handle to the current R\+OS node. \end{DoxyCompactList}\item 
+double \textbf{ m\+\_\+\+Position}
+\begin{DoxyCompactList}\small\item\em The position of the joint in radians. \end{DoxyCompactList}\item 
+Q\+Label \textbf{ m\+\_\+\+Position\+Label}
+\begin{DoxyCompactList}\small\item\em A label that will show the current position. \end{DoxyCompactList}\item 
+Q\+Push\+Button \textbf{ m\+\_\+\+Stop\+Button}
+\begin{DoxyCompactList}\small\item\em A button that will set the desired velocity to zero when pressed. \end{DoxyCompactList}\item 
+double \textbf{ m\+\_\+\+Velocity}
+\begin{DoxyCompactList}\small\item\em The angular velocity of the joint in radians per second. \end{DoxyCompactList}\item 
+Q\+Label \textbf{ m\+\_\+\+Velocity\+Label}
+\begin{DoxyCompactList}\small\item\em A label that will show the current velocity. \end{DoxyCompactList}\item 
+Q\+Slider \textbf{ m\+\_\+\+Velocity\+Slider}
+\begin{DoxyCompactList}\small\item\em A slider that allows to control the desired velocity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Widget that provides motion control for a single robot joint. 
+
+Definition at line 7 of file Joint\+Control.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{classcpr__rviz_1_1JointControl_a3c0564180d0abaaf761d993b744ce29b}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!Joint\+Control@{Joint\+Control}}
+\index{Joint\+Control@{Joint\+Control}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{Joint\+Control()}
+{\footnotesize\ttfamily cpr\+\_\+rviz\+::\+Joint\+Control\+::\+Joint\+Control (\begin{DoxyParamCaption}\item[{const uint32\+\_\+t}]{joint\+Id,  }\item[{Q\+Widget $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxyref{Joint\+Control}{p.}{classcpr__rviz_1_1JointControl} widget. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em joint\+Id} & The ID of the joint that will be controlled by the widget. \\
+\hline
+{\em parent} & The parent widget \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 12 of file Joint\+Control.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{classcpr__rviz_1_1JointControl_a8a3333b09fe8987e3fe1964d97500389}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!Disable@{Disable}}
+\index{Disable@{Disable}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{Disable()}
+{\footnotesize\ttfamily void cpr\+\_\+rviz\+::\+Joint\+Control\+::\+Disable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Disables all relevant UI elements. 
+
+
+
+Definition at line 76 of file Joint\+Control.\+cpp.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_af043fa940778ae0875347c0c6e924673}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!Enable@{Enable}}
+\index{Enable@{Enable}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{Enable()}
+{\footnotesize\ttfamily void cpr\+\_\+rviz\+::\+Joint\+Control\+::\+Enable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Enables all relevant UI elements. 
+
+
+
+Definition at line 68 of file Joint\+Control.\+cpp.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_a075915255bca76fc81c6b761d08417ad}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!get\+\_\+\+Referenced@{get\+\_\+\+Referenced}}
+\index{get\+\_\+\+Referenced@{get\+\_\+\+Referenced}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{get\+\_\+\+Referenced()}
+{\footnotesize\ttfamily bool cpr\+\_\+rviz\+::\+Joint\+Control\+::get\+\_\+\+Referenced (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the referencing state. 
+
+\begin{DoxyReturn}{Returns}
+Flag indicating whether the joint has been referenced. 
+\end{DoxyReturn}
+
+
+Definition at line 62 of file Joint\+Control.\+cpp.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_a1d5ed10095d9f18c3895db5083d8e754}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!Get\+Joint\+Info@{Get\+Joint\+Info}}
+\index{Get\+Joint\+Info@{Get\+Joint\+Info}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{Get\+Joint\+Info()}
+{\footnotesize\ttfamily cpr\+\_\+robot\+::\+Get\+Joint\+Info\+Response cpr\+\_\+rviz\+::\+Joint\+Control\+::\+Get\+Joint\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Queries information about the joint from the /\+Get\+Joint\+Info R\+OS service. 
+
+
+
+Definition at line 161 of file Joint\+Control.\+cpp.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_a38be0ce51423a08696490a30fb002091}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!Initialize\+R\+OS@{Initialize\+R\+OS}}
+\index{Initialize\+R\+OS@{Initialize\+R\+OS}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{Initialize\+R\+O\+S()}
+{\footnotesize\ttfamily void cpr\+\_\+rviz\+::\+Joint\+Control\+::\+Initialize\+R\+OS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sets up communication with R\+OS. 
+
+
+
+Definition at line 118 of file Joint\+Control.\+cpp.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_ae6ba57f3056fa550aa0a4258266c150c}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!Initialize\+State@{Initialize\+State}}
+\index{Initialize\+State@{Initialize\+State}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{Initialize\+State()}
+{\footnotesize\ttfamily void cpr\+\_\+rviz\+::\+Joint\+Control\+::\+Initialize\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes all relevant members. 
+
+
+
+Definition at line 108 of file Joint\+Control.\+cpp.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_a6c87f4bf2a1df5d7d8f0494bf27a163b}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!Initialize\+UI@{Initialize\+UI}}
+\index{Initialize\+UI@{Initialize\+UI}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{Initialize\+U\+I()}
+{\footnotesize\ttfamily void cpr\+\_\+rviz\+::\+Joint\+Control\+::\+Initialize\+UI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes all UI elements. 
+
+
+
+Definition at line 27 of file Joint\+Control.\+cpp.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_a9938dd5fb01d40daea1ccdda0062d157}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!Joint\+State\+Callback@{Joint\+State\+Callback}}
+\index{Joint\+State\+Callback@{Joint\+State\+Callback}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{Joint\+State\+Callback()}
+{\footnotesize\ttfamily void cpr\+\_\+rviz\+::\+Joint\+Control\+::\+Joint\+State\+Callback (\begin{DoxyParamCaption}\item[{const sensor\+\_\+msgs\+::\+Joint\+State\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Callback that handles messages received over the /\+Joint\+State R\+OS topic. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The received message. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 127 of file Joint\+Control.\+cpp.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_a1816ea27f1f667c9c8d4a796afd42cf2}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!On\+Position\+Changed@{On\+Position\+Changed}}
+\index{On\+Position\+Changed@{On\+Position\+Changed}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{On\+Position\+Changed()}
+{\footnotesize\ttfamily void cpr\+\_\+rviz\+::\+Joint\+Control\+::\+On\+Position\+Changed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Updates the UI elements associated with position. 
+
+
+
+Definition at line 98 of file Joint\+Control.\+cpp.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_a941d660f63009403405df8f13aaf989b}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!On\+Stop\+Button\+Clicked@{On\+Stop\+Button\+Clicked}}
+\index{On\+Stop\+Button\+Clicked@{On\+Stop\+Button\+Clicked}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{On\+Stop\+Button\+Clicked}
+{\footnotesize\ttfamily void cpr\+\_\+rviz\+::\+Joint\+Control\+::\+On\+Stop\+Button\+Clicked (\begin{DoxyParamCaption}\item[{bool}]{checked = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [slot]}}
+
+
+
+Callback slot that is called when the S\+T\+OP button is clicked. 
+
+
+
+Definition at line 84 of file Joint\+Control.\+cpp.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_a208e7c277741ff60c9f735cf602eb36c}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!On\+Velocity\+Changed@{On\+Velocity\+Changed}}
+\index{On\+Velocity\+Changed@{On\+Velocity\+Changed}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{On\+Velocity\+Changed()}
+{\footnotesize\ttfamily void cpr\+\_\+rviz\+::\+Joint\+Control\+::\+On\+Velocity\+Changed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Updates the UI elements associated with velocity. 
+
+
+
+Definition at line 90 of file Joint\+Control.\+cpp.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_a413b023c830fd1d723bab917973bc3f3}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!On\+Velocity\+Slider\+Value\+Changed@{On\+Velocity\+Slider\+Value\+Changed}}
+\index{On\+Velocity\+Slider\+Value\+Changed@{On\+Velocity\+Slider\+Value\+Changed}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{On\+Velocity\+Slider\+Value\+Changed}
+{\footnotesize\ttfamily void cpr\+\_\+rviz\+::\+Joint\+Control\+::\+On\+Velocity\+Slider\+Value\+Changed (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [slot]}}
+
+
+
+Callback slot that handles changes to the velocity control slider. 
+
+
+
+Definition at line 150 of file Joint\+Control.\+cpp.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_a2f5454e18d7d23e944395ada7aaeba36}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!set\+\_\+\+Is\+Referenced@{set\+\_\+\+Is\+Referenced}}
+\index{set\+\_\+\+Is\+Referenced@{set\+\_\+\+Is\+Referenced}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{set\+\_\+\+Is\+Referenced()}
+{\footnotesize\ttfamily void cpr\+\_\+rviz\+::\+Joint\+Control\+::set\+\_\+\+Is\+Referenced (\begin{DoxyParamCaption}\item[{const bool}]{b\+Referenced }\end{DoxyParamCaption})}
+
+
+
+Sets the referencing state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b\+Referenced} & Flag indicating whether the joint has been referenced. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 51 of file Joint\+Control.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\label{classcpr__rviz_1_1JointControl_ae93ea47479c5a1d93edccddb1653c045}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!m\+\_\+b\+Is\+Referenced@{m\+\_\+b\+Is\+Referenced}}
+\index{m\+\_\+b\+Is\+Referenced@{m\+\_\+b\+Is\+Referenced}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{m\+\_\+b\+Is\+Referenced}
+{\footnotesize\ttfamily bool cpr\+\_\+rviz\+::\+Joint\+Control\+::m\+\_\+b\+Is\+Referenced\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Flag indicating whether the joint has been referenced. 
+
+
+
+Definition at line 28 of file Joint\+Control.\+h.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_a6a62524861cf3adc8d2d80b35d62371b}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!m\+\_\+\+Get\+Joint\+Info\+Client@{m\+\_\+\+Get\+Joint\+Info\+Client}}
+\index{m\+\_\+\+Get\+Joint\+Info\+Client@{m\+\_\+\+Get\+Joint\+Info\+Client}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{m\+\_\+\+Get\+Joint\+Info\+Client}
+{\footnotesize\ttfamily ros\+::\+Service\+Client cpr\+\_\+rviz\+::\+Joint\+Control\+::m\+\_\+\+Get\+Joint\+Info\+Client\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Client used to query information about the joint via the /\+Get\+Joint\+Info R\+OS service. 
+
+
+
+Definition at line 14 of file Joint\+Control.\+h.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_afc8b3eff7c725da9894dd3bddd3e6f86}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!m\+\_\+\+Group\+Box@{m\+\_\+\+Group\+Box}}
+\index{m\+\_\+\+Group\+Box@{m\+\_\+\+Group\+Box}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{m\+\_\+\+Group\+Box}
+{\footnotesize\ttfamily Q\+Group\+Box cpr\+\_\+rviz\+::\+Joint\+Control\+::m\+\_\+\+Group\+Box\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+A group box widget that will contain the controls. 
+
+
+
+Definition at line 34 of file Joint\+Control.\+h.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_afb27353b7d3325bf8744f2e98b91bbe5}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!m\+\_\+\+Group\+Layout@{m\+\_\+\+Group\+Layout}}
+\index{m\+\_\+\+Group\+Layout@{m\+\_\+\+Group\+Layout}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{m\+\_\+\+Group\+Layout}
+{\footnotesize\ttfamily Q\+Form\+Layout cpr\+\_\+rviz\+::\+Joint\+Control\+::m\+\_\+\+Group\+Layout\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The layout arranging the controls in the group box. 
+
+
+
+Definition at line 36 of file Joint\+Control.\+h.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_a61275106767d7070097f9b75af1bc9d4}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!m\+\_\+\+Joint\+Id@{m\+\_\+\+Joint\+Id}}
+\index{m\+\_\+\+Joint\+Id@{m\+\_\+\+Joint\+Id}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{m\+\_\+\+Joint\+Id}
+{\footnotesize\ttfamily uint32\+\_\+t cpr\+\_\+rviz\+::\+Joint\+Control\+::m\+\_\+\+Joint\+Id\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The ID of the joint. 
+
+
+
+Definition at line 20 of file Joint\+Control.\+h.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_afa91714093241494d20a3d0749cc99be}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!m\+\_\+\+Joint\+Jog\+Publisher@{m\+\_\+\+Joint\+Jog\+Publisher}}
+\index{m\+\_\+\+Joint\+Jog\+Publisher@{m\+\_\+\+Joint\+Jog\+Publisher}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{m\+\_\+\+Joint\+Jog\+Publisher}
+{\footnotesize\ttfamily ros\+::\+Publisher cpr\+\_\+rviz\+::\+Joint\+Control\+::m\+\_\+\+Joint\+Jog\+Publisher\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Publisher used to publish jog commands over the /\+Joint\+Jog R\+OS topic. 
+
+
+
+Definition at line 16 of file Joint\+Control.\+h.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_a2aec12d818ded0a8bedfb93ffd3ded32}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!m\+\_\+\+Joint\+Name@{m\+\_\+\+Joint\+Name}}
+\index{m\+\_\+\+Joint\+Name@{m\+\_\+\+Joint\+Name}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{m\+\_\+\+Joint\+Name}
+{\footnotesize\ttfamily std\+::string cpr\+\_\+rviz\+::\+Joint\+Control\+::m\+\_\+\+Joint\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The name of the joint as used in R\+OS topics and services. 
+
+
+
+Definition at line 22 of file Joint\+Control.\+h.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_a6e1364b45555ee1aef13efe5ae41a62b}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!m\+\_\+\+Joint\+State\+Subscriber@{m\+\_\+\+Joint\+State\+Subscriber}}
+\index{m\+\_\+\+Joint\+State\+Subscriber@{m\+\_\+\+Joint\+State\+Subscriber}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{m\+\_\+\+Joint\+State\+Subscriber}
+{\footnotesize\ttfamily ros\+::\+Subscriber cpr\+\_\+rviz\+::\+Joint\+Control\+::m\+\_\+\+Joint\+State\+Subscriber\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Subscriber that will listen for joint states on the /joint\+\_\+states R\+OS topic. 
+
+
+
+Definition at line 18 of file Joint\+Control.\+h.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_a5df1b323959812671f46b685e44a4c23}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!m\+\_\+\+Joint\+Type@{m\+\_\+\+Joint\+Type}}
+\index{m\+\_\+\+Joint\+Type@{m\+\_\+\+Joint\+Type}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{m\+\_\+\+Joint\+Type}
+{\footnotesize\ttfamily uint32\+\_\+t cpr\+\_\+rviz\+::\+Joint\+Control\+::m\+\_\+\+Joint\+Type\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The joint type. Currently this is not used. 
+
+
+
+Definition at line 30 of file Joint\+Control.\+h.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_a2d6645a68741014a1fee4525c169933d}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!m\+\_\+\+Main\+Layout@{m\+\_\+\+Main\+Layout}}
+\index{m\+\_\+\+Main\+Layout@{m\+\_\+\+Main\+Layout}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{m\+\_\+\+Main\+Layout}
+{\footnotesize\ttfamily Q\+H\+Box\+Layout cpr\+\_\+rviz\+::\+Joint\+Control\+::m\+\_\+\+Main\+Layout\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The top-\/level layout of the widget. 
+
+
+
+Definition at line 32 of file Joint\+Control.\+h.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_ac0c9e57f9aa2fdf990e012f3c6194ae6}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!m\+\_\+\+Node@{m\+\_\+\+Node}}
+\index{m\+\_\+\+Node@{m\+\_\+\+Node}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{m\+\_\+\+Node}
+{\footnotesize\ttfamily ros\+::\+Node\+Handle cpr\+\_\+rviz\+::\+Joint\+Control\+::m\+\_\+\+Node\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+A handle to the current R\+OS node. 
+
+
+
+Definition at line 12 of file Joint\+Control.\+h.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_aaba2872c9325724d919cedf24c785581}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!m\+\_\+\+Position@{m\+\_\+\+Position}}
+\index{m\+\_\+\+Position@{m\+\_\+\+Position}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{m\+\_\+\+Position}
+{\footnotesize\ttfamily double cpr\+\_\+rviz\+::\+Joint\+Control\+::m\+\_\+\+Position\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The position of the joint in radians. 
+
+
+
+Definition at line 24 of file Joint\+Control.\+h.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_aa8a7ae5e85dbc6656d4d68ad2317ec6d}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!m\+\_\+\+Position\+Label@{m\+\_\+\+Position\+Label}}
+\index{m\+\_\+\+Position\+Label@{m\+\_\+\+Position\+Label}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{m\+\_\+\+Position\+Label}
+{\footnotesize\ttfamily Q\+Label cpr\+\_\+rviz\+::\+Joint\+Control\+::m\+\_\+\+Position\+Label\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+A label that will show the current position. 
+
+
+
+Definition at line 38 of file Joint\+Control.\+h.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_a05dabe23a265d5a9b2220ef037d2ac4e}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!m\+\_\+\+Stop\+Button@{m\+\_\+\+Stop\+Button}}
+\index{m\+\_\+\+Stop\+Button@{m\+\_\+\+Stop\+Button}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{m\+\_\+\+Stop\+Button}
+{\footnotesize\ttfamily Q\+Push\+Button cpr\+\_\+rviz\+::\+Joint\+Control\+::m\+\_\+\+Stop\+Button\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+A button that will set the desired velocity to zero when pressed. 
+
+
+
+Definition at line 44 of file Joint\+Control.\+h.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_a7286a9251862f81863d4dc800f565d4e}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!m\+\_\+\+Velocity@{m\+\_\+\+Velocity}}
+\index{m\+\_\+\+Velocity@{m\+\_\+\+Velocity}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{m\+\_\+\+Velocity}
+{\footnotesize\ttfamily double cpr\+\_\+rviz\+::\+Joint\+Control\+::m\+\_\+\+Velocity\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The angular velocity of the joint in radians per second. 
+
+
+
+Definition at line 26 of file Joint\+Control.\+h.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_ab5e1719b2b756adcf099f03dd7aa2361}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!m\+\_\+\+Velocity\+Label@{m\+\_\+\+Velocity\+Label}}
+\index{m\+\_\+\+Velocity\+Label@{m\+\_\+\+Velocity\+Label}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{m\+\_\+\+Velocity\+Label}
+{\footnotesize\ttfamily Q\+Label cpr\+\_\+rviz\+::\+Joint\+Control\+::m\+\_\+\+Velocity\+Label\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+A label that will show the current velocity. 
+
+
+
+Definition at line 40 of file Joint\+Control.\+h.
+
+\mbox{\label{classcpr__rviz_1_1JointControl_a69fc8b3462fb5c62dd64119384e6aa7f}} 
+\index{cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}!m\+\_\+\+Velocity\+Slider@{m\+\_\+\+Velocity\+Slider}}
+\index{m\+\_\+\+Velocity\+Slider@{m\+\_\+\+Velocity\+Slider}!cpr\+\_\+rviz\+::\+Joint\+Control@{cpr\+\_\+rviz\+::\+Joint\+Control}}
+\subsubsection{m\+\_\+\+Velocity\+Slider}
+{\footnotesize\ttfamily Q\+Slider cpr\+\_\+rviz\+::\+Joint\+Control\+::m\+\_\+\+Velocity\+Slider\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+A slider that allows to control the desired velocity. 
+
+
+
+Definition at line 42 of file Joint\+Control.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\textbf{ Joint\+Control.\+h}\item 
+\textbf{ Joint\+Control.\+cpp}\end{DoxyCompactItemize}

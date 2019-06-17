@@ -138,10 +138,21 @@ add_executable(igus_4DOF_SV
   src/Joint.cpp 
   src/Joint.cpp 
   src/igus_4DOF_SV.cpp 
-  src/CPRMover6.cpp 
 )
 target_link_libraries(igus_4DOF_SV ${catkin_LIBRARIES})
 add_dependencies(igus_4DOF_SV cpr_robot_generate_messages_cpp)
+
+add_executable(igus_5DOF_SV 
+  src/main_igus_5DOF_SV.cpp 
+  src/Bus.cpp 
+  src/MotorModule.cpp 
+  src/Robot.cpp 
+  src/Joint.cpp 
+  src/Joint.cpp 
+  src/igus_5DOF_SV.cpp 
+)
+target_link_libraries(igus_5DOF_SV ${catkin_LIBRARIES})
+add_dependencies(igus_5DOF_SV cpr_robot_generate_messages_cpp)
 
 add_executable(CPRMover6 
   src/main_CPRMover6.cpp 
@@ -150,7 +161,6 @@ add_executable(CPRMover6
   src/Robot.cpp 
   src/Joint.cpp 
   src/Joint.cpp 
-  src/igus_4DOF_SV.cpp 
   src/CPRMover6.cpp 
 )
 target_link_libraries(CPRMover6 ${catkin_LIBRARIES})

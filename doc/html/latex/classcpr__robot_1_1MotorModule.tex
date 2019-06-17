@@ -1,0 +1,928 @@
+\section{cpr\+\_\+robot\+:\+:Motor\+Module Class Reference}
+\label{classcpr__robot_1_1MotorModule}\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+
+
+Represents a D\+IN rail motorcontrol module from Commonplace Robotics GmbH.  
+
+
+
+
+{\ttfamily \#include $<$cpr\+\_\+robot.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ Disable} ()
+\begin{DoxyCompactList}\small\item\em Disables motor motion. \end{DoxyCompactList}\item 
+void \textbf{ Enable} ()
+\begin{DoxyCompactList}\small\item\em Enables motor motion. \end{DoxyCompactList}\item 
+int32\+\_\+t \textbf{ get\+\_\+\+Current\+Position} (uint8\+\_\+t \&time\+Stamp, std\+::chrono\+::high\+\_\+resolution\+\_\+clock\+::time\+\_\+point \&reception\+Time, uint8\+\_\+t \&error\+Flags, uint8\+\_\+t \&data\+Bits) const
+\begin{DoxyCompactList}\small\item\em Allows to query the last response to a Set\+Joint command that has been received from the module. \end{DoxyCompactList}\item 
+int32\+\_\+t \textbf{ get\+\_\+\+Desired\+Position} () const
+\begin{DoxyCompactList}\small\item\em Allows to query the desired position of the joint that is controled by the D\+IN rail module. \end{DoxyCompactList}\item 
+int32\+\_\+t \textbf{ get\+\_\+\+Increment} () const
+\begin{DoxyCompactList}\small\item\em Gets the current encoder tick increment. \end{DoxyCompactList}\item 
+int32\+\_\+t \textbf{ get\+\_\+\+Max\+Position} () const
+\begin{DoxyCompactList}\small\item\em Gets the maximally allowed encoder position. \end{DoxyCompactList}\item 
+int32\+\_\+t \textbf{ get\+\_\+\+Min\+Position} () const
+\begin{DoxyCompactList}\small\item\em Gets the minimally allowed encoder position. \end{DoxyCompactList}\item 
+uint8\+\_\+t \textbf{ get\+\_\+\+Module\+Id} () const
+\begin{DoxyCompactList}\small\item\em Allows to query the ID of the D\+IN rail module. \end{DoxyCompactList}\item 
+int32\+\_\+t \textbf{ get\+\_\+\+Offset} () const
+\begin{DoxyCompactList}\small\item\em Gets the constant offset to be added to the motor position (\char`\"{}zero position\char`\"{}), measured in ticks. \end{DoxyCompactList}\item 
+double \textbf{ get\+\_\+\+Update\+Interval} () const
+\begin{DoxyCompactList}\small\item\em Gets the interval at which periodic Set\+Joint commands will be sent to the module in milliseconds. \end{DoxyCompactList}\item 
+\textbf{ Motor\+Module} (\textbf{ Bus} \&canbus, const uint8\+\_\+t module\+Id)
+\begin{DoxyCompactList}\small\item\em Constructor of the \doxyref{Motor\+Module}{p.}{classcpr__robot_1_1MotorModule} class. \end{DoxyCompactList}\item 
+void \textbf{ set\+\_\+\+Desired\+Position} (const int32\+\_\+t ticks)
+\begin{DoxyCompactList}\small\item\em Allows to set the desired position of the joint that is controled by the D\+IN rail module. \end{DoxyCompactList}\item 
+void \textbf{ set\+\_\+\+Increment} (const int32\+\_\+t ticks)
+\begin{DoxyCompactList}\small\item\em Sets the desired encoder tick increment. \end{DoxyCompactList}\item 
+void \textbf{ set\+\_\+\+Max\+Position} (const int32\+\_\+t ticks)
+\begin{DoxyCompactList}\small\item\em Sets the maximally allowed encoder position. \end{DoxyCompactList}\item 
+void \textbf{ set\+\_\+\+Min\+Position} (const int32\+\_\+t ticks)
+\begin{DoxyCompactList}\small\item\em Sets the minimally allowed encoder position. \end{DoxyCompactList}\item 
+void \textbf{ set\+\_\+\+Offset} (const int32\+\_\+t ticks)
+\begin{DoxyCompactList}\small\item\em Sets the constant offset to be added to the motor position (\char`\"{}zero position\char`\"{}), measured in ticks. \end{DoxyCompactList}\item 
+void \textbf{ Set\+Zero} ()
+\begin{DoxyCompactList}\small\item\em Sets the encoder position to zero. \end{DoxyCompactList}\item 
+void \textbf{ Start} ()
+\begin{DoxyCompactList}\small\item\em Starts the thread that is spinning in the write loop that sends periodic Set\+Joint commands to the module over the C\+AN bus. \end{DoxyCompactList}\item 
+void \textbf{ Start\+Referencing} ()
+\begin{DoxyCompactList}\small\item\em Starts the referencing procedure. \end{DoxyCompactList}\item 
+void \textbf{ Stop} ()
+\begin{DoxyCompactList}\small\item\em Terminates and joins the thread that is spinning in the write loop that sends periodic Set\+Joint commands to the module over the C\+AN bus. \end{DoxyCompactList}\item 
+virtual \textbf{ $\sim$\+Motor\+Module} ()
+\begin{DoxyCompactList}\small\item\em Destructor of the \doxyref{Motor\+Module}{p.}{classcpr__robot_1_1MotorModule} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32\+\_\+t \textbf{ S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+B\+R\+O\+W\+N\+\_\+\+O\+UT} = 0x00000001
+\begin{DoxyCompactList}\small\item\em Error flag indicating that the microcontroller restarted after a brown out because the suppy voltage was too low or µC got stuck. \end{DoxyCompactList}\item 
+static constexpr uint32\+\_\+t \textbf{ S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+C\+A\+N\+\_\+\+E\+R\+R\+OR} = 0x00000080
+\begin{DoxyCompactList}\small\item\em Error flag indicating that a C\+AN error occured. \end{DoxyCompactList}\item 
+static constexpr uint32\+\_\+t \textbf{ S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+C\+O\+M\+M\+\_\+\+W\+A\+T\+C\+H\+D\+OG} = 0x00000008
+\begin{DoxyCompactList}\small\item\em Error flag indicating that the interval without command to the module was too long. \end{DoxyCompactList}\item 
+static constexpr uint32\+\_\+t \textbf{ S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+E\+N\+C\+O\+D\+E\+R\+\_\+\+E\+R\+R\+OR} = 0x00000020
+\begin{DoxyCompactList}\small\item\em Error flag indicating that the sequence of quadrature encoder pulses did not fit. \end{DoxyCompactList}\item 
+static constexpr uint32\+\_\+t \textbf{ S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+M\+A\+S\+K\+\_\+\+A\+N\+Y\+\_\+\+E\+R\+R\+OR} = 0x000000ff
+\begin{DoxyCompactList}\small\item\em Bitmask that should be used to mask for the error bits in status flags. \end{DoxyCompactList}\item 
+static constexpr uint32\+\_\+t \textbf{ S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+M\+O\+T\+O\+R\+\_\+\+N\+O\+T\+\_\+\+E\+N\+A\+B\+L\+ED} = 0x00000004
+\begin{DoxyCompactList}\small\item\em Flag indicating that the motor needs to be enabled by explicit command. \end{DoxyCompactList}\item 
+static constexpr uint32\+\_\+t \textbf{ S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+O\+V\+E\+R\+C\+U\+R\+R\+E\+NT} = 0x00000040
+\begin{DoxyCompactList}\small\item\em Error flag indicating that the current value is too high. \end{DoxyCompactList}\item 
+static constexpr uint32\+\_\+t \textbf{ S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+P\+O\+S\+I\+T\+I\+O\+N\+\_\+\+L\+AG} = 0x00000010
+\begin{DoxyCompactList}\small\item\em Error flag indicating that the position of the motor is too far away from the setpoint position. \end{DoxyCompactList}\item 
+static constexpr uint32\+\_\+t \textbf{ S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+V\+E\+L\+O\+C\+I\+T\+Y\+\_\+\+L\+AG} = 0x00000002
+\begin{DoxyCompactList}\small\item\em Error flag indicating that velocity changes too fast. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ Command\+\_\+\+Disable\+Motor} ()
+\begin{DoxyCompactList}\small\item\em Sends a Disable\+Motor command over the C\+AN bus to the D\+IN rail module. \end{DoxyCompactList}\item 
+void \textbf{ Command\+\_\+\+Enable\+Motor} ()
+\begin{DoxyCompactList}\small\item\em Sends a Enable\+Motor command over the C\+AN bus to the D\+IN rail module. \end{DoxyCompactList}\item 
+void \textbf{ Command\+\_\+\+Reset\+Error} ()
+\begin{DoxyCompactList}\small\item\em Sends a Reset\+Error command over the C\+AN bus to the D\+IN rail module. \end{DoxyCompactList}\item 
+void \textbf{ Command\+\_\+\+Set\+Joint} (const int32\+\_\+t ticks, const uint8\+\_\+t dio)
+\begin{DoxyCompactList}\small\item\em Sends a Set\+Joint command over the C\+AN bus to the D\+IN rail module. \end{DoxyCompactList}\item 
+void \textbf{ Command\+\_\+\+Set\+Zero\+Position} ()
+\begin{DoxyCompactList}\small\item\em Sends a Set\+Zero\+Position command over the C\+AN bus to the D\+IN rail module. \end{DoxyCompactList}\item 
+void \textbf{ Command\+\_\+\+Start\+Referencing} ()
+\begin{DoxyCompactList}\small\item\em Sends a Start\+Referencing command over the C\+AN bus to the D\+IN rail module. \end{DoxyCompactList}\item 
+void \textbf{ Write\+Loop} ()
+\begin{DoxyCompactList}\small\item\em The write loop that will asynchronuously send setposition messages to the module over the C\+AN bus. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \textbf{ Write\+Thread} (\textbf{ Motor\+Module} $\ast$p\+Module)
+\begin{DoxyCompactList}\small\item\em Entry point for the write thread. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::atomic\+\_\+bool \textbf{ m\+\_\+b\+Is\+Running}
+\begin{DoxyCompactList}\small\item\em Flag indicating if the write loop should keep on spinning. \end{DoxyCompactList}\item 
+\textbf{ Bus} \& \textbf{ m\+\_\+\+Bus}
+\begin{DoxyCompactList}\small\item\em Reference to an instance of the \doxyref{Bus}{p.}{classcpr__robot_1_1Bus} class, providing for communication over the C\+AN bus. \end{DoxyCompactList}\item 
+uint8\+\_\+t \textbf{ m\+\_\+\+Current\+Time\+Stamp}
+\begin{DoxyCompactList}\small\item\em The timestamp value that will be sent to the module with the next setposition command. \end{DoxyCompactList}\item 
+uint8\+\_\+t \textbf{ m\+\_\+\+D\+IO}
+\begin{DoxyCompactList}\small\item\em Contains the state of the digital inputs/outputs of the module. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \textbf{ m\+\_\+\+Module\+Id}
+\begin{DoxyCompactList}\small\item\em The module ID of the D\+IN rail motorcontrol module hat the instance of this class will communicate with. \end{DoxyCompactList}\item 
+int32\+\_\+t \textbf{ m\+\_\+\+Motor\+Increment}
+\begin{DoxyCompactList}\small\item\em Contains the increment of the motor position to be made from one Set\+Joint command to the next. Measured in ticks. \end{DoxyCompactList}\item 
+int32\+\_\+t \textbf{ m\+\_\+\+Motor\+Max\+Position}
+\begin{DoxyCompactList}\small\item\em Contains the upper bound of the range of allowed motor positions. Measured in ticks. \end{DoxyCompactList}\item 
+int32\+\_\+t \textbf{ m\+\_\+\+Motor\+Min\+Position}
+\begin{DoxyCompactList}\small\item\em Contains the lower bound of the range of allowed motor positions. Measured in ticks. \end{DoxyCompactList}\item 
+int32\+\_\+t \textbf{ m\+\_\+\+Motor\+Position}
+\begin{DoxyCompactList}\small\item\em Contains the current position of the motor measured in ticks. \end{DoxyCompactList}\item 
+int32\+\_\+t \textbf{ m\+\_\+\+Motor\+Position\+Offset}
+\begin{DoxyCompactList}\small\item\em Contains the offset of the motor position (the \char`\"{}zero position\char`\"{}). Measured in ticks. \end{DoxyCompactList}\item 
+std\+::thread $\ast$ \textbf{ m\+\_\+p\+Write\+Thread}
+\begin{DoxyCompactList}\small\item\em Pointer to the write thread. Will be nullptr if the module is stopped. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr int64\+\_\+t \textbf{ m\+\_\+\+Update\+Interval} = 50
+\begin{DoxyCompactList}\small\item\em The interval at which periodic Set\+Joint commands will be sent to the module in milliseconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represents a D\+IN rail motorcontrol module from Commonplace Robotics GmbH. 
+
+Instances of this class will hold information about the current state of the motor connected to the module and allow to control the module and motor. All position information is stored in ticks. Conversion to actual joint positions (angles measured in degrees) is done by the \doxyref{Joint}{p.}{classcpr__robot_1_1Joint} class which holds a pointer to an instance of the \doxyref{Motor\+Module}{p.}{classcpr__robot_1_1MotorModule} class. 
+
+Definition at line 11 of file Motor\+Module.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{classcpr__robot_1_1MotorModule_a46a39cd17f6728a593488229072868cd}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!Motor\+Module@{Motor\+Module}}
+\index{Motor\+Module@{Motor\+Module}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{Motor\+Module()}
+{\footnotesize\ttfamily cpr\+\_\+robot\+::\+Motor\+Module\+::\+Motor\+Module (\begin{DoxyParamCaption}\item[{\textbf{ Bus} \&}]{canbus,  }\item[{const uint8\+\_\+t}]{module\+Id }\end{DoxyParamCaption})}
+
+
+
+Constructor of the \doxyref{Motor\+Module}{p.}{classcpr__robot_1_1MotorModule} class. 
+
+Starts a write loop that will asynchronuously send Set\+Joint commands to the module over the C\+AN bus in periodic intervals. 
+\begin{DoxyParams}{Parameters}
+{\em canbus} & The bus instance that will be used for communication. \\
+\hline
+{\em module\+Id} & The ID of the D\+IN rail module that will be controled. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 29 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a84a4377a51e5800bb0ba944ec871a33c}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!````~Motor\+Module@{$\sim$\+Motor\+Module}}
+\index{````~Motor\+Module@{$\sim$\+Motor\+Module}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{$\sim$\+Motor\+Module()}
+{\footnotesize\ttfamily cpr\+\_\+robot\+::\+Motor\+Module\+::$\sim$\+Motor\+Module (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destructor of the \doxyref{Motor\+Module}{p.}{classcpr__robot_1_1MotorModule} class. 
+
+Terminates and joins the thread that is spinning in the write loop that sends periodic Set\+Joint commands to the module over the C\+AN bus. 
+
+Definition at line 62 of file Motor\+Module.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{classcpr__robot_1_1MotorModule_a2b4965ecb162fee1ba95dc58d3d2ca56}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!Command\+\_\+\+Disable\+Motor@{Command\+\_\+\+Disable\+Motor}}
+\index{Command\+\_\+\+Disable\+Motor@{Command\+\_\+\+Disable\+Motor}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{Command\+\_\+\+Disable\+Motor()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Motor\+Module\+::\+Command\+\_\+\+Disable\+Motor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sends a Disable\+Motor command over the C\+AN bus to the D\+IN rail module. 
+
+
+
+Definition at line 192 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a71daf3983efc4f8a262b051ba64467a9}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!Command\+\_\+\+Enable\+Motor@{Command\+\_\+\+Enable\+Motor}}
+\index{Command\+\_\+\+Enable\+Motor@{Command\+\_\+\+Enable\+Motor}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{Command\+\_\+\+Enable\+Motor()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Motor\+Module\+::\+Command\+\_\+\+Enable\+Motor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sends a Enable\+Motor command over the C\+AN bus to the D\+IN rail module. 
+
+
+
+Definition at line 209 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_ab2a5cd85d3f75394524369b13b4315a4}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!Command\+\_\+\+Reset\+Error@{Command\+\_\+\+Reset\+Error}}
+\index{Command\+\_\+\+Reset\+Error@{Command\+\_\+\+Reset\+Error}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{Command\+\_\+\+Reset\+Error()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Motor\+Module\+::\+Command\+\_\+\+Reset\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sends a Reset\+Error command over the C\+AN bus to the D\+IN rail module. 
+
+
+
+Definition at line 175 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a24822ed98d9ad7eabcf78e3a2f2c662c}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!Command\+\_\+\+Set\+Joint@{Command\+\_\+\+Set\+Joint}}
+\index{Command\+\_\+\+Set\+Joint@{Command\+\_\+\+Set\+Joint}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{Command\+\_\+\+Set\+Joint()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Motor\+Module\+::\+Command\+\_\+\+Set\+Joint (\begin{DoxyParamCaption}\item[{const int32\+\_\+t}]{ticks,  }\item[{const uint8\+\_\+t}]{dio }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sends a Set\+Joint command over the C\+AN bus to the D\+IN rail module. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ticks} & The desired joint position given measured encoder ticks. \\
+\hline
+{\em dio} & The desired state of the digital I/\+Os. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 156 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a813a083413649c4e1b6545a5d8e532da}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!Command\+\_\+\+Set\+Zero\+Position@{Command\+\_\+\+Set\+Zero\+Position}}
+\index{Command\+\_\+\+Set\+Zero\+Position@{Command\+\_\+\+Set\+Zero\+Position}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{Command\+\_\+\+Set\+Zero\+Position()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Motor\+Module\+::\+Command\+\_\+\+Set\+Zero\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sends a Set\+Zero\+Position command over the C\+AN bus to the D\+IN rail module. 
+
+
+
+Definition at line 243 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a618d6ff547a3141847762819e06db8dc}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!Command\+\_\+\+Start\+Referencing@{Command\+\_\+\+Start\+Referencing}}
+\index{Command\+\_\+\+Start\+Referencing@{Command\+\_\+\+Start\+Referencing}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{Command\+\_\+\+Start\+Referencing()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Motor\+Module\+::\+Command\+\_\+\+Start\+Referencing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sends a Start\+Referencing command over the C\+AN bus to the D\+IN rail module. 
+
+
+
+Definition at line 226 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_aca67c24562d035dcfeb7fe080bd3b890}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!Disable@{Disable}}
+\index{Disable@{Disable}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{Disable()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Motor\+Module\+::\+Disable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Disables motor motion. 
+
+
+
+Definition at line 306 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a91d3347c680ca092db8cc91b8e0efcf4}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!Enable@{Enable}}
+\index{Enable@{Enable}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{Enable()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Motor\+Module\+::\+Enable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Enables motor motion. 
+
+
+
+Definition at line 290 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_aa09d9f7aeacd35782ca172764107148f}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!get\+\_\+\+Current\+Position@{get\+\_\+\+Current\+Position}}
+\index{get\+\_\+\+Current\+Position@{get\+\_\+\+Current\+Position}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{get\+\_\+\+Current\+Position()}
+{\footnotesize\ttfamily int32\+\_\+t cpr\+\_\+robot\+::\+Motor\+Module\+::get\+\_\+\+Current\+Position (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \&}]{time\+Stamp,  }\item[{std\+::chrono\+::high\+\_\+resolution\+\_\+clock\+::time\+\_\+point \&}]{reception\+Time,  }\item[{uint8\+\_\+t \&}]{error\+Flags,  }\item[{uint8\+\_\+t \&}]{data\+Bits }\end{DoxyParamCaption}) const}
+
+
+
+Allows to query the last response to a Set\+Joint command that has been received from the module. 
+
+If no response has been received yet, zero values will be returned for the current motor position, error flags and data bits. 
+\begin{DoxyParams}{Parameters}
+{\em time\+Stamp} & The time\+Stamp sent by the module in the last response to a Set\+Joint command. \\
+\hline
+{\em reception\+Time} & The time at which the last response to a Set\+Joint command was received. \\
+\hline
+{\em error\+Flags} & The error flags reported by the module in the last response to a Set\+Joint command. \\
+\hline
+{\em data\+Bits} & The data bits received from the module in the last response to a Set\+Joint command. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The physical motor position reported by the module in the last response to a Set\+Joint command. 
+\end{DoxyReturn}
+
+
+Definition at line 268 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_afe5911c46c0520fcc10d729bd875174b}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!get\+\_\+\+Desired\+Position@{get\+\_\+\+Desired\+Position}}
+\index{get\+\_\+\+Desired\+Position@{get\+\_\+\+Desired\+Position}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{get\+\_\+\+Desired\+Position()}
+{\footnotesize\ttfamily int32\+\_\+t cpr\+\_\+robot\+::\+Motor\+Module\+::get\+\_\+\+Desired\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Allows to query the desired position of the joint that is controled by the D\+IN rail module. 
+
+\begin{DoxyReturn}{Returns}
+The current desired joint position measured in encoder ticks. 
+\end{DoxyReturn}
+
+
+Definition at line 119 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a40effccdd83367238bb839149edd3f87}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!get\+\_\+\+Increment@{get\+\_\+\+Increment}}
+\index{get\+\_\+\+Increment@{get\+\_\+\+Increment}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{get\+\_\+\+Increment()}
+{\footnotesize\ttfamily int32\+\_\+t cpr\+\_\+robot\+::\+Motor\+Module\+::get\+\_\+\+Increment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the current encoder tick increment. 
+
+The motor position is incremented by from one Set\+Joint command to the next by the returned value. \begin{DoxyReturn}{Returns}
+Current increment measured in ticks. 
+\end{DoxyReturn}
+
+
+Definition at line 19 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a3953bfd3ff03b158d45755577dda6118}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!get\+\_\+\+Max\+Position@{get\+\_\+\+Max\+Position}}
+\index{get\+\_\+\+Max\+Position@{get\+\_\+\+Max\+Position}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{get\+\_\+\+Max\+Position()}
+{\footnotesize\ttfamily int32\+\_\+t cpr\+\_\+robot\+::\+Motor\+Module\+::get\+\_\+\+Max\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the maximally allowed encoder position. 
+
+\begin{DoxyReturn}{Returns}
+The current upper bound of the range of allowed motor positions. Measured in ticks. 
+\end{DoxyReturn}
+
+
+Definition at line 337 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a83693cf0ff616483070eb11dc3038ef4}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!get\+\_\+\+Min\+Position@{get\+\_\+\+Min\+Position}}
+\index{get\+\_\+\+Min\+Position@{get\+\_\+\+Min\+Position}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{get\+\_\+\+Min\+Position()}
+{\footnotesize\ttfamily int32\+\_\+t cpr\+\_\+robot\+::\+Motor\+Module\+::get\+\_\+\+Min\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the minimally allowed encoder position. 
+
+\begin{DoxyReturn}{Returns}
+The current lower bound of the range of allowed motor positions. Measured in ticks. 
+\end{DoxyReturn}
+
+
+Definition at line 351 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a4c2f9b92cc5c4012bd11ba102f648723}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!get\+\_\+\+Module\+Id@{get\+\_\+\+Module\+Id}}
+\index{get\+\_\+\+Module\+Id@{get\+\_\+\+Module\+Id}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{get\+\_\+\+Module\+Id()}
+{\footnotesize\ttfamily uint8\+\_\+t cpr\+\_\+robot\+::\+Motor\+Module\+::get\+\_\+\+Module\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Allows to query the ID of the D\+IN rail module. 
+
+\begin{DoxyReturn}{Returns}
+The ID of the D\+IN rail module. 
+\end{DoxyReturn}
+
+
+Definition at line 88 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a5c801f5be9982ac07a54c803dc5f96c2}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!get\+\_\+\+Offset@{get\+\_\+\+Offset}}
+\index{get\+\_\+\+Offset@{get\+\_\+\+Offset}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{get\+\_\+\+Offset()}
+{\footnotesize\ttfamily int32\+\_\+t cpr\+\_\+robot\+::\+Motor\+Module\+::get\+\_\+\+Offset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the constant offset to be added to the motor position (\char`\"{}zero position\char`\"{}), measured in ticks. 
+
+\begin{DoxyReturn}{Returns}
+The offset measured in ticks. 
+\end{DoxyReturn}
+
+
+Definition at line 47 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_ae11a3a53211f6729f6dc8026d90f7485}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!get\+\_\+\+Update\+Interval@{get\+\_\+\+Update\+Interval}}
+\index{get\+\_\+\+Update\+Interval@{get\+\_\+\+Update\+Interval}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{get\+\_\+\+Update\+Interval()}
+{\footnotesize\ttfamily double cpr\+\_\+robot\+::\+Motor\+Module\+::get\+\_\+\+Update\+Interval (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the interval at which periodic Set\+Joint commands will be sent to the module in milliseconds. 
+
+This value is currently hardcoded to 50ms. \begin{DoxyReturn}{Returns}
+The interval measured in seconds. 
+\end{DoxyReturn}
+
+
+Definition at line 147 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a8d025200c2e6ea7c9a0d61752725b495}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!set\+\_\+\+Desired\+Position@{set\+\_\+\+Desired\+Position}}
+\index{set\+\_\+\+Desired\+Position@{set\+\_\+\+Desired\+Position}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{set\+\_\+\+Desired\+Position()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Motor\+Module\+::set\+\_\+\+Desired\+Position (\begin{DoxyParamCaption}\item[{const int32\+\_\+t}]{ticks }\end{DoxyParamCaption})}
+
+
+
+Allows to set the desired position of the joint that is controled by the D\+IN rail module. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ticks} & The desired joint position measured in encoder ticks. The value will be clamped to the range of valid positions. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 126 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a9a00b6e1ca0a4009837bccbd44c8430e}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!set\+\_\+\+Increment@{set\+\_\+\+Increment}}
+\index{set\+\_\+\+Increment@{set\+\_\+\+Increment}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{set\+\_\+\+Increment()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Motor\+Module\+::set\+\_\+\+Increment (\begin{DoxyParamCaption}\item[{const int32\+\_\+t}]{ticks }\end{DoxyParamCaption})}
+
+
+
+Sets the desired encoder tick increment. 
+
+The motor position will be incremented by from one Set\+Joint command to the next by the value provided. 
+\begin{DoxyParams}{Parameters}
+{\em ticks} & Desired increment measured in ticks. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 10 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_ae83d37ec4d8e876b4d70e074172bef16}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!set\+\_\+\+Max\+Position@{set\+\_\+\+Max\+Position}}
+\index{set\+\_\+\+Max\+Position@{set\+\_\+\+Max\+Position}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{set\+\_\+\+Max\+Position()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Motor\+Module\+::set\+\_\+\+Max\+Position (\begin{DoxyParamCaption}\item[{const int32\+\_\+t}]{ticks }\end{DoxyParamCaption})}
+
+
+
+Sets the maximally allowed encoder position. 
+
+\begin{DoxyReturn}{Returns}
+The new upper bound of the range of allowed motor positions. Measured in ticks. 
+\end{DoxyReturn}
+
+
+Definition at line 344 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_aa21d4f01d0ebcb0902e2b75098d505de}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!set\+\_\+\+Min\+Position@{set\+\_\+\+Min\+Position}}
+\index{set\+\_\+\+Min\+Position@{set\+\_\+\+Min\+Position}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{set\+\_\+\+Min\+Position()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Motor\+Module\+::set\+\_\+\+Min\+Position (\begin{DoxyParamCaption}\item[{const int32\+\_\+t}]{ticks }\end{DoxyParamCaption})}
+
+
+
+Sets the minimally allowed encoder position. 
+
+\begin{DoxyReturn}{Returns}
+The new lower bound of the range of allowed motor positions. Measured in ticks. 
+\end{DoxyReturn}
+
+
+Definition at line 358 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a30ccc0642ad9fd96581f76e267737552}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!set\+\_\+\+Offset@{set\+\_\+\+Offset}}
+\index{set\+\_\+\+Offset@{set\+\_\+\+Offset}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{set\+\_\+\+Offset()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Motor\+Module\+::set\+\_\+\+Offset (\begin{DoxyParamCaption}\item[{const int32\+\_\+t}]{ticks }\end{DoxyParamCaption})}
+
+
+
+Sets the constant offset to be added to the motor position (\char`\"{}zero position\char`\"{}), measured in ticks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ticks} & The desrired offset measured in ticks. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 54 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a3196e087657a251e7e24ee854d6fb44a}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!Set\+Zero@{Set\+Zero}}
+\index{Set\+Zero@{Set\+Zero}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{Set\+Zero()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Motor\+Module\+::\+Set\+Zero (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Sets the encoder position to zero. 
+
+
+
+Definition at line 322 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a81b0fb0f33c010e678efe29cd1f00351}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!Start@{Start}}
+\index{Start@{Start}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{Start()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Motor\+Module\+::\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Starts the thread that is spinning in the write loop that sends periodic Set\+Joint commands to the module over the C\+AN bus. 
+
+
+
+Definition at line 80 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_add8bae8a58eb06516895b28f4197d424}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!Start\+Referencing@{Start\+Referencing}}
+\index{Start\+Referencing@{Start\+Referencing}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{Start\+Referencing()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Motor\+Module\+::\+Start\+Referencing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Starts the referencing procedure. 
+
+
+
+Definition at line 313 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_ae86a5af8f0b6a93491d01c2b1bdb2f42}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!Stop@{Stop}}
+\index{Stop@{Stop}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{Stop()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Motor\+Module\+::\+Stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Terminates and joins the thread that is spinning in the write loop that sends periodic Set\+Joint commands to the module over the C\+AN bus. 
+
+
+
+Definition at line 68 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_aa09c24923fa544ff2e2b03c9e750f835}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!Write\+Loop@{Write\+Loop}}
+\index{Write\+Loop@{Write\+Loop}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{Write\+Loop()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Motor\+Module\+::\+Write\+Loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The write loop that will asynchronuously send setposition messages to the module over the C\+AN bus. 
+
+
+
+Definition at line 101 of file Motor\+Module.\+cpp.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a2f56f2ebf4d20d3c4600fa85437f1963}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!Write\+Thread@{Write\+Thread}}
+\index{Write\+Thread@{Write\+Thread}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{Write\+Thread()}
+{\footnotesize\ttfamily void cpr\+\_\+robot\+::\+Motor\+Module\+::\+Write\+Thread (\begin{DoxyParamCaption}\item[{\textbf{ Motor\+Module} $\ast$}]{p\+Module }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Entry point for the write thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Module} & A pointer to the Module instance associated with the write thread. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 95 of file Motor\+Module.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\label{classcpr__robot_1_1MotorModule_a2b4bd751cac53e9352de4ca3e0717d27}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!m\+\_\+b\+Is\+Running@{m\+\_\+b\+Is\+Running}}
+\index{m\+\_\+b\+Is\+Running@{m\+\_\+b\+Is\+Running}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{m\+\_\+b\+Is\+Running}
+{\footnotesize\ttfamily std\+::atomic\+\_\+bool cpr\+\_\+robot\+::\+Motor\+Module\+::m\+\_\+b\+Is\+Running\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Flag indicating if the write loop should keep on spinning. 
+
+
+
+Definition at line 40 of file Motor\+Module.\+h.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_af63762a836484b979ef636e1b2d77573}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!m\+\_\+\+Bus@{m\+\_\+\+Bus}}
+\index{m\+\_\+\+Bus@{m\+\_\+\+Bus}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{m\+\_\+\+Bus}
+{\footnotesize\ttfamily \textbf{ Bus}\& cpr\+\_\+robot\+::\+Motor\+Module\+::m\+\_\+\+Bus\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Reference to an instance of the \doxyref{Bus}{p.}{classcpr__robot_1_1Bus} class, providing for communication over the C\+AN bus. 
+
+
+
+Definition at line 38 of file Motor\+Module.\+h.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a27bf817a64c9c9a37fdf061a7e6f623c}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!m\+\_\+\+Current\+Time\+Stamp@{m\+\_\+\+Current\+Time\+Stamp}}
+\index{m\+\_\+\+Current\+Time\+Stamp@{m\+\_\+\+Current\+Time\+Stamp}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{m\+\_\+\+Current\+Time\+Stamp}
+{\footnotesize\ttfamily uint8\+\_\+t cpr\+\_\+robot\+::\+Motor\+Module\+::m\+\_\+\+Current\+Time\+Stamp\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The timestamp value that will be sent to the module with the next setposition command. 
+
+
+
+Definition at line 56 of file Motor\+Module.\+h.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_afa7c91a45bc059b76a99022f6e249e5c}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!m\+\_\+\+D\+IO@{m\+\_\+\+D\+IO}}
+\index{m\+\_\+\+D\+IO@{m\+\_\+\+D\+IO}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{m\+\_\+\+D\+IO}
+{\footnotesize\ttfamily uint8\+\_\+t cpr\+\_\+robot\+::\+Motor\+Module\+::m\+\_\+\+D\+IO\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Contains the state of the digital inputs/outputs of the module. 
+
+
+
+Definition at line 52 of file Motor\+Module.\+h.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a7deaee7eb575540b13e1e3f73c680ee1}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!m\+\_\+\+Module\+Id@{m\+\_\+\+Module\+Id}}
+\index{m\+\_\+\+Module\+Id@{m\+\_\+\+Module\+Id}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{m\+\_\+\+Module\+Id}
+{\footnotesize\ttfamily const uint8\+\_\+t cpr\+\_\+robot\+::\+Motor\+Module\+::m\+\_\+\+Module\+Id\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The module ID of the D\+IN rail motorcontrol module hat the instance of this class will communicate with. 
+
+
+
+Definition at line 36 of file Motor\+Module.\+h.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a68a178ea0275299aef6df449da2cd1ad}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!m\+\_\+\+Motor\+Increment@{m\+\_\+\+Motor\+Increment}}
+\index{m\+\_\+\+Motor\+Increment@{m\+\_\+\+Motor\+Increment}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{m\+\_\+\+Motor\+Increment}
+{\footnotesize\ttfamily int32\+\_\+t cpr\+\_\+robot\+::\+Motor\+Module\+::m\+\_\+\+Motor\+Increment\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Contains the increment of the motor position to be made from one Set\+Joint command to the next. Measured in ticks. 
+
+
+
+Definition at line 44 of file Motor\+Module.\+h.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_abe9f40810f1ebc4adfe75d2acbfddd4d}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!m\+\_\+\+Motor\+Max\+Position@{m\+\_\+\+Motor\+Max\+Position}}
+\index{m\+\_\+\+Motor\+Max\+Position@{m\+\_\+\+Motor\+Max\+Position}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{m\+\_\+\+Motor\+Max\+Position}
+{\footnotesize\ttfamily int32\+\_\+t cpr\+\_\+robot\+::\+Motor\+Module\+::m\+\_\+\+Motor\+Max\+Position\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Contains the upper bound of the range of allowed motor positions. Measured in ticks. 
+
+
+
+Definition at line 48 of file Motor\+Module.\+h.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a014a36cf4e9beac72620d7d58621919a}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!m\+\_\+\+Motor\+Min\+Position@{m\+\_\+\+Motor\+Min\+Position}}
+\index{m\+\_\+\+Motor\+Min\+Position@{m\+\_\+\+Motor\+Min\+Position}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{m\+\_\+\+Motor\+Min\+Position}
+{\footnotesize\ttfamily int32\+\_\+t cpr\+\_\+robot\+::\+Motor\+Module\+::m\+\_\+\+Motor\+Min\+Position\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Contains the lower bound of the range of allowed motor positions. Measured in ticks. 
+
+
+
+Definition at line 46 of file Motor\+Module.\+h.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a43488340b0950a2fcd19b1f0daeefb4f}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!m\+\_\+\+Motor\+Position@{m\+\_\+\+Motor\+Position}}
+\index{m\+\_\+\+Motor\+Position@{m\+\_\+\+Motor\+Position}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{m\+\_\+\+Motor\+Position}
+{\footnotesize\ttfamily int32\+\_\+t cpr\+\_\+robot\+::\+Motor\+Module\+::m\+\_\+\+Motor\+Position\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Contains the current position of the motor measured in ticks. 
+
+
+
+Definition at line 42 of file Motor\+Module.\+h.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a4f1dce57f920e3cd06b747822b1a6cab}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!m\+\_\+\+Motor\+Position\+Offset@{m\+\_\+\+Motor\+Position\+Offset}}
+\index{m\+\_\+\+Motor\+Position\+Offset@{m\+\_\+\+Motor\+Position\+Offset}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{m\+\_\+\+Motor\+Position\+Offset}
+{\footnotesize\ttfamily int32\+\_\+t cpr\+\_\+robot\+::\+Motor\+Module\+::m\+\_\+\+Motor\+Position\+Offset\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Contains the offset of the motor position (the \char`\"{}zero position\char`\"{}). Measured in ticks. 
+
+
+
+Definition at line 50 of file Motor\+Module.\+h.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a5b889df3d6e4bbbec40fcf0b8274dd3e}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!m\+\_\+p\+Write\+Thread@{m\+\_\+p\+Write\+Thread}}
+\index{m\+\_\+p\+Write\+Thread@{m\+\_\+p\+Write\+Thread}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{m\+\_\+p\+Write\+Thread}
+{\footnotesize\ttfamily std\+::thread$\ast$ cpr\+\_\+robot\+::\+Motor\+Module\+::m\+\_\+p\+Write\+Thread\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the write thread. Will be nullptr if the module is stopped. 
+
+
+
+Definition at line 54 of file Motor\+Module.\+h.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a45ecfb550ea1ad88777b3a0939e77bd7}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!m\+\_\+\+Update\+Interval@{m\+\_\+\+Update\+Interval}}
+\index{m\+\_\+\+Update\+Interval@{m\+\_\+\+Update\+Interval}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{m\+\_\+\+Update\+Interval}
+{\footnotesize\ttfamily constexpr int64\+\_\+t cpr\+\_\+robot\+::\+Motor\+Module\+::m\+\_\+\+Update\+Interval = 50\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+The interval at which periodic Set\+Joint commands will be sent to the module in milliseconds. 
+
+
+
+Definition at line 34 of file Motor\+Module.\+h.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a958950d55f6c5bcb593891a7dfa5bea0}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+B\+R\+O\+W\+N\+\_\+\+O\+UT@{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+B\+R\+O\+W\+N\+\_\+\+O\+UT}}
+\index{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+B\+R\+O\+W\+N\+\_\+\+O\+UT@{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+B\+R\+O\+W\+N\+\_\+\+O\+UT}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+B\+R\+O\+W\+N\+\_\+\+O\+UT}
+{\footnotesize\ttfamily constexpr uint32\+\_\+t cpr\+\_\+robot\+::\+Motor\+Module\+::\+S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+B\+R\+O\+W\+N\+\_\+\+O\+UT = 0x00000001\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Error flag indicating that the microcontroller restarted after a brown out because the suppy voltage was too low or µC got stuck. 
+
+
+
+Definition at line 15 of file Motor\+Module.\+h.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_aff2428665371a080cbfa7925e9f9f027}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+C\+A\+N\+\_\+\+E\+R\+R\+OR@{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+C\+A\+N\+\_\+\+E\+R\+R\+OR}}
+\index{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+C\+A\+N\+\_\+\+E\+R\+R\+OR@{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+C\+A\+N\+\_\+\+E\+R\+R\+OR}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+C\+A\+N\+\_\+\+E\+R\+R\+OR}
+{\footnotesize\ttfamily constexpr uint32\+\_\+t cpr\+\_\+robot\+::\+Motor\+Module\+::\+S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+C\+A\+N\+\_\+\+E\+R\+R\+OR = 0x00000080\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Error flag indicating that a C\+AN error occured. 
+
+
+
+Definition at line 29 of file Motor\+Module.\+h.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_aed4f34fb925b25badea50c32e71194fc}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+C\+O\+M\+M\+\_\+\+W\+A\+T\+C\+H\+D\+OG@{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+C\+O\+M\+M\+\_\+\+W\+A\+T\+C\+H\+D\+OG}}
+\index{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+C\+O\+M\+M\+\_\+\+W\+A\+T\+C\+H\+D\+OG@{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+C\+O\+M\+M\+\_\+\+W\+A\+T\+C\+H\+D\+OG}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+C\+O\+M\+M\+\_\+\+W\+A\+T\+C\+H\+D\+OG}
+{\footnotesize\ttfamily constexpr uint32\+\_\+t cpr\+\_\+robot\+::\+Motor\+Module\+::\+S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+C\+O\+M\+M\+\_\+\+W\+A\+T\+C\+H\+D\+OG = 0x00000008\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Error flag indicating that the interval without command to the module was too long. 
+
+
+
+Definition at line 21 of file Motor\+Module.\+h.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_aa818b25d64176d2e91a9f823dca895da}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+E\+N\+C\+O\+D\+E\+R\+\_\+\+E\+R\+R\+OR@{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+E\+N\+C\+O\+D\+E\+R\+\_\+\+E\+R\+R\+OR}}
+\index{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+E\+N\+C\+O\+D\+E\+R\+\_\+\+E\+R\+R\+OR@{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+E\+N\+C\+O\+D\+E\+R\+\_\+\+E\+R\+R\+OR}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+E\+N\+C\+O\+D\+E\+R\+\_\+\+E\+R\+R\+OR}
+{\footnotesize\ttfamily constexpr uint32\+\_\+t cpr\+\_\+robot\+::\+Motor\+Module\+::\+S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+E\+N\+C\+O\+D\+E\+R\+\_\+\+E\+R\+R\+OR = 0x00000020\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Error flag indicating that the sequence of quadrature encoder pulses did not fit. 
+
+
+
+Definition at line 25 of file Motor\+Module.\+h.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a2e8862da06060c6972b378788215ea5c}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+M\+A\+S\+K\+\_\+\+A\+N\+Y\+\_\+\+E\+R\+R\+OR@{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+M\+A\+S\+K\+\_\+\+A\+N\+Y\+\_\+\+E\+R\+R\+OR}}
+\index{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+M\+A\+S\+K\+\_\+\+A\+N\+Y\+\_\+\+E\+R\+R\+OR@{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+M\+A\+S\+K\+\_\+\+A\+N\+Y\+\_\+\+E\+R\+R\+OR}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+M\+A\+S\+K\+\_\+\+A\+N\+Y\+\_\+\+E\+R\+R\+OR}
+{\footnotesize\ttfamily constexpr uint32\+\_\+t cpr\+\_\+robot\+::\+Motor\+Module\+::\+S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+M\+A\+S\+K\+\_\+\+A\+N\+Y\+\_\+\+E\+R\+R\+OR = 0x000000ff\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Bitmask that should be used to mask for the error bits in status flags. 
+
+
+
+Definition at line 31 of file Motor\+Module.\+h.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a7b5359e314617899eee29065ba8c58f7}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+M\+O\+T\+O\+R\+\_\+\+N\+O\+T\+\_\+\+E\+N\+A\+B\+L\+ED@{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+M\+O\+T\+O\+R\+\_\+\+N\+O\+T\+\_\+\+E\+N\+A\+B\+L\+ED}}
+\index{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+M\+O\+T\+O\+R\+\_\+\+N\+O\+T\+\_\+\+E\+N\+A\+B\+L\+ED@{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+M\+O\+T\+O\+R\+\_\+\+N\+O\+T\+\_\+\+E\+N\+A\+B\+L\+ED}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+M\+O\+T\+O\+R\+\_\+\+N\+O\+T\+\_\+\+E\+N\+A\+B\+L\+ED}
+{\footnotesize\ttfamily constexpr uint32\+\_\+t cpr\+\_\+robot\+::\+Motor\+Module\+::\+S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+M\+O\+T\+O\+R\+\_\+\+N\+O\+T\+\_\+\+E\+N\+A\+B\+L\+ED = 0x00000004\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Flag indicating that the motor needs to be enabled by explicit command. 
+
+
+
+Definition at line 19 of file Motor\+Module.\+h.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a1f25a56dbc5ab11fa8999891515489fd}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+O\+V\+E\+R\+C\+U\+R\+R\+E\+NT@{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+O\+V\+E\+R\+C\+U\+R\+R\+E\+NT}}
+\index{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+O\+V\+E\+R\+C\+U\+R\+R\+E\+NT@{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+O\+V\+E\+R\+C\+U\+R\+R\+E\+NT}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+O\+V\+E\+R\+C\+U\+R\+R\+E\+NT}
+{\footnotesize\ttfamily constexpr uint32\+\_\+t cpr\+\_\+robot\+::\+Motor\+Module\+::\+S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+O\+V\+E\+R\+C\+U\+R\+R\+E\+NT = 0x00000040\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Error flag indicating that the current value is too high. 
+
+
+
+Definition at line 27 of file Motor\+Module.\+h.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a720e7659d4a6fe37060ca5feda51cf6a}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+P\+O\+S\+I\+T\+I\+O\+N\+\_\+\+L\+AG@{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+P\+O\+S\+I\+T\+I\+O\+N\+\_\+\+L\+AG}}
+\index{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+P\+O\+S\+I\+T\+I\+O\+N\+\_\+\+L\+AG@{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+P\+O\+S\+I\+T\+I\+O\+N\+\_\+\+L\+AG}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+P\+O\+S\+I\+T\+I\+O\+N\+\_\+\+L\+AG}
+{\footnotesize\ttfamily constexpr uint32\+\_\+t cpr\+\_\+robot\+::\+Motor\+Module\+::\+S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+P\+O\+S\+I\+T\+I\+O\+N\+\_\+\+L\+AG = 0x00000010\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Error flag indicating that the position of the motor is too far away from the setpoint position. 
+
+
+
+Definition at line 23 of file Motor\+Module.\+h.
+
+\mbox{\label{classcpr__robot_1_1MotorModule_a3cac1f88d8484a74721a773658cfda29}} 
+\index{cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}!S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+V\+E\+L\+O\+C\+I\+T\+Y\+\_\+\+L\+AG@{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+V\+E\+L\+O\+C\+I\+T\+Y\+\_\+\+L\+AG}}
+\index{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+V\+E\+L\+O\+C\+I\+T\+Y\+\_\+\+L\+AG@{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+V\+E\+L\+O\+C\+I\+T\+Y\+\_\+\+L\+AG}!cpr\+\_\+robot\+::\+Motor\+Module@{cpr\+\_\+robot\+::\+Motor\+Module}}
+\subsubsection{S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+V\+E\+L\+O\+C\+I\+T\+Y\+\_\+\+L\+AG}
+{\footnotesize\ttfamily constexpr uint32\+\_\+t cpr\+\_\+robot\+::\+Motor\+Module\+::\+S\+T\+A\+T\+U\+S\+F\+L\+A\+G\+\_\+\+V\+E\+L\+O\+C\+I\+T\+Y\+\_\+\+L\+AG = 0x00000002\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Error flag indicating that velocity changes too fast. 
+
+
+
+Definition at line 17 of file Motor\+Module.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\textbf{ Motor\+Module.\+h}\item 
+\textbf{ Motor\+Module.\+cpp}\end{DoxyCompactItemize}

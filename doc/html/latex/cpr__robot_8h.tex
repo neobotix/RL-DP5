@@ -1,0 +1,97 @@
+\section{cpr\+\_\+robot.\+h File Reference}
+\label{cpr__robot_8h}\index{cpr\+\_\+robot.\+h@{cpr\+\_\+robot.\+h}}
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$sys/ioctl.\+h$>$}\newline
+{\ttfamily \#include $<$net/if.\+h$>$}\newline
+{\ttfamily \#include $<$linux/can.\+h$>$}\newline
+{\ttfamily \#include $<$linux/can/raw.\+h$>$}\newline
+{\ttfamily \#include $<$cstdint$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+{\ttfamily \#include $<$atomic$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include $<$mutex$>$}\newline
+{\ttfamily \#include $<$shared\+\_\+mutex$>$}\newline
+{\ttfamily \#include $<$cassert$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$ros/ros.\+h$>$}\newline
+{\ttfamily \#include $<$std\+\_\+msgs/\+String.\+h$>$}\newline
+{\ttfamily \#include $<$sensor\+\_\+msgs/\+Joint\+State.\+h$>$}\newline
+{\ttfamily \#include $<$control\+\_\+msgs/\+Joint\+Jog.\+h$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include \char`\"{}cpr\+\_\+robot/\+Get\+Robot\+Info.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}cpr\+\_\+robot/\+Get\+Joint\+Info.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}cpr\+\_\+robot/\+Robot\+State.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}cpr\+\_\+robot/\+Robot\+Command.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}cpr\+\_\+robot/\+Bus.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}cpr\+\_\+robot/\+Motor\+Module.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}cpr\+\_\+robot/\+Joint.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}cpr\+\_\+robot/\+Robot.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}cpr\+\_\+robot/igus\+\_\+4\+D\+O\+F\+\_\+\+S\+V.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}cpr\+\_\+robot/igus\+\_\+5\+D\+O\+F\+\_\+\+S\+V.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}cpr\+\_\+robot/\+C\+P\+R\+Mover6.\+h\char`\"{}}\newline
+Include dependency graph for cpr\+\_\+robot.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cpr__robot_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cpr__robot_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \textbf{ cpr\+\_\+robot}
+\begin{DoxyCompactList}\small\item\em Provides everything needed to control a robot over a C\+AN bus connection within a R\+OS environment. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ \+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+ES}
+\item 
+\#define \textbf{ A\+F\+\_\+\+C\+AN}~\textbf{ P\+F\+\_\+\+C\+AN}
+\item 
+\#define \textbf{ P\+F\+\_\+\+C\+AN}~29
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\label{cpr__robot_8h_a525335710b53cb064ca56b936120431e}} 
+\index{cpr\+\_\+robot.\+h@{cpr\+\_\+robot.\+h}!\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+ES@{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+ES}}
+\index{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+ES@{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+ES}!cpr\+\_\+robot.\+h@{cpr\+\_\+robot.\+h}}
+\subsubsection{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+ES}
+{\footnotesize\ttfamily \#define \+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+ES}
+
+
+
+Definition at line 34 of file cpr\+\_\+robot.\+h.
+
+\mbox{\label{cpr__robot_8h_a546620c7e758f003b24b7fdae4f97bd4}} 
+\index{cpr\+\_\+robot.\+h@{cpr\+\_\+robot.\+h}!A\+F\+\_\+\+C\+AN@{A\+F\+\_\+\+C\+AN}}
+\index{A\+F\+\_\+\+C\+AN@{A\+F\+\_\+\+C\+AN}!cpr\+\_\+robot.\+h@{cpr\+\_\+robot.\+h}}
+\subsubsection{A\+F\+\_\+\+C\+AN}
+{\footnotesize\ttfamily \#define A\+F\+\_\+\+C\+AN~\textbf{ P\+F\+\_\+\+C\+AN}}
+
+
+
+Definition at line 26 of file cpr\+\_\+robot.\+h.
+
+\mbox{\label{cpr__robot_8h_aeac0c3db7a1e021f17987bcc76893849}} 
+\index{cpr\+\_\+robot.\+h@{cpr\+\_\+robot.\+h}!P\+F\+\_\+\+C\+AN@{P\+F\+\_\+\+C\+AN}}
+\index{P\+F\+\_\+\+C\+AN@{P\+F\+\_\+\+C\+AN}!cpr\+\_\+robot.\+h@{cpr\+\_\+robot.\+h}}
+\subsubsection{P\+F\+\_\+\+C\+AN}
+{\footnotesize\ttfamily \#define P\+F\+\_\+\+C\+AN~29}
+
+
+
+Definition at line 22 of file cpr\+\_\+robot.\+h.
+

@@ -1,5 +1,5 @@
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-<title>src: ROS support package</title>
+<title>cpr_robot: ROS support package</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="jquery.js"></script>
@@ -46,7 +46,7 @@ A C++17 capable compiler will be required in any case. </li>
 <li>
 In order to physically connect robots you will need a USB to CAN adapter, testing was done with an <a href="https://www.peak-system.com/PCAN-USB.199.0.html">adapter from PEAK System</a>. </li>
 <li>
-We recommend setting your system locale to EN-US because some ROS components seem to have trouble parsing floating point numbers in XML files if commas are used instead of points to separate the fractional part of floating point numbers by the system locale. </li>
+We recommend setting your system locale to EN-US because some ROS components seem to have trouble parsing floating point numbers in XML files, if commas are used instead of points to separate the fractional part of floating point numbers by the system locale. </li>
 <li>
 We recommend having a good C++ editor of your choice at hands, the command line examples on this page will assume <a href="https://code.visualstudio.com/">Microsoft Visual Studio Code</a> is installed on your machine - it is what has been used during developement of the package in conjunction with the following plugins: <ul>
 <li>
@@ -88,13 +88,13 @@ Finally let's install the package. From within the root folder of your catkin wo
 <li>
 Make sure the robot ist connected to your computer via your CAN to USB adapter and powered on.  </li>
 <li>
-The CAN interface on your computer needs to be started whenever the CAN to USB adapter has been plugged in or the computer has started up. To do so type the following into a terminal: <div class="fragment"><div class="line">sudo modprobe can_dev</div><div class="line">sudo modprobe can</div><div class="line">sudo modprobe can_raw</div><div class="line">sudo ip link set can0 type can bitrate 500000</div><div class="line">sudo ifconfig can0 up</div></div><!-- fragment --> It may be advisable to have a small shellscript with these commands, typing them again each time the adapter hase been plugged in may be cumbersome after a while.  </li>
+The CAN interface on your computer needs to be started, whenever the CAN to USB adapter has been plugged in or the computer has started up. To do so, type the following into a terminal: <div class="fragment"><div class="line">sudo modprobe can_dev</div><div class="line">sudo modprobe can</div><div class="line">sudo modprobe can_raw</div><div class="line">sudo ip link set can0 type can bitrate 500000</div><div class="line">sudo ifconfig can0 up</div></div><!-- fragment --> It may be advisable to have a small shellscript with these commands, typing them again each time the adapter hase been plugged in may be cumbersome after a while.  </li>
 <li>
 Run the RViz plugin with one of the example robot nodes. <ul>
 <li>
 To control an igus robolink 4DOF, small version robot type the following into a terminal: <div class="fragment"><div class="line">roslaunch cpr_robot igus_4DOF_SV.launch</div></div><!-- fragment --> </li>
 <li>
-If you want to control a CPR Mover6 robot type the following into a terminal: <div class="fragment"><div class="line">roslaunch cpr_robot CPRMover6.launch</div></div><!-- fragment -->  </li>
+If you want to control a CPR Mover6 robot, type the following into a terminal: <div class="fragment"><div class="line">roslaunch cpr_robot CPRMover6.launch</div></div><!-- fragment -->  </li>
 </ul>
 </li>
 </ol>
@@ -108,13 +108,26 @@ Open the folder using an editor (in this example Visual Studio Code is used): <d
 <li>
 Have fun playing around with it.  </li>
 </ol>
-</div></div><!-- contents -->
+<h1><a class="anchor" id="ovrview"></a>
+Overview</h1>
+<h2><a class="anchor" id="rbotnode"></a>
+The Robot node</h2>
+<p>See the files <a class="el" href="main__CPRMover6_8cpp.html">main_CPRMover6.cpp</a> or <a class="el" href="main__igus__4DOF__SV_8cpp.html">main_igus_4DOF_SV.cpp</a> in order to have a working example on how to set up a ROS node that will allow to integrate robots from igus or CPR into ROS. The general way to do it, is to instantiate a class that has been derived from the abstract Robot base class, then within a standard ROS spinning loop subsequently call the Read, PublishState and Write methods:</p>
+<div class="fragment"><div class="line"><a class="code" href="classcpr__robot_1_1CPRMover6.html">cpr_robot::CPRMover6</a> robot;</div><div class="line">robot.<a class="code" href="classcpr__robot_1_1Robot.html#a469ed567a445caf868e8154997c8ba76">Init</a>();</div><div class="line">ros::Rate loop_rate(10);</div><div class="line"><span class="keywordflow">while</span> (ros::ok())</div><div class="line">{</div><div class="line">  robot.<a class="code" href="classcpr__robot_1_1Robot.html#a7daf552f78f48b9c155d4d6708c49e2b">Read</a>();</div><div class="line">  robot.<a class="code" href="classcpr__robot_1_1Robot.html#a105157bf29fc8567601655805cd29906">PublishState</a>();</div><div class="line">  robot.<a class="code" href="classcpr__robot_1_1Robot.html#a813a91e6dfdd4d3d57618999eed008c6">Write</a>();</div><div class="line">  ros::spinOnce();</div><div class="line">  loop_rate.sleep();</div><div class="line">}</div></div><!-- fragment --><h2><a class="anchor" id="rvizplug"></a>
+The RViz plugin</h2>
+<p>The complete source code for the RViz plugin is contained in the files <a class="el" href="RobotPanel_8cpp.html">RobotPanel.cpp</a> and <a class="el" href="JointControl_8cpp.html">JointControl.cpp</a> and their respective headers. You can use these a a starting point for the developement of your own plugin. Note that you will have to run </p><div class="fragment"><div class="line">catkin_make install</div></div><!-- fragment --><p> for Panels (and other RViz plugins) to become accesible from within RViz.</p>
+<h2><a class="anchor" id="diag"></a>
+Dataflow schema</h2>
+<div class="image">
+<img src="Diagram.png" alt="Diagram.png"/>
+</div>
+ </div></div><!-- contents -->
 
 <br clear="all" />
 <hr size="1"><div style="align: right;">
-<a href="http://wiki.ros.org/src">src</a><br />
+<a href="http://wiki.ros.org/cpr_robot">cpr_robot</a><br />
 Author(s): </br />
-<small>autogenerated on Wed May 29 2019 15:50:10</small>
+<small>autogenerated on Thu Jun 13 2019 10:47:30</small>
 </div>
 </body>
 </html>

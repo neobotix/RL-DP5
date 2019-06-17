@@ -1,0 +1,637 @@
+\section{cpr\+\_\+rviz\+:\+:Robot\+Panel Class Reference}
+\label{classcpr__rviz_1_1RobotPanel}\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+
+
+Plugin for R\+Viz that allows to move a robot remotely over R\+OS.  
+
+
+
+
+{\ttfamily \#include $<$Robot\+Panel.\+h$>$}
+
+
+
+Inheritance diagram for cpr\+\_\+rviz\+:\+:Robot\+Panel\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=188pt]{classcpr__rviz_1_1RobotPanel__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Robot\+Panel} (Q\+Widget $\ast$parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructor of the \doxyref{Robot\+Panel}{p.}{classcpr__rviz_1_1RobotPanel} class. \end{DoxyCompactList}\item 
+virtual \textbf{ $\sim$\+Robot\+Panel} ()
+\begin{DoxyCompactList}\small\item\em Destructor of the \doxyref{Robot\+Panel}{p.}{classcpr__rviz_1_1RobotPanel} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ On\+Connect\+Button\+Clicked} (bool b\+Checked=true)
+\begin{DoxyCompactList}\small\item\em Callback slot handling clicks to the \char`\"{}\+Connect/\+Disconnect\char`\"{} button. \end{DoxyCompactList}\item 
+void \textbf{ On\+Enable\+Button\+Clicked} (bool b\+Checked=true)
+\begin{DoxyCompactList}\small\item\em Callback slot handling clicks to the \char`\"{}\+Enable/\+Disable\char`\"{} button. \end{DoxyCompactList}\item 
+void \textbf{ On\+Override\+Slider\+Value\+Changed} (int value)
+\begin{DoxyCompactList}\small\item\em Callback slot handling changes to the override slider value. \end{DoxyCompactList}\item 
+void \textbf{ On\+Reference\+Button\+Clicked} (bool b\+Checked=true)
+\begin{DoxyCompactList}\small\item\em Callback slot handling clicks to the \char`\"{}\+Reference\char`\"{} button. \end{DoxyCompactList}\item 
+void \textbf{ On\+Zero\+Button\+Clicked} (bool b\+Checked=true)
+\begin{DoxyCompactList}\small\item\em Callback slot handling clicks to the \char`\"{}\+Set Zero\char`\"{} button. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+cpr\+\_\+robot\+::\+Get\+Robot\+Info\+Response \textbf{ Get\+Robot\+Info} ()
+\begin{DoxyCompactList}\small\item\em Queries information about the robot from the /\+Get\+Robot\+Info R\+OS service. \end{DoxyCompactList}\item 
+cpr\+\_\+robot\+::\+Robot\+Command\+Response \textbf{ Robot\+Command} (const uint32\+\_\+t command\+Id, const double payload\+Float, const int64\+\_\+t payload\+Int)
+\begin{DoxyCompactList}\small\item\em Sends a command to the robot using the /\+Robot\+Command R\+OS service. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ Initialize\+R\+OS} ()
+\begin{DoxyCompactList}\small\item\em Sets up communication with R\+OS. \end{DoxyCompactList}\item 
+void \textbf{ Initialize\+State} ()
+\begin{DoxyCompactList}\small\item\em Initializes all relevant members. \end{DoxyCompactList}\item 
+void \textbf{ Initialize\+UI} ()
+\begin{DoxyCompactList}\small\item\em Initializes all relevant UI elements. \end{DoxyCompactList}\item 
+void \textbf{ On\+Override\+Changed} ()
+\begin{DoxyCompactList}\small\item\em Updates all UI elements associated with the override value of the robot. \end{DoxyCompactList}\item 
+void \textbf{ On\+Status\+Flags\+Changed} ()
+\begin{DoxyCompactList}\small\item\em Updates all UI elements associated with the status flag reported by the robot. \end{DoxyCompactList}\item 
+void \textbf{ Robot\+State\+Callback} (const cpr\+\_\+robot\+::\+Robot\+State\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em Callback that handles messages received over the /\+Robot\+State R\+OS topic. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Q\+Push\+Button \textbf{ m\+\_\+\+Connect\+Button}
+\begin{DoxyCompactList}\small\item\em Button allowing to connect/disconnect the robot remotely. \end{DoxyCompactList}\item 
+Q\+H\+Box\+Layout \textbf{ m\+\_\+\+Control\+Buttons\+Layout}
+\begin{DoxyCompactList}\small\item\em Layout aranging the control buttons horizontally. \end{DoxyCompactList}\item 
+uint32\+\_\+t \textbf{ m\+\_\+\+Count\+Joints}
+\begin{DoxyCompactList}\small\item\em The number of joints reported by the robot. \end{DoxyCompactList}\item 
+Q\+Push\+Button \textbf{ m\+\_\+\+Enable\+Button}
+\begin{DoxyCompactList}\small\item\em Button allowing to enable/disable motor motion on the robot remotely. \end{DoxyCompactList}\item 
+ros\+::\+Service\+Client \textbf{ m\+\_\+\+Get\+Robot\+Info\+Client}
+\begin{DoxyCompactList}\small\item\em Client used to query information about the robot via the /\+Get\+Robot\+Info R\+OS service. \end{DoxyCompactList}\item 
+Q\+Grid\+Layout \textbf{ m\+\_\+\+Joints\+Layout}
+\begin{DoxyCompactList}\small\item\em Layout arranging the controls of the individual joints. \end{DoxyCompactList}\item 
+Q\+Form\+Layout \textbf{ m\+\_\+\+Main\+Layout}
+\begin{DoxyCompactList}\small\item\em The top-\/level layout of this widget. \end{DoxyCompactList}\item 
+std\+::string \textbf{ m\+\_\+\+Model\+Name}
+\begin{DoxyCompactList}\small\item\em The model designation reported by the robot. \end{DoxyCompactList}\item 
+Q\+Label \textbf{ m\+\_\+\+Model\+Name\+Label}
+\begin{DoxyCompactList}\small\item\em Label used to show the model deisgnation of the robot. \end{DoxyCompactList}\item 
+ros\+::\+Node\+Handle \textbf{ m\+\_\+\+Node}
+\begin{DoxyCompactList}\small\item\em A handle to the current R\+OS node. \end{DoxyCompactList}\item 
+double \textbf{ m\+\_\+\+Override}
+\begin{DoxyCompactList}\small\item\em The override value reported by the robot. \end{DoxyCompactList}\item 
+Q\+Label \textbf{ m\+\_\+\+Override\+Label}
+\begin{DoxyCompactList}\small\item\em Label used to show the current override value of the robot. \end{DoxyCompactList}\item 
+Q\+Slider \textbf{ m\+\_\+\+Override\+Slider}
+\begin{DoxyCompactList}\small\item\em Slider used to change the desired override value of the robot. \end{DoxyCompactList}\item 
+bool \textbf{ m\+\_\+\+Override\+Slider\+Valid}
+\begin{DoxyCompactList}\small\item\em Flag indicating whether the position of the override slider has been properly initialized. \end{DoxyCompactList}\item 
+\textbf{ Joint\+Control} $\ast$$\ast$ \textbf{ m\+\_\+p\+Joint\+Controls}
+\begin{DoxyCompactList}\small\item\em Array containing the control widgets for the individual joints. \end{DoxyCompactList}\item 
+Q\+Push\+Button \textbf{ m\+\_\+\+Reference\+Button}
+\begin{DoxyCompactList}\small\item\em Button allowing to start the referencing procedure on the robot remotely. \end{DoxyCompactList}\item 
+ros\+::\+Service\+Client \textbf{ m\+\_\+\+Robot\+Command\+Client}
+\begin{DoxyCompactList}\small\item\em Client used to send commands to the robot via the /\+Robot\+Command R\+OS service. \end{DoxyCompactList}\item 
+ros\+::\+Subscriber \textbf{ m\+\_\+\+Robot\+State\+Subscriber}
+\begin{DoxyCompactList}\small\item\em Subscriber listening to the /\+Robot\+State R\+OS topic. \end{DoxyCompactList}\item 
+uint32\+\_\+t \textbf{ m\+\_\+\+Status\+Flags}
+\begin{DoxyCompactList}\small\item\em The status flags reported by the robot. \end{DoxyCompactList}\item 
+Q\+Push\+Button \textbf{ m\+\_\+\+Zero\+Button}
+\begin{DoxyCompactList}\small\item\em Button allowing to set the encoder positions on the robot remotely to zero. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Plugin for R\+Viz that allows to move a robot remotely over R\+OS. 
+
+Definition at line 7 of file Robot\+Panel.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{classcpr__rviz_1_1RobotPanel_a94a53fc745942210d8eac594618a7ef6}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!Robot\+Panel@{Robot\+Panel}}
+\index{Robot\+Panel@{Robot\+Panel}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{Robot\+Panel()}
+{\footnotesize\ttfamily cpr\+\_\+rviz\+::\+Robot\+Panel\+::\+Robot\+Panel (\begin{DoxyParamCaption}\item[{Q\+Widget $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+Constructor of the \doxyref{Robot\+Panel}{p.}{classcpr__rviz_1_1RobotPanel} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & The parent widget. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 11 of file Robot\+Panel.\+cpp.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_a58e5efe4432a01954808a97a4c55bd43}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!````~Robot\+Panel@{$\sim$\+Robot\+Panel}}
+\index{````~Robot\+Panel@{$\sim$\+Robot\+Panel}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{$\sim$\+Robot\+Panel()}
+{\footnotesize\ttfamily cpr\+\_\+rviz\+::\+Robot\+Panel\+::$\sim$\+Robot\+Panel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destructor of the \doxyref{Robot\+Panel}{p.}{classcpr__rviz_1_1RobotPanel} class. 
+
+
+
+Definition at line 27 of file Robot\+Panel.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{classcpr__rviz_1_1RobotPanel_a8df43a1e1dd42263657df7202f8bdf3c}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!Get\+Robot\+Info@{Get\+Robot\+Info}}
+\index{Get\+Robot\+Info@{Get\+Robot\+Info}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{Get\+Robot\+Info()}
+{\footnotesize\ttfamily cpr\+\_\+robot\+::\+Get\+Robot\+Info\+Response cpr\+\_\+rviz\+::\+Robot\+Panel\+::\+Get\+Robot\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Queries information about the robot from the /\+Get\+Robot\+Info R\+OS service. 
+
+
+
+Definition at line 204 of file Robot\+Panel.\+cpp.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_a89d390543160974edfa948a0c8fb232d}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!Initialize\+R\+OS@{Initialize\+R\+OS}}
+\index{Initialize\+R\+OS@{Initialize\+R\+OS}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{Initialize\+R\+O\+S()}
+{\footnotesize\ttfamily void cpr\+\_\+rviz\+::\+Robot\+Panel\+::\+Initialize\+R\+OS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sets up communication with R\+OS. 
+
+
+
+Definition at line 120 of file Robot\+Panel.\+cpp.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_a2677e67d3eb7adf335958f21c3f7f653}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!Initialize\+State@{Initialize\+State}}
+\index{Initialize\+State@{Initialize\+State}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{Initialize\+State()}
+{\footnotesize\ttfamily void cpr\+\_\+rviz\+::\+Robot\+Panel\+::\+Initialize\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes all relevant members. 
+
+
+
+Definition at line 111 of file Robot\+Panel.\+cpp.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_af1a8e718388e371a1b3d380353853431}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!Initialize\+UI@{Initialize\+UI}}
+\index{Initialize\+UI@{Initialize\+UI}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{Initialize\+U\+I()}
+{\footnotesize\ttfamily void cpr\+\_\+rviz\+::\+Robot\+Panel\+::\+Initialize\+UI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes all relevant UI elements. 
+
+
+
+Definition at line 39 of file Robot\+Panel.\+cpp.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_aab90d125fdb7f2eedd8f369dbe260fe5}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!On\+Connect\+Button\+Clicked@{On\+Connect\+Button\+Clicked}}
+\index{On\+Connect\+Button\+Clicked@{On\+Connect\+Button\+Clicked}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{On\+Connect\+Button\+Clicked}
+{\footnotesize\ttfamily void cpr\+\_\+rviz\+::\+Robot\+Panel\+::\+On\+Connect\+Button\+Clicked (\begin{DoxyParamCaption}\item[{bool}]{b\+Checked = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [slot]}}
+
+
+
+Callback slot handling clicks to the \char`\"{}\+Connect/\+Disconnect\char`\"{} button. 
+
+
+
+Definition at line 81 of file Robot\+Panel.\+cpp.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_a95658f429ca681929ee72af87f62ce94}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!On\+Enable\+Button\+Clicked@{On\+Enable\+Button\+Clicked}}
+\index{On\+Enable\+Button\+Clicked@{On\+Enable\+Button\+Clicked}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{On\+Enable\+Button\+Clicked}
+{\footnotesize\ttfamily void cpr\+\_\+rviz\+::\+Robot\+Panel\+::\+On\+Enable\+Button\+Clicked (\begin{DoxyParamCaption}\item[{bool}]{b\+Checked = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [slot]}}
+
+
+
+Callback slot handling clicks to the \char`\"{}\+Enable/\+Disable\char`\"{} button. 
+
+
+
+Definition at line 102 of file Robot\+Panel.\+cpp.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_a7e371cd8ca1aa26eef82c61ddaa93a7b}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!On\+Override\+Changed@{On\+Override\+Changed}}
+\index{On\+Override\+Changed@{On\+Override\+Changed}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{On\+Override\+Changed()}
+{\footnotesize\ttfamily void cpr\+\_\+rviz\+::\+Robot\+Panel\+::\+On\+Override\+Changed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Updates all UI elements associated with the override value of the robot. 
+
+
+
+Definition at line 160 of file Robot\+Panel.\+cpp.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_ac1672149b82d5e09d4a6337021cca43d}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!On\+Override\+Slider\+Value\+Changed@{On\+Override\+Slider\+Value\+Changed}}
+\index{On\+Override\+Slider\+Value\+Changed@{On\+Override\+Slider\+Value\+Changed}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{On\+Override\+Slider\+Value\+Changed}
+{\footnotesize\ttfamily void cpr\+\_\+rviz\+::\+Robot\+Panel\+::\+On\+Override\+Slider\+Value\+Changed (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [slot]}}
+
+
+
+Callback slot handling changes to the override slider value. 
+
+
+
+Definition at line 75 of file Robot\+Panel.\+cpp.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_ae959eae9146d9d3531217ff35bc5fb18}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!On\+Reference\+Button\+Clicked@{On\+Reference\+Button\+Clicked}}
+\index{On\+Reference\+Button\+Clicked@{On\+Reference\+Button\+Clicked}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{On\+Reference\+Button\+Clicked}
+{\footnotesize\ttfamily void cpr\+\_\+rviz\+::\+Robot\+Panel\+::\+On\+Reference\+Button\+Clicked (\begin{DoxyParamCaption}\item[{bool}]{b\+Checked = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [slot]}}
+
+
+
+Callback slot handling clicks to the \char`\"{}\+Reference\char`\"{} button. 
+
+
+
+Definition at line 90 of file Robot\+Panel.\+cpp.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_aa019eb59585e0f1d31ff621367be775a}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!On\+Status\+Flags\+Changed@{On\+Status\+Flags\+Changed}}
+\index{On\+Status\+Flags\+Changed@{On\+Status\+Flags\+Changed}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{On\+Status\+Flags\+Changed()}
+{\footnotesize\ttfamily void cpr\+\_\+rviz\+::\+Robot\+Panel\+::\+On\+Status\+Flags\+Changed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Updates all UI elements associated with the status flag reported by the robot. 
+
+
+
+Definition at line 168 of file Robot\+Panel.\+cpp.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_a11c94355f7de5648f010fbaf33a91a5d}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!On\+Zero\+Button\+Clicked@{On\+Zero\+Button\+Clicked}}
+\index{On\+Zero\+Button\+Clicked@{On\+Zero\+Button\+Clicked}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{On\+Zero\+Button\+Clicked}
+{\footnotesize\ttfamily void cpr\+\_\+rviz\+::\+Robot\+Panel\+::\+On\+Zero\+Button\+Clicked (\begin{DoxyParamCaption}\item[{bool}]{b\+Checked = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [slot]}}
+
+
+
+Callback slot handling clicks to the \char`\"{}\+Set Zero\char`\"{} button. 
+
+
+
+Definition at line 96 of file Robot\+Panel.\+cpp.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_a80ddb6e75b38c08a8cf9cf2df5129447}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!Robot\+Command@{Robot\+Command}}
+\index{Robot\+Command@{Robot\+Command}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{Robot\+Command()}
+{\footnotesize\ttfamily cpr\+\_\+robot\+::\+Robot\+Command\+Response cpr\+\_\+rviz\+::\+Robot\+Panel\+::\+Robot\+Command (\begin{DoxyParamCaption}\item[{const uint32\+\_\+t}]{command\+Id,  }\item[{const double}]{payload\+Float,  }\item[{const int64\+\_\+t}]{payload\+Int }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Sends a command to the robot using the /\+Robot\+Command R\+OS service. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command\+Id} & The ID of the command that will be sent. \\
+\hline
+{\em payload\+Float} & A floating point number that may be provided as data with the command. \\
+\hline
+{\em payload\+Int} & An integer number that may be provided as data with the command. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 225 of file Robot\+Panel.\+cpp.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_a319077ba01379334cfcf1393d9dfeb9b}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!Robot\+State\+Callback@{Robot\+State\+Callback}}
+\index{Robot\+State\+Callback@{Robot\+State\+Callback}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{Robot\+State\+Callback()}
+{\footnotesize\ttfamily void cpr\+\_\+rviz\+::\+Robot\+Panel\+::\+Robot\+State\+Callback (\begin{DoxyParamCaption}\item[{const cpr\+\_\+robot\+::\+Robot\+State\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Callback that handles messages received over the /\+Robot\+State R\+OS topic. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The received message. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 129 of file Robot\+Panel.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\label{classcpr__rviz_1_1RobotPanel_a4f0750b3996001ff45e8610b07d690cc}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!m\+\_\+\+Connect\+Button@{m\+\_\+\+Connect\+Button}}
+\index{m\+\_\+\+Connect\+Button@{m\+\_\+\+Connect\+Button}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{m\+\_\+\+Connect\+Button}
+{\footnotesize\ttfamily Q\+Push\+Button cpr\+\_\+rviz\+::\+Robot\+Panel\+::m\+\_\+\+Connect\+Button\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Button allowing to connect/disconnect the robot remotely. 
+
+
+
+Definition at line 26 of file Robot\+Panel.\+h.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_a1acad3f0f8f1a0fc684774c2aba7ed2b}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!m\+\_\+\+Control\+Buttons\+Layout@{m\+\_\+\+Control\+Buttons\+Layout}}
+\index{m\+\_\+\+Control\+Buttons\+Layout@{m\+\_\+\+Control\+Buttons\+Layout}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{m\+\_\+\+Control\+Buttons\+Layout}
+{\footnotesize\ttfamily Q\+H\+Box\+Layout cpr\+\_\+rviz\+::\+Robot\+Panel\+::m\+\_\+\+Control\+Buttons\+Layout\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Layout aranging the control buttons horizontally. 
+
+
+
+Definition at line 24 of file Robot\+Panel.\+h.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_aa00028789ad9fa3d1cf2655f1c64a71e}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!m\+\_\+\+Count\+Joints@{m\+\_\+\+Count\+Joints}}
+\index{m\+\_\+\+Count\+Joints@{m\+\_\+\+Count\+Joints}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{m\+\_\+\+Count\+Joints}
+{\footnotesize\ttfamily uint32\+\_\+t cpr\+\_\+rviz\+::\+Robot\+Panel\+::m\+\_\+\+Count\+Joints\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The number of joints reported by the robot. 
+
+
+
+Definition at line 22 of file Robot\+Panel.\+h.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_a2b4b61e1c1c776afe520113e1809db81}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!m\+\_\+\+Enable\+Button@{m\+\_\+\+Enable\+Button}}
+\index{m\+\_\+\+Enable\+Button@{m\+\_\+\+Enable\+Button}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{m\+\_\+\+Enable\+Button}
+{\footnotesize\ttfamily Q\+Push\+Button cpr\+\_\+rviz\+::\+Robot\+Panel\+::m\+\_\+\+Enable\+Button\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Button allowing to enable/disable motor motion on the robot remotely. 
+
+
+
+Definition at line 28 of file Robot\+Panel.\+h.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_aed4833783aa8e0d18f951c356924b8d4}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!m\+\_\+\+Get\+Robot\+Info\+Client@{m\+\_\+\+Get\+Robot\+Info\+Client}}
+\index{m\+\_\+\+Get\+Robot\+Info\+Client@{m\+\_\+\+Get\+Robot\+Info\+Client}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{m\+\_\+\+Get\+Robot\+Info\+Client}
+{\footnotesize\ttfamily ros\+::\+Service\+Client cpr\+\_\+rviz\+::\+Robot\+Panel\+::m\+\_\+\+Get\+Robot\+Info\+Client\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Client used to query information about the robot via the /\+Get\+Robot\+Info R\+OS service. 
+
+
+
+Definition at line 14 of file Robot\+Panel.\+h.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_ae61c2afa8026071af8505de5445e74f7}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!m\+\_\+\+Joints\+Layout@{m\+\_\+\+Joints\+Layout}}
+\index{m\+\_\+\+Joints\+Layout@{m\+\_\+\+Joints\+Layout}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{m\+\_\+\+Joints\+Layout}
+{\footnotesize\ttfamily Q\+Grid\+Layout cpr\+\_\+rviz\+::\+Robot\+Panel\+::m\+\_\+\+Joints\+Layout\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Layout arranging the controls of the individual joints. 
+
+
+
+Definition at line 38 of file Robot\+Panel.\+h.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_a28932ab9c394aac8c5b6fe182e6ffa2c}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!m\+\_\+\+Main\+Layout@{m\+\_\+\+Main\+Layout}}
+\index{m\+\_\+\+Main\+Layout@{m\+\_\+\+Main\+Layout}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{m\+\_\+\+Main\+Layout}
+{\footnotesize\ttfamily Q\+Form\+Layout cpr\+\_\+rviz\+::\+Robot\+Panel\+::m\+\_\+\+Main\+Layout\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The top-\/level layout of this widget. 
+
+
+
+Definition at line 40 of file Robot\+Panel.\+h.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_ac08e77be9ef4ef89af6126bb9a0e3288}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!m\+\_\+\+Model\+Name@{m\+\_\+\+Model\+Name}}
+\index{m\+\_\+\+Model\+Name@{m\+\_\+\+Model\+Name}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{m\+\_\+\+Model\+Name}
+{\footnotesize\ttfamily std\+::string cpr\+\_\+rviz\+::\+Robot\+Panel\+::m\+\_\+\+Model\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The model designation reported by the robot. 
+
+
+
+Definition at line 20 of file Robot\+Panel.\+h.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_af18da4751b3bea874ded23126bdede64}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!m\+\_\+\+Model\+Name\+Label@{m\+\_\+\+Model\+Name\+Label}}
+\index{m\+\_\+\+Model\+Name\+Label@{m\+\_\+\+Model\+Name\+Label}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{m\+\_\+\+Model\+Name\+Label}
+{\footnotesize\ttfamily Q\+Label cpr\+\_\+rviz\+::\+Robot\+Panel\+::m\+\_\+\+Model\+Name\+Label\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Label used to show the model deisgnation of the robot. 
+
+
+
+Definition at line 42 of file Robot\+Panel.\+h.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_a6978e66039178ef430787b5852518537}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!m\+\_\+\+Node@{m\+\_\+\+Node}}
+\index{m\+\_\+\+Node@{m\+\_\+\+Node}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{m\+\_\+\+Node}
+{\footnotesize\ttfamily ros\+::\+Node\+Handle cpr\+\_\+rviz\+::\+Robot\+Panel\+::m\+\_\+\+Node\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+A handle to the current R\+OS node. 
+
+
+
+Definition at line 12 of file Robot\+Panel.\+h.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_aa002130e0ac251ab17271ae66f756869}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!m\+\_\+\+Override@{m\+\_\+\+Override}}
+\index{m\+\_\+\+Override@{m\+\_\+\+Override}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{m\+\_\+\+Override}
+{\footnotesize\ttfamily double cpr\+\_\+rviz\+::\+Robot\+Panel\+::m\+\_\+\+Override\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The override value reported by the robot. 
+
+
+
+Definition at line 46 of file Robot\+Panel.\+h.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_a7a5b969e1b67121ad22514e92cd1df60}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!m\+\_\+\+Override\+Label@{m\+\_\+\+Override\+Label}}
+\index{m\+\_\+\+Override\+Label@{m\+\_\+\+Override\+Label}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{m\+\_\+\+Override\+Label}
+{\footnotesize\ttfamily Q\+Label cpr\+\_\+rviz\+::\+Robot\+Panel\+::m\+\_\+\+Override\+Label\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Label used to show the current override value of the robot. 
+
+
+
+Definition at line 34 of file Robot\+Panel.\+h.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_a7f821beda431c95e824d8bc3934fd5e5}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!m\+\_\+\+Override\+Slider@{m\+\_\+\+Override\+Slider}}
+\index{m\+\_\+\+Override\+Slider@{m\+\_\+\+Override\+Slider}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{m\+\_\+\+Override\+Slider}
+{\footnotesize\ttfamily Q\+Slider cpr\+\_\+rviz\+::\+Robot\+Panel\+::m\+\_\+\+Override\+Slider\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Slider used to change the desired override value of the robot. 
+
+
+
+Definition at line 36 of file Robot\+Panel.\+h.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_a6561d3845bb6ebd5bb88de2734c0b490}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!m\+\_\+\+Override\+Slider\+Valid@{m\+\_\+\+Override\+Slider\+Valid}}
+\index{m\+\_\+\+Override\+Slider\+Valid@{m\+\_\+\+Override\+Slider\+Valid}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{m\+\_\+\+Override\+Slider\+Valid}
+{\footnotesize\ttfamily bool cpr\+\_\+rviz\+::\+Robot\+Panel\+::m\+\_\+\+Override\+Slider\+Valid\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Flag indicating whether the position of the override slider has been properly initialized. 
+
+
+
+Definition at line 48 of file Robot\+Panel.\+h.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_ade7adfc4817b469b83e64d45ae39c806}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!m\+\_\+p\+Joint\+Controls@{m\+\_\+p\+Joint\+Controls}}
+\index{m\+\_\+p\+Joint\+Controls@{m\+\_\+p\+Joint\+Controls}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{m\+\_\+p\+Joint\+Controls}
+{\footnotesize\ttfamily \textbf{ Joint\+Control}$\ast$$\ast$ cpr\+\_\+rviz\+::\+Robot\+Panel\+::m\+\_\+p\+Joint\+Controls\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Array containing the control widgets for the individual joints. 
+
+
+
+Definition at line 50 of file Robot\+Panel.\+h.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_a0582f43bebf61c14875db5d2a592afdf}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!m\+\_\+\+Reference\+Button@{m\+\_\+\+Reference\+Button}}
+\index{m\+\_\+\+Reference\+Button@{m\+\_\+\+Reference\+Button}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{m\+\_\+\+Reference\+Button}
+{\footnotesize\ttfamily Q\+Push\+Button cpr\+\_\+rviz\+::\+Robot\+Panel\+::m\+\_\+\+Reference\+Button\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Button allowing to start the referencing procedure on the robot remotely. 
+
+
+
+Definition at line 30 of file Robot\+Panel.\+h.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_a9fbfcc90b89ba9992097573bc3e24cf2}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!m\+\_\+\+Robot\+Command\+Client@{m\+\_\+\+Robot\+Command\+Client}}
+\index{m\+\_\+\+Robot\+Command\+Client@{m\+\_\+\+Robot\+Command\+Client}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{m\+\_\+\+Robot\+Command\+Client}
+{\footnotesize\ttfamily ros\+::\+Service\+Client cpr\+\_\+rviz\+::\+Robot\+Panel\+::m\+\_\+\+Robot\+Command\+Client\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Client used to send commands to the robot via the /\+Robot\+Command R\+OS service. 
+
+
+
+Definition at line 16 of file Robot\+Panel.\+h.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_a435439eb971a7c6706c5ac648a00db8d}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!m\+\_\+\+Robot\+State\+Subscriber@{m\+\_\+\+Robot\+State\+Subscriber}}
+\index{m\+\_\+\+Robot\+State\+Subscriber@{m\+\_\+\+Robot\+State\+Subscriber}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{m\+\_\+\+Robot\+State\+Subscriber}
+{\footnotesize\ttfamily ros\+::\+Subscriber cpr\+\_\+rviz\+::\+Robot\+Panel\+::m\+\_\+\+Robot\+State\+Subscriber\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Subscriber listening to the /\+Robot\+State R\+OS topic. 
+
+
+
+Definition at line 18 of file Robot\+Panel.\+h.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_ae96468de1d228af9a102f6a5ac627c96}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!m\+\_\+\+Status\+Flags@{m\+\_\+\+Status\+Flags}}
+\index{m\+\_\+\+Status\+Flags@{m\+\_\+\+Status\+Flags}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{m\+\_\+\+Status\+Flags}
+{\footnotesize\ttfamily uint32\+\_\+t cpr\+\_\+rviz\+::\+Robot\+Panel\+::m\+\_\+\+Status\+Flags\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The status flags reported by the robot. 
+
+
+
+Definition at line 44 of file Robot\+Panel.\+h.
+
+\mbox{\label{classcpr__rviz_1_1RobotPanel_a6634fc50a0bfbb6fd58ee566978f3912}} 
+\index{cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}!m\+\_\+\+Zero\+Button@{m\+\_\+\+Zero\+Button}}
+\index{m\+\_\+\+Zero\+Button@{m\+\_\+\+Zero\+Button}!cpr\+\_\+rviz\+::\+Robot\+Panel@{cpr\+\_\+rviz\+::\+Robot\+Panel}}
+\subsubsection{m\+\_\+\+Zero\+Button}
+{\footnotesize\ttfamily Q\+Push\+Button cpr\+\_\+rviz\+::\+Robot\+Panel\+::m\+\_\+\+Zero\+Button\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Button allowing to set the encoder positions on the robot remotely to zero. 
+
+
+
+Definition at line 32 of file Robot\+Panel.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\textbf{ Robot\+Panel.\+h}\item 
+\textbf{ Robot\+Panel.\+cpp}\end{DoxyCompactItemize}

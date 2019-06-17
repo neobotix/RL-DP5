@@ -44,6 +44,7 @@
 #include "cpr_robot/Joint.h"
 #include "cpr_robot/Robot.h"
 #include "cpr_robot/igus_4DOF_SV.h"
+#include "cpr_robot/igus_5DOF_SV.h"
 #include "cpr_robot/CPRMover6.h"
 
 //! \namespace cpr_robot Provides everything needed to control a robot over a CAN bus connection within a ROS environment.
