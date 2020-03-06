@@ -32,7 +32,7 @@ namespace cpr_robot
 		m_bIsRunning(true),
 		m_pWriteThread(nullptr),
 		m_MotorPosition(0),
-		m_DIO(0),
+		m_DOutputs(0),
 		m_MotorIncrement(0),
 		m_CurrentTimeStamp(0),
 		m_MotorMinPosition(-32655),
@@ -41,6 +41,34 @@ namespace cpr_robot
 	{
 		Start();
 	}
+
+	//! \brief Gets the current state of the digital inputs.
+	//! \return Bitmask with the state of the digital inputs, one bit per channel.
+	uint8_t MotorModule::get_DigitalInputs() const
+	{
+		uint8_t timeStamp;
+		std::chrono::high_resolution_clock::time_point receptionTime;
+		uint8_t errorFlags;
+		uint8_t dinputs;
+		get_CurrentPosition(timeStamp,receptionTime,errorFlags,dinputs);
+		return dinputs;
+	}
+
+
+	//! \brief Gets the current state of the digital outputs.
+	//! \return Bitmask with the state of the digital outputs, one bit per channel.
+	uint8_t MotorModule::get_DigitalOutputs() const
+	{
+		return m_DOutputs;
+	}
+		
+	//! \brief Sets the state of the digital outputs.
+	//! \param doutputs The desrired states encoded as bitmask. Each bit corresponds to one channel.
+	void MotorModule::set_DigitalOutputs(const uint8_t doutputs)
+	{
+		m_DOutputs=doutputs;
+	}
+
 
 	//! \brief Gets the constant offset to be added to the motor position ("zero position"), measured in ticks.
 	//! \return The offset measured in ticks.
@@ -105,7 +133,7 @@ namespace cpr_robot
 		{
 			std::chrono::high_resolution_clock::time_point last=std::chrono::high_resolution_clock::now();
 			set_DesiredPosition(m_MotorPosition+m_MotorIncrement);
-			Command_SetJoint(m_MotorPosition, m_DIO);
+			Command_SetJoint(m_MotorPosition, m_DOutputs);
 			std::chrono::high_resolution_clock::time_point current=std::chrono::high_resolution_clock::now();
 			int64_t ms=(std::chrono::duration_cast<std::chrono::milliseconds>(current - last)).count();
 			if(ms<50)
@@ -152,8 +180,8 @@ namespace cpr_robot
 
 	//! \brief Sends a SetJoint command over the CAN bus to the DIN rail module.
 	//! \param ticks The desired joint position given measured encoder ticks.
-	//! \param dio The desired state of the digital I/Os.
-	void MotorModule::Command_SetJoint(const int32_t ticks, const uint8_t dio)
+	//! \param doutput The desired state of the digital outputs.
+	void MotorModule::Command_SetJoint(const int32_t ticks, const uint8_t doutput)
 	{
 		struct can_frame frame;
 		frame.can_id = (canid_t)(m_ModuleId << 4);
@@ -167,7 +195,7 @@ namespace cpr_robot
 		frame.data[5] = ((uint32_t)positionWithOffset) & 0x000000FFu;
 		frame.data[6] = m_CurrentTimeStamp;
 		m_CurrentTimeStamp=(uint8_t)((((uint32_t)m_CurrentTimeStamp)+1)&0xFF);
-		frame.data[7] = dio;
+		frame.data[7] = doutput;
 		m_Bus.WriteFrame(frame);
 	}
 
@@ -263,9 +291,9 @@ namespace cpr_robot
 	//! \param timeStamp The timeStamp sent by the module in the last response to a SetJoint command.
 	//! \param receptionTime The time at which the last response to a SetJoint command was received.
 	//! \param errorFlags The error flags reported by the module in the last response to a SetJoint command.
-	//! \param dataBits The data bits received from the module in the last response to a SetJoint command.
+	//! \param dinputs The state of the digital inputs as reported by the module in the last response to a SetJoint command.
 	//! \return The physical motor position reported by the module in the last response to a SetJoint command.
-	int32_t MotorModule::get_CurrentPosition(uint8_t& timeStamp, std::chrono::high_resolution_clock::time_point& receptionTime, uint8_t& errorFlags, uint8_t& dataBits) const
+	int32_t MotorModule::get_CurrentPosition(uint8_t& timeStamp, std::chrono::high_resolution_clock::time_point& receptionTime, uint8_t& errorFlags, uint8_t& dinputs) const
 	{
 		const canid_t id = (canid_t)((m_ModuleId << 4) + 1);
 		bool bValid=false;
@@ -274,14 +302,14 @@ namespace cpr_robot
 		{
 			timeStamp=(uint8_t)frame.data[5];
 			errorFlags=(uint8_t)frame.data[0];
-			dataBits=(uint8_t)frame.data[7];
+			dinputs=(uint8_t)frame.data[7];
 			return ((int32_t)((((uint32_t)frame.data[1]) << 24) | (((uint32_t)frame.data[2]) << 16) | (((uint32_t)frame.data[3]) << 8) | ((uint32_t)frame.data[4])))-m_MotorPositionOffset;
 		}
 		else
 		{
 			receptionTime=std::chrono::high_resolution_clock::now();
 			errorFlags=0x00;
-			dataBits=0x00;
+			dinputs=0x00;
 			return 0;
 		}
 	}

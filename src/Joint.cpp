@@ -7,21 +7,21 @@ namespace cpr_robot
     //! \brief Constructs an instance of the Joint class.
     //! \param canBus An instance of the Bus class which will be used for communication with the firmware in the module that is controlling the motor of the joint.
     //! \param moduleId The Id of the module that is controlling the motor of this joint.
-    Joint::Joint(Bus& canBus, const uint32_t moduleId)
+    Joint::Joint(Bus& canBus, const uint32_t moduleId) :
+        m_CurrentEffort(0.0),
+        m_CurrentPosition(0.0),
+        m_CurrentVelocity(0.0),
+        m_MaxVelocity(M_PI*45.0/180.0),
+        m_DesiredVelocity(0.0),
+        m_GearRatio(1.0),
+        m_bReferenced(false),
+        m_TicksPerMotorRotation(2000),
+        m_ErrorFlags(0x00)
     {
         m_pModule=new MotorModule(canBus,(unsigned int)moduleId);
         std::stringstream sstrm;
         sstrm << "joint" << (moduleId+1);
         m_JointName=sstrm.str();
-        m_CurrentEffort=0.0;
-        m_CurrentPosition=0.0;
-        m_CurrentVelocity=0.0;
-        m_MaxVelocity=M_PI*45.0/180.0;
-        m_DesiredVelocity=0.0;
-        m_GearRatio=1.0;
-        m_bReferenced=false;
-        m_TicksPerMotorRotation=2000;
-        m_ErrorFlags=0x00;
     }
 
     //! \brief Allows to determine if the joint has been referenced.
@@ -343,4 +343,34 @@ namespace cpr_robot
         m_pModule->SetZero();
     }
 
+    //! \brief Retrieves the state of a digital input channel.
+    //! \param channel The index of the cannel. A maximum of 8 channels is supported.
+    //! \return The current state of the channel.
+    bool Joint::get_DigitalInput(const uint8_t channel) const
+    {
+        return (m_pModule->get_DigitalInputs()&(1<<channel))!=0;
+    }
+
+    //! \brief Sets the state of a digital output channel.
+    //! \param channel The index of the cannel. A maximum of 8 channels is supported.
+    //! \param state The desired state of the channel.
+    void Joint::set_DigitalOutput(const uint8_t channel, const bool state)
+    {
+        const uint8_t mask=1<<channel;
+        uint8_t bits=m_pModule->get_DigitalOutputs();
+        if(state)
+            bits|=mask;
+        else
+            bits&=~mask;
+        m_pModule->set_DigitalOutputs(bits);
+    }
+    
+    //! \brief Retrieves the state of a digital output channel.
+    //! \param channel The index of the cannel. A maximum of 8 channels is supported.
+    //! \return The current state of the channel.
+    bool Joint::get_DigitalOutput(const uint8_t channel) const
+    {
+        return (m_pModule->get_DigitalOutputs()&(1<<channel))!=0;
+    }
+ 
 }

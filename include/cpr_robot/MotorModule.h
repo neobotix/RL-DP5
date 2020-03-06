@@ -48,23 +48,26 @@ namespace cpr_robot
 		int32_t m_MotorMaxPosition; 
 		//! Contains the offset of the motor position (the "zero position"). Measured in ticks.
 		int32_t m_MotorPositionOffset; 
-		//! Contains the state of the digital inputs/outputs of the module.
-		uint8_t m_DIO; 
+		//! Contains the state of the digital outputs of the module.
+		uint8_t m_DOutputs; 
 		//! Pointer to the write thread. Will be nullptr if the module is stopped.
 		std::thread* m_pWriteThread; 
 		//! The timestamp value that will be sent to the module with the next setposition command.
 		uint8_t m_CurrentTimeStamp; 
 		static void WriteThread(MotorModule* pModule);
 		void WriteLoop();
-		void Command_SetJoint(const int32_t ticks, const uint8_t dio);
+		void Command_SetJoint(const int32_t ticks, const uint8_t doutput);
 		void Command_ResetError();
 		void Command_DisableMotor();
 		void Command_EnableMotor();
 		void Command_StartReferencing();
 		void Command_SetZeroPosition();
 	public:
+		uint8_t get_DigitalInputs() const;
+		uint8_t get_DigitalOutputs() const;
+		void set_DigitalOutputs(const uint8_t doutputs);
 		double get_UpdateInterval() const;
-		int32_t get_CurrentPosition(uint8_t& timeStamp, std::chrono::high_resolution_clock::time_point& receptionTime,uint8_t& errorFlags, uint8_t& dataBits) const;
+		int32_t get_CurrentPosition(uint8_t& timeStamp, std::chrono::high_resolution_clock::time_point& receptionTime,uint8_t& errorFlags, uint8_t& dinputs) const;
 		int32_t get_DesiredPosition() const;
 		void set_DesiredPosition(const int32_t ticks);
 		void set_Increment(const int32_t ticks);

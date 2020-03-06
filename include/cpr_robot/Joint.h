@@ -6,6 +6,7 @@ namespace cpr_robot
 	//! \brief Represents a single joint of a robot. 
 	//!
 	//! This class contains information about the current state of the joint (position, speed) as well as the parameters for the joint (gear ratio, ticks per motor rotation). Conversion between encoder ticks and the actual position of the joint (measured in degrees) is done by this class.
+    //! It is also used to get/set digital I/O states of the controller board associated with the joint and can be used for this alone also, i.e. with a pure DIO-module.
     class Joint
     {
     public:
@@ -61,6 +62,9 @@ namespace cpr_robot
         void set_TicksPerMotorRotation(const int32_t ticks);
         double get_GearRatio() const;
         void set_GearRatio(const double ratio);
+        bool get_DigitalInput(const uint8_t channel) const;
+        void set_DigitalOutput(const uint8_t channel, const bool state);
+        bool get_DigitalOutput(const uint8_t channel) const;
         double get_CurrentPosition() const;
         double get_CurrentVelocity() const;
         double get_CurrentEffort() const;
