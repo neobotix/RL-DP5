@@ -58,6 +58,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
   FILES
   RobotState.msg
+  ChannelStates.msg
 )
 
 ## Generate services in the 'srv' folder

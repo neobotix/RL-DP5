@@ -4,10 +4,10 @@
 namespace cpr_robot
 {
     CPRMover6::CPRMover6() :
-        Robot(6)
+        Robot(6,0)
     {
         set_ModelName("CPRMover6");
-        set_GearRatio(0,-528.2);
+        set_GearRatio(0,528.2);
         set_GearRatio(1,-528.2);
         set_GearRatio(2,528.2);
         set_GearRatio(3,-499.1);

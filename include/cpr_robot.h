@@ -37,6 +37,7 @@
 #include "cpr_robot/GetRobotInfo.h"
 #include "cpr_robot/GetJointInfo.h"
 #include "cpr_robot/RobotState.h"
+#include "cpr_robot/ChannelStates.h"
 #include "cpr_robot/RobotCommand.h"
 
 #include "cpr_robot/Bus.h"

@@ -12,6 +12,8 @@ namespace cpr_robot
     {
         res.Model=get_ModelName();
         res.CountJoints=(uint32_t)m_CountJoints;
+        res.CountInputChannels=(uint32_t)m_InputChannels.size();
+        res.CountOutputChannels=(uint32_t)m_OutputChannels.size();
         return true;
     }
 
@@ -50,16 +52,22 @@ namespace cpr_robot
 
     // \brief Constructs an instance of the Robot class.
     // \param countJoints The number of joints of the robot.
-    Robot::Robot(size_t countJoints) :
+    Robot::Robot(const size_t countJoints, const size_t countDigitalIOs) :
         m_CountJoints(countJoints),
+        m_CountDigitalIOs(countDigitalIOs),
         m_Bus("can0")
     {
         m_ModelName="Unknown Model";
-        m_pJoints=new Joint*[countJoints];
+        m_pJoints=new Joint*[m_CountJoints];
         for(size_t i=0;i<m_CountJoints;i++)
             m_pJoints[i]=new Joint(m_Bus,(unsigned int)(i+1));
+        m_pDigitalIOs=new Joint*[m_CountDigitalIOs];
+        for(size_t i=0;i<m_CountDigitalIOs;i++)
+            m_pDigitalIOs[i]=new Joint(m_Bus,(unsigned int)(i+7));
         m_JointStatePublisher=m_Node.advertise<sensor_msgs::JointState>("/joint_states", 50);
         m_RobotStatePublisher=m_Node.advertise<cpr_robot::RobotState>("/robot_state",50);
+        m_InputChannelsPublisher=m_Node.advertise<cpr_robot::ChannelStates>("/InputChannels",50);
+        m_OutputChannelsPublisher=m_Node.advertise<cpr_robot::ChannelStates>("/OutputChannels",50);
         m_GetRobotInfoServer=m_Node.advertiseService("/GetRobotInfo",&Robot::GetRobotInfoHandler, this);
         m_GetJointInfoServer=m_Node.advertiseService("/GetJointInfo",&Robot::GetJointInfoHandler, this);
         m_RobotCommandServer=m_Node.advertiseService("/RobotCommand",&Robot::RobotCommandHandler, this);
@@ -119,6 +127,9 @@ namespace cpr_robot
     //! \brief Destructor of the Robot class.
     Robot::~Robot()
     {
+        for(size_t i=0;i<m_CountDigitalIOs;i++)
+            delete m_pDigitalIOs[i];
+        delete[] m_pDigitalIOs;
         for(size_t i=0;i<m_CountJoints;i++)
             delete m_pJoints[i];
         delete[] m_pJoints;
@@ -147,6 +158,16 @@ namespace cpr_robot
         for(size_t i=0;i<m_CountJoints;i++)
             m_pJoints[i]->PublishState(joint_states);
         m_JointStatePublisher.publish(joint_states);
+        cpr_robot::ChannelStates inputChannels;
+        inputChannels.Header.stamp = ros::Time::now();
+        for(size_t i=0;i<m_InputChannels.size();i++)
+            inputChannels.state.push_back(get_Input(i));
+        m_InputChannelsPublisher.publish(inputChannels);
+        cpr_robot::ChannelStates outputChannels;
+        outputChannels.Header.stamp = ros::Time::now();
+        for(size_t i=0;i<m_OutputChannels.size();i++)
+            outputChannels.state.push_back(get_Output(i));
+        m_OutputChannelsPublisher.publish(outputChannels);
         cpr_robot::RobotState robot_state;
         robot_state.Header.stamp=ros::Time::now();
         robot_state.Override=m_Override;
@@ -244,6 +265,8 @@ namespace cpr_robot
     {
         for(size_t i=0;i<m_CountJoints;i++)
             m_pJoints[i]->Init();
+        for(size_t i=0;i<m_CountDigitalIOs;i++)
+            m_pDigitalIOs[i]->Init();
     }
 
     //! \brief Sets the name of a specific joint that will be used for communication over ROS topics and services.
@@ -316,6 +339,59 @@ namespace cpr_robot
     {
         assert(jointId<m_CountJoints);
         return m_pJoints[jointId]->get_MaxVeclocity();
+    }
+
+    uint32_t Robot::define_Input(const bool onSeperateModule, const uint8_t moduleIndex, const uint8_t channelIndex)
+    {
+        assert(onSeperateModule?moduleIndex<m_CountDigitalIOs:moduleIndex<m_CountJoints);
+        assert(channelIndex<8);
+        uint32_t id=(uint32_t)m_InputChannels.size();
+        IOchannel channel;
+        channel.OnSeparateModule=onSeperateModule;
+        channel.ModuleIndex=moduleIndex;
+        channel.ChannelIndex=channelIndex;
+        m_InputChannels.push_back(channel);
+        return id;
+    }
+
+    uint32_t Robot::define_Output(const bool onSeperateModule, const uint8_t moduleIndex, const uint8_t channelIndex)
+    {
+        assert(onSeperateModule?moduleIndex<m_CountDigitalIOs:moduleIndex<m_CountJoints);
+        assert(channelIndex<8);
+        uint32_t id=(uint32_t)m_OutputChannels.size();
+        IOchannel channel;
+        channel.OnSeparateModule=onSeperateModule;
+        channel.ModuleIndex=moduleIndex;
+        channel.ChannelIndex=channelIndex;
+        m_OutputChannels.push_back(channel);
+        return id;
+    }
+        
+    void Robot::set_Output(const uint32_t index, const bool state)
+    {
+        assert(index<m_OutputChannels.size());
+        if(m_OutputChannels[index].OnSeparateModule)
+            m_pDigitalIOs[m_OutputChannels[index].ModuleIndex]->set_DigitalOutput(m_OutputChannels[index].ChannelIndex,state);
+        else
+            m_pJoints[m_OutputChannels[index].ModuleIndex]->set_DigitalOutput(m_OutputChannels[index].ChannelIndex,state);
+    }
+    
+    bool Robot::get_Input(const uint32_t index) const
+    {
+        assert(index<m_InputChannels.size());
+        if(m_InputChannels[index].OnSeparateModule)
+            return m_pDigitalIOs[m_InputChannels[index].ModuleIndex]->get_DigitalInput(m_InputChannels[index].ChannelIndex);
+        else
+            return m_pJoints[m_InputChannels[index].ModuleIndex]->get_DigitalInput(m_InputChannels[index].ChannelIndex);
+    }
+    
+    bool Robot::get_Output(const uint32_t index) const
+    {
+        assert(index<m_OutputChannels.size());
+        if(m_OutputChannels[index].OnSeparateModule)
+            return m_pDigitalIOs[m_OutputChannels[index].ModuleIndex]->get_DigitalInput(m_OutputChannels[index].ChannelIndex);
+        else
+            return m_pJoints[m_OutputChannels[index].ModuleIndex]->get_DigitalInput(m_OutputChannels[index].ChannelIndex);
     }
 
 

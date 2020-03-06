@@ -5,7 +5,7 @@ namespace cpr_robot
 {
     //! All model specific parameters, like gear ratios, position ranges, etc. are set during construction.
     igus_5DOF_SV::igus_5DOF_SV() :
-        Robot(5)
+        Robot(5,0)
     {
         set_ModelName("igus_5DOF_SV");
         set_GearRatio(0,50.0);

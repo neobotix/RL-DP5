@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 namespace cpr_robot
 {
 	//! \class Robot Robot.h <cpr_robot.h>
@@ -8,6 +10,18 @@ namespace cpr_robot
 	//! This class hold all information associated with a robot: joints, connection status and information about the specific model. It serves as base class for model specific implementations and handles publishing information on ROS topics and services as well as listening to ROS topics for commands.
     class Robot
     {
+    private:
+        //! \brief This struct holds information about a digital input or output channel: whether it is on a sperate IO-board or associated to a joint and the index of the module/joint.
+        struct IOchannel
+        {
+        public:
+            //! If set to true the I/O channel is associated with an element of m_pDigitalIOs, elsewise with an element of m_pJoints.
+            bool OnSeparateModule;
+            //! Index of the associated element in m_pDigitalIOs or m_pJoints.
+            uint8_t ModuleIndex;
+            //! The physical channel index on the corresponding module. A maximum of 8 channels per module is supported.
+            uint8_t ChannelIndex;
+        };
     public:
         //! Statusflag indicating that at least one of the modules that is controlling the robot is not connected.
         static constexpr uint32_t STATUSFLAG_DISCONNECTED=0x00000100;
@@ -28,12 +42,18 @@ namespace cpr_robot
     private:
         //! The number of joints of the robot.
         const size_t m_CountJoints;
+        //! The number of digital I/O boards of the robot.
+        const size_t m_CountDigitalIOs;
         //! A handle to the current ROS node.
         ros::NodeHandle m_Node;
         //! Publisher that will publish the state of all joints on the /joint_states ROS topic.
         ros::Publisher m_JointStatePublisher;
         //! Publisher that will publish the state of the robot (error flags, etc.) on the /RobotState ROS topic.
         ros::Publisher m_RobotStatePublisher;
+        //! Publisher that will publish the states of the digital inputs on the /InputChannels ROS topic.
+        ros::Publisher m_InputChannelsPublisher;
+       //! Publisher that will publish the states of the digital outputs on the /OutputChannels ROS topic.
+        ros::Publisher m_OutputChannelsPublisher;
         //! Provides information about the robot (number of joints, model deisgnation) over the /GetRobotInfo ROS service.
         ros::ServiceServer m_GetRobotInfoServer;
         //! Provides information about a a specific joint (name, type) over the /GetJointInfo ROS service.
@@ -44,14 +64,22 @@ namespace cpr_robot
         Bus m_Bus;
         //! Pointer to an array of instances of the Joint class. One entry per joint.
         Joint** m_pJoints;
+        //! Pointer to an array of instances of the Joint class. One entry per digital I/O module.
+        Joint** m_pDigitalIOs;
         //! The model designation of the robot.
         std::string m_ModelName;
         //! The current override value used to control the speed of the joints.
         double m_Override;
+        //! Vector containing all defined output channels.
+        std::vector<IOchannel> m_OutputChannels;
+        //! Vector containing all defined input channels.
+        std::vector<IOchannel> m_InputChannels;
         bool GetRobotInfoHandler(cpr_robot::GetRobotInfo::Request  &req, cpr_robot::GetRobotInfo::Response &res);
         bool GetJointInfoHandler(cpr_robot::GetJointInfo::Request  &req, cpr_robot::GetJointInfo::Response &res);
         bool RobotCommandHandler(cpr_robot::RobotCommand::Request  &req, cpr_robot::RobotCommand::Response &res);
     protected:
+        uint32_t define_Input(const bool onSeperateModule, const uint8_t moduleIndex, const uint8_t channelIndex);
+        uint32_t define_Output(const bool onSeperateModule, const uint8_t moduleIndex, const uint8_t channelIndex);
         void set_Override(const double override);
         double get_Override() const;
         void set_ModelName(const std::string& name);
@@ -70,8 +98,11 @@ namespace cpr_robot
         void set_MinPosition(const size_t jointId, const double position);
         void set_MotorOffset(const size_t jointId, const int32_t ticks);
         int32_t get_MotorOffset(const size_t jointId);
-        Robot(size_t countJoints);
+        Robot(const size_t countJoints, const size_t countDigitalIOs);
         virtual void OnInit();
+        void set_Output(const uint32_t index, const bool state);
+        bool get_Output(const uint32_t index) const;
+        bool get_Input(const uint32_t index) const;
     public:
         void Init();
         void Read();

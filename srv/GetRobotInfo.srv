@@ -2,3 +2,5 @@ string Sender
 ---
 string Model
 uint32 CountJoints
+uint32 CountInputChannels
+uint32 CountOutputChannels
