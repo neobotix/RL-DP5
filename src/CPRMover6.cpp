@@ -49,6 +49,15 @@ namespace cpr_robot
         set_MotorOffset(3,0);
         set_MotorOffset(4,500);
         set_MotorOffset(5,509);
+        define_Output(false,0,0,"Digital out 1");
+        define_Output(false,0,1,"Digital out 2");
+        define_Output(false,0,2,"Digital out 3");
+        define_Output(false,0,3,"Digital out 4");
+        define_Output(false,3,0,"Gripper open");
+        define_Output(false,3,1,"Gripper enabled");
+        define_Input(false,0,0,"Digital in 1");
+        define_Input(false,0,1,"Digital in 2");
+        define_Input(false,0,2,"Digital in 3");
     }
             
     CPRMover6::~CPRMover6()

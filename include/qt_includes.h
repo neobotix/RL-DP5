@@ -7,3 +7,4 @@
 #include <qpushbutton.h>
 #include <QSlider>
 #include <QGridLayout>
+#include <QCheckBox>

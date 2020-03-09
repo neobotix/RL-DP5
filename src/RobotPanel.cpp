@@ -1,8 +1,10 @@
 #include "cpr_robot.h"
 #include "qt_includes.h"
+#include "TaggedButton.h"
 #include "JointControl.h"
 #include <rviz/panel.h>
 #include "RobotPanel.h"
+#include <sstream>
 
 namespace cpr_rviz
 {
@@ -12,6 +14,8 @@ namespace cpr_rviz
         rviz::Panel( parent ),
         m_ConnectButton(this),
         m_EnableButton(this),
+        m_InputGroupBox(this),
+        m_OutputGroupBox(this),
         m_ReferenceButton(this),
         m_ZeroButton(this),
         m_OverrideSlider(Qt::Horizontal,this),
@@ -28,6 +32,15 @@ namespace cpr_rviz
     {
         m_ControlButtonsLayout.setParent(nullptr);
         m_JointsLayout.setParent(nullptr);
+        for(size_t i=0;i<m_Inputs.size();i++)
+        {
+            delete m_pInputs[i];
+        }
+        for(size_t i=0;i<m_Outputs.size();i++)
+        {
+            delete m_pOutputs[i];
+        }
+        delete[] m_pOutputs;
         for(uint32_t i=0;i<m_CountJoints;i++)
         {
             delete m_pJointControls[i];
@@ -55,6 +68,28 @@ namespace cpr_rviz
         m_OverrideSlider.setTickInterval(10);
         m_OverrideSlider.setTickPosition(QSlider::TicksBelow);
         m_MainLayout.addRow(&m_OverrideSlider);
+        m_pInputs=new QCheckBox*[m_Inputs.size()];
+        for(size_t i=0;i<m_Inputs.size();i++)
+        {
+            m_pInputs[i]=new QCheckBox(&m_InputGroupBox);
+            m_pInputs[i]->setText(m_Inputs[i].c_str());
+            m_InputLayout.addWidget(m_pInputs[i],i/4,i%4);
+        }
+        m_InputGroupBox.setLayout(&m_InputLayout);
+        m_InputGroupBox.setTitle("Digital inputs:");
+        m_MainLayout.addRow(&m_InputGroupBox);
+        m_pOutputs=new TaggedButton*[m_Outputs.size()];
+        for(size_t i=0;i<m_Outputs.size();i++)
+        {
+            m_pOutputs[i]=new TaggedButton((int)i,&m_OutputGroupBox);
+            m_pOutputs[i]->setText(m_Outputs[i].c_str());
+            m_OutputLayout.addWidget(m_pOutputs[i],i/4,i%4);
+            m_pOutputs[i]->setCheckable(true);
+            connect(m_pOutputs[i],&TaggedButton::buttonClicked,this,&RobotPanel::OnOutputButtonClicked);
+        }
+        m_OutputGroupBox.setLayout(&m_OutputLayout);
+        m_OutputGroupBox.setTitle("Digital outputs:");
+        m_MainLayout.addRow(&m_OutputGroupBox);
         m_pJointControls=new JointControl*[m_CountJoints];
         for(uint32_t i=0;i<m_CountJoints;i++)
         {
@@ -70,6 +105,17 @@ namespace cpr_rviz
         connect(&m_ZeroButton, &QAbstractButton::clicked, this, &RobotPanel::OnZeroButtonClicked);
         connect(&m_OverrideSlider,&QAbstractSlider::valueChanged,this,&RobotPanel::OnOverrideSliderValueChanged);
     }
+
+    //! \brief Callback slot handling clicks to the digital outputs buttons.
+    //! \param tag Channel number associated with the clicked button.
+    void RobotPanel::OnOutputButtonClicked(int tag, bool bChecked)
+    {
+        if(!m_pOutputs[tag]->isChecked())
+            RobotCommand(cpr_robot::Robot::COMMAND_DOUT_DISABLE, 0.0,tag);
+        else
+            RobotCommand(cpr_robot::Robot::COMMAND_DOUT_ENABLE, 0.0,tag);
+    }
+  
 
     //! \brief Callback slot handling changes to the override slider value.
     void RobotPanel::OnOverrideSliderValueChanged(int value)
@@ -112,6 +158,12 @@ namespace cpr_rviz
     {
         cpr_robot::GetRobotInfoResponse rbtInfo=GetRobotInfo();
         m_CountJoints=rbtInfo.CountJoints;
+        m_Inputs.clear();
+        for(size_t i=0;i<rbtInfo.InputChannels.size();i++)
+            m_Inputs.push_back(rbtInfo.InputChannels[i]);
+        m_Outputs.clear();
+        for(size_t i=0;i<rbtInfo.OutputChannels.size();i++)
+            m_Outputs.push_back(rbtInfo.OutputChannels[i]);
         m_ModelName=rbtInfo.Model;
         m_StatusFlags=cpr_robot::Robot::STATUSFLAG_DISCONNECTED;
     }
@@ -122,6 +174,8 @@ namespace cpr_rviz
         m_GetRobotInfoClient=m_Node.serviceClient<cpr_robot::GetRobotInfo>("/GetRobotInfo");
         m_RobotStateSubscriber=m_Node.subscribe("/robot_state",10,&RobotPanel::RobotStateCallback, this);
         m_RobotCommandClient= m_Node.serviceClient<cpr_robot::RobotCommand>("/RobotCommand");
+        m_InputChannelsSubscriber=m_Node.subscribe("/InputChannels",10,&RobotPanel::InputChannelsCallback, this);
+        m_OutputChannelsSubscriber=m_Node.subscribe("/OutputChannels",10,&RobotPanel::OutputChannelsCallback, this);
     }
 
     //! \brief Callback that handles messages received over the /RobotState ROS topic.
@@ -153,6 +207,26 @@ namespace cpr_rviz
                 m_pJointControls[i]->set_IsReferenced(true);
             else
                 m_pJointControls[i]->set_IsReferenced(false);
+        }
+    }
+
+    //! \brief Callback that handles messages received over the /InputChannels ROS topic.
+    //! \param msg The received message.
+    void RobotPanel::InputChannelsCallback(const cpr_robot::ChannelStates::ConstPtr& msg)
+    {
+        for(size_t i=0;i<msg->state.size();i++)
+        {
+            m_pInputs[i]->setCheckState(msg->state[i]?Qt::Checked:Qt::Unchecked);
+        }
+    }
+
+    //! \brief Callback that handles messages received over the /InputChannels ROS topic.
+    //! \param msg The received message.
+    void RobotPanel::OutputChannelsCallback(const cpr_robot::ChannelStates::ConstPtr& msg)
+    {
+        for(size_t i=0;i<msg->state.size();i++)
+        {
+            m_pOutputs[i]->setChecked(msg->state[i]);
         }
     }
 

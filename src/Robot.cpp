@@ -12,9 +12,11 @@ namespace cpr_robot
     {
         res.Model=get_ModelName();
         res.CountJoints=(uint32_t)m_CountJoints;
-        res.CountInputChannels=(uint32_t)m_InputChannels.size();
-        res.CountOutputChannels=(uint32_t)m_OutputChannels.size();
-        return true;
+        for(size_t i=0;i<m_InputChannels.size();i++)
+            res.InputChannels.push_back(m_InputChannels[i].Name);
+        for(size_t i=0;i<m_OutputChannels.size();i++)
+            res.OutputChannels.push_back(m_OutputChannels[i].Name);
+         return true;
     }
 
     //! \brief Callback function handling requests to the /GetJointInfo ROS service.
@@ -116,11 +118,30 @@ namespace cpr_robot
                 for(size_t i=0;i<m_CountJoints;i++)
                     m_pJoints[i]->StartReferencing();
                 return true;
-            case COMMAND_SETZERO:
-                ROS_INFO("COMMAND_SETZERO from %s.",req.Sender.c_str());
-                for(size_t i=0;i<m_CountJoints;i++)
-                    m_pJoints[i]->SetZero();
-                return true;
+            case COMMAND_DOUT_ENABLE:
+                ROS_INFO("COMMAND_DOUT_ENABLE from %s.",req.Sender.c_str());
+                if((req.PayloadInt>=0)&&(req.PayloadInt<m_OutputChannels.size()))
+                {
+                    set_Output((uint32_t)req.PayloadInt,true);
+                    return true;
+                }
+                else
+                {
+                    ROS_ERROR("Received invalid digital output: %li",req.PayloadInt);
+                    return false;
+                }
+            case COMMAND_DOUT_DISABLE:
+                ROS_INFO("COMMAND_DOUT_DISABLE from %s.",req.Sender.c_str());
+                if((req.PayloadInt>=0)&&(req.PayloadInt<m_OutputChannels.size()))
+                {
+                    set_Output((uint32_t)req.PayloadInt,false);
+                    return true;
+                }
+                else
+                {
+                    ROS_ERROR("Received invalid digital output: %li",req.PayloadInt);
+                    return false;
+                }
         }
     }
 
@@ -341,7 +362,7 @@ namespace cpr_robot
         return m_pJoints[jointId]->get_MaxVeclocity();
     }
 
-    uint32_t Robot::define_Input(const bool onSeperateModule, const uint8_t moduleIndex, const uint8_t channelIndex)
+    uint32_t Robot::define_Input(const bool onSeperateModule, const uint8_t moduleIndex, const uint8_t channelIndex, const std::string& name)
     {
         assert(onSeperateModule?moduleIndex<m_CountDigitalIOs:moduleIndex<m_CountJoints);
         assert(channelIndex<8);
@@ -350,11 +371,12 @@ namespace cpr_robot
         channel.OnSeparateModule=onSeperateModule;
         channel.ModuleIndex=moduleIndex;
         channel.ChannelIndex=channelIndex;
+        channel.Name=name;
         m_InputChannels.push_back(channel);
         return id;
     }
 
-    uint32_t Robot::define_Output(const bool onSeperateModule, const uint8_t moduleIndex, const uint8_t channelIndex)
+    uint32_t Robot::define_Output(const bool onSeperateModule, const uint8_t moduleIndex, const uint8_t channelIndex, const std::string& name)
     {
         assert(onSeperateModule?moduleIndex<m_CountDigitalIOs:moduleIndex<m_CountJoints);
         assert(channelIndex<8);
@@ -363,6 +385,7 @@ namespace cpr_robot
         channel.OnSeparateModule=onSeperateModule;
         channel.ModuleIndex=moduleIndex;
         channel.ChannelIndex=channelIndex;
+        channel.Name=name;
         m_OutputChannels.push_back(channel);
         return id;
     }
@@ -389,9 +412,9 @@ namespace cpr_robot
     {
         assert(index<m_OutputChannels.size());
         if(m_OutputChannels[index].OnSeparateModule)
-            return m_pDigitalIOs[m_OutputChannels[index].ModuleIndex]->get_DigitalInput(m_OutputChannels[index].ChannelIndex);
+            return m_pDigitalIOs[m_OutputChannels[index].ModuleIndex]->get_DigitalOutput(m_OutputChannels[index].ChannelIndex);
         else
-            return m_pJoints[m_OutputChannels[index].ModuleIndex]->get_DigitalInput(m_OutputChannels[index].ChannelIndex);
+            return m_pJoints[m_OutputChannels[index].ModuleIndex]->get_DigitalOutput(m_OutputChannels[index].ChannelIndex);
     }
 
 

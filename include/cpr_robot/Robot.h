@@ -21,6 +21,7 @@ namespace cpr_robot
             uint8_t ModuleIndex;
             //! The physical channel index on the corresponding module. A maximum of 8 channels per module is supported.
             uint8_t ChannelIndex;
+            std::string Name;
         };
     public:
         //! Statusflag indicating that at least one of the modules that is controlling the robot is not connected.
@@ -39,6 +40,10 @@ namespace cpr_robot
         static constexpr uint32_t COMMAND_STARTREFERENCING=6;
         //! Command requesting that the encoder positions of all joints should be reset.
         static constexpr uint32_t COMMAND_SETZERO=7;
+        //! Command requesting that a digital output should be enabled.
+        static constexpr uint32_t COMMAND_DOUT_ENABLE=8;
+        //! Command requesting that a digital output should be disabled.
+        static constexpr uint32_t COMMAND_DOUT_DISABLE=9;
     private:
         //! The number of joints of the robot.
         const size_t m_CountJoints;
@@ -52,7 +57,7 @@ namespace cpr_robot
         ros::Publisher m_RobotStatePublisher;
         //! Publisher that will publish the states of the digital inputs on the /InputChannels ROS topic.
         ros::Publisher m_InputChannelsPublisher;
-       //! Publisher that will publish the states of the digital outputs on the /OutputChannels ROS topic.
+        //! Publisher that will publish the states of the digital outputs on the /OutputChannels ROS topic.
         ros::Publisher m_OutputChannelsPublisher;
         //! Provides information about the robot (number of joints, model deisgnation) over the /GetRobotInfo ROS service.
         ros::ServiceServer m_GetRobotInfoServer;
@@ -78,8 +83,8 @@ namespace cpr_robot
         bool GetJointInfoHandler(cpr_robot::GetJointInfo::Request  &req, cpr_robot::GetJointInfo::Response &res);
         bool RobotCommandHandler(cpr_robot::RobotCommand::Request  &req, cpr_robot::RobotCommand::Response &res);
     protected:
-        uint32_t define_Input(const bool onSeperateModule, const uint8_t moduleIndex, const uint8_t channelIndex);
-        uint32_t define_Output(const bool onSeperateModule, const uint8_t moduleIndex, const uint8_t channelIndex);
+        uint32_t define_Input(const bool onSeperateModule, const uint8_t moduleIndex, const uint8_t channelIndex, const std::string& name);
+        uint32_t define_Output(const bool onSeperateModule, const uint8_t moduleIndex, const uint8_t channelIndex, const std::string& name);
         void set_Override(const double override);
         double get_Override() const;
         void set_ModelName(const std::string& name);

@@ -171,6 +171,7 @@ add_dependencies(CPRMover6 cpr_robot_generate_messages_cpp)
 add_library(RobotPanel 
   src/RobotPanel.cpp 
   src/JointControl.cpp
+  src/TaggedButton.cpp 
 )
 target_link_libraries(RobotPanel ${catkin_LIBRARIES} Qt5::Core Qt5::Widgets)
 add_dependencies(RobotPanel cpr_robot_generate_messages_cpp)

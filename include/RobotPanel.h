@@ -20,6 +20,10 @@ namespace cpr_rviz
         std::string m_ModelName;
         //! The number of joints reported by the robot.
         uint32_t m_CountJoints;
+        //! The digital inputs reported by the robot.
+        std::vector<std::string> m_Inputs;
+        //! The digital outputs reported by the robot.
+        std::vector<std::string> m_Outputs;
         //! Layout aranging the control buttons horizontally.
         QHBoxLayout m_ControlButtonsLayout;
         //! Button allowing to connect/disconnect the robot remotely.
@@ -36,11 +40,19 @@ namespace cpr_rviz
         QSlider m_OverrideSlider;
         //! Layout arranging the controls of the individual joints.
         QGridLayout m_JointsLayout;
+        //! A group box widget that will contain the input channels.
+        QGroupBox m_InputGroupBox;
+        //! Layout arranging the controls of the digital inputs.
+        QGridLayout m_InputLayout;
+         //! A group box widget that will contain the output channels.
+        QGroupBox m_OutputGroupBox;
+        //! Layout arranging the controls of the digital outputs.
+        QGridLayout m_OutputLayout;
         //! The top-level layout of this widget.
         QFormLayout m_MainLayout;
         //! Label used to show the model deisgnation of the robot.
         QLabel m_ModelNameLabel;
-        //! The status flags reported by the robot.
+         //! The status flags reported by the robot.
         uint32_t m_StatusFlags;
         //! The override value reported by the robot.
         double m_Override;
@@ -48,12 +60,22 @@ namespace cpr_rviz
         bool m_OverrideSliderValid;
         //! Array containing the control widgets for the individual joints.
         JointControl** m_pJointControls;
-
+        //! Array containing the checboxes for the digital inputs.
+        QCheckBox** m_pInputs;
+        //! Array containing the buttons for the digital outputs.
+        TaggedButton** m_pOutputs;
+        //! Subscriber that will listen for joint states on the /InputChannels ROS topic.
+        ros::Subscriber m_InputChannelsSubscriber;
+        //! Subscriber that will listen for joint states on the /OutputChannels ROS topic.
+        ros::Subscriber m_OutputChannelsSubscriber;
+    
         void InitializeUI();
         void InitializeROS();
         void InitializeState();
 
         void RobotStateCallback(const cpr_robot::RobotState::ConstPtr& msg);
+        void InputChannelsCallback(const cpr_robot::ChannelStates::ConstPtr& msg);
+        void OutputChannelsCallback(const cpr_robot::ChannelStates::ConstPtr& msg);
 
         void OnStatusFlagsChanged();
         void OnOverrideChanged();
@@ -63,6 +85,7 @@ namespace cpr_rviz
     protected slots:
         void OnOverrideSliderValueChanged(int value);
         void OnConnectButtonClicked(bool bChecked = true);
+        void OnOutputButtonClicked(int tag, bool bChecked = true);
         void OnEnableButtonClicked(bool bChecked = true);
         void OnReferenceButtonClicked(bool bChecked = true);
         void OnZeroButtonClicked(bool bChecked = true);
