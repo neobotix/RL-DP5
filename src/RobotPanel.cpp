@@ -250,6 +250,10 @@ namespace cpr_rviz
             m_EnableButton.setText(tr("Enable"));
             for(uint32_t i=0;i<m_CountJoints;i++)
                 m_pJointControls[i]->Disable();
+            for(size_t i=0;i<m_Inputs.size();i++)
+                m_pInputs[i]->setEnabled(false);
+            for(size_t i=0;i<m_Outputs.size();i++)
+                m_pOutputs[i]->setEnabled(false);
         }
         else
         {
@@ -262,6 +266,10 @@ namespace cpr_rviz
                     m_pJointControls[i]->Disable();
                 m_EnableButton.setText(tr("Enable"));
                 m_ReferenceButton.setEnabled(false);
+                for(size_t i=0;i<m_Inputs.size();i++)
+                    m_pInputs[i]->setEnabled(false);
+                for(size_t i=0;i<m_Outputs.size();i++)
+                    m_pOutputs[i]->setEnabled(false);
             }
             else
             {
@@ -269,6 +277,10 @@ namespace cpr_rviz
                     m_pJointControls[i]->Enable();
                 m_EnableButton.setText(tr("Disable"));
                 m_ReferenceButton.setEnabled(true);
+                for(size_t i=0;i<m_Inputs.size();i++)
+                    m_pInputs[i]->setEnabled(true);
+                for(size_t i=0;i<m_Outputs.size();i++)
+                    m_pOutputs[i]->setEnabled(true);
             }
         }
         m_OverrideSliderValid=false;
