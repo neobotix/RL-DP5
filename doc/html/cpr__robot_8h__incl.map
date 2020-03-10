@@ -1,9 +1,9 @@
 <map id="cpr_robot.h" name="cpr_robot.h">
-<area shape="rect" id="node27" href="$Bus_8h.html" title="cpr_robot/Bus.h" alt="" coords="3089,80,3203,107"/>
-<area shape="rect" id="node28" href="$MotorModule_8h.html" title="cpr_robot/MotorModule.h" alt="" coords="3228,80,3395,107"/>
-<area shape="rect" id="node29" href="$Joint_8h.html" title="cpr_robot/Joint.h" alt="" coords="3419,80,3537,107"/>
-<area shape="rect" id="node30" href="$Robot_8h.html" title="cpr_robot/Robot.h" alt="" coords="3561,80,3688,107"/>
-<area shape="rect" id="node31" href="$igus__4DOF__SV_8h.html" title="cpr_robot/igus_4DOF_SV.h" alt="" coords="3712,80,3895,107"/>
-<area shape="rect" id="node32" href="$igus__5DOF__SV_8h.html" title="cpr_robot/igus_5DOF_SV.h" alt="" coords="3919,80,4101,107"/>
-<area shape="rect" id="node33" href="$CPRMover6_8h.html" title="cpr_robot/CPRMover6.h" alt="" coords="4126,80,4289,107"/>
+<area shape="rect" id="node28" href="$Bus_8h.html" title="cpr_robot/Bus.h" alt="" coords="3291,80,3406,107"/>
+<area shape="rect" id="node29" href="$MotorModule_8h.html" title="cpr_robot/MotorModule.h" alt="" coords="3431,80,3597,107"/>
+<area shape="rect" id="node30" href="$Joint_8h.html" title="cpr_robot/Joint.h" alt="" coords="3621,80,3740,107"/>
+<area shape="rect" id="node31" href="$Robot_8h.html" title="cpr_robot/Robot.h" alt="" coords="3764,80,3891,107"/>
+<area shape="rect" id="node33" href="$igus__4DOF__SV_8h.html" title="cpr_robot/igus_4DOF_SV.h" alt="" coords="3915,80,4097,107"/>
+<area shape="rect" id="node34" href="$igus__5DOF__SV_8h.html" title="cpr_robot/igus_5DOF_SV.h" alt="" coords="4121,80,4304,107"/>
+<area shape="rect" id="node35" href="$CPRMover6_8h.html" title="cpr_robot/CPRMover6.h" alt="" coords="4329,80,4491,107"/>
 </map>

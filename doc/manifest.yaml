@@ -14,10 +14,11 @@ license: BSD
 maintainers: Roland Tomasi <support@cpr-robots.com>
 msgs:
 - RobotState
+- ChannelStates
 package_type: package
 repo_url: ''
 srvs:
+- GetRobotInfo
 - GetJointInfo
 - RobotCommand
-- GetRobotInfo
 url: ''

@@ -48,7 +48,7 @@ namespace cpr_robot
         //! The number of joints of the robot.
         const size_t m_CountJoints;
         //! The number of digital I/O boards of the robot.
-        const size_t m_CountDigitalIOs;
+        const size_t m_CountIOmodules;
         //! A handle to the current ROS node.
         ros::NodeHandle m_Node;
         //! Publisher that will publish the state of all joints on the /joint_states ROS topic.
@@ -70,7 +70,7 @@ namespace cpr_robot
         //! Pointer to an array of instances of the Joint class. One entry per joint.
         Joint** m_pJoints;
         //! Pointer to an array of instances of the Joint class. One entry per digital I/O module.
-        Joint** m_pDigitalIOs;
+        Joint** m_pIOmodules;
         //! The model designation of the robot.
         std::string m_ModelName;
         //! The current override value used to control the speed of the joints.

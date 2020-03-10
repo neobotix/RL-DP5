@@ -5,7 +5,7 @@ namespace cpr_robot
 {
     //! All model specific parameters, like gear ratios, position ranges, etc. are set during construction.
     igus_5DOF_SV::igus_5DOF_SV() :
-        Robot(5,0)
+        Robot(5,1)
     {
         set_ModelName("igus_5DOF_SV");
         set_GearRatio(0,50.0);
@@ -43,6 +43,20 @@ namespace cpr_robot
         set_MotorOffset(2,0);
         set_MotorOffset(3,0);
         set_MotorOffset(4,0);
+        define_Output(true,0,0,"Digital out 1");
+        define_Output(true,0,1,"Digital out 2");
+        define_Output(true,0,2,"Digital out 3");
+        define_Output(true,0,3,"Digital out 4");
+        define_Output(true,0,0,"Digital out 5");
+        define_Output(true,0,1,"Digital out 6");
+        define_Output(true,0,1,"Digital out 7");
+        define_Input(true,0,0,"Digital in 1");
+        define_Input(true,0,1,"Digital in 2");
+        define_Input(true,0,2,"Digital in 3");
+        define_Input(true,0,3,"Digital in 4");
+        define_Input(true,0,4,"Digital in 5");
+        define_Input(true,0,5,"Digital in 6");
+        define_Input(true,0,6,"Digital in 7");
     }
 
     //! Destructs an instance of the igus_5DOF_SV class  

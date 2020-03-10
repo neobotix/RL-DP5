@@ -38,34 +38,35 @@ namespace cpr_robot
         
     }
 
-    //! \brief Sets the model designatin of the robot. Should be called before the Init method is called.
+    //! \brief Sets the model designation of the robot. Should be called before the Init method is called.
     //! \param name The model designation of the robot.
     void Robot::set_ModelName(const std::string& name)
     {
         m_ModelName=name;
     }
         
-    //! \brief Gets the model designatin of the robot.
+    //! \brief Gets the model designation of the robot.
     //! \return The model designation of the robot.
     const std::string& Robot::get_ModelName()
     {
         return m_ModelName;
     }
 
-    // \brief Constructs an instance of the Robot class.
-    // \param countJoints The number of joints of the robot.
-    Robot::Robot(const size_t countJoints, const size_t countDigitalIOs) :
+    //! \brief Constructs an instance of the Robot class.
+    //! \param countJoints The number of joints of the robot.
+    //! \param countDigitalIOs The number of I/O modules of the robot.
+    Robot::Robot(const size_t countJoints, const size_t countIOmodules) :
         m_CountJoints(countJoints),
-        m_CountDigitalIOs(countDigitalIOs),
+        m_CountIOmodules(countIOmodules),
         m_Bus("can0")
     {
         m_ModelName="Unknown Model";
         m_pJoints=new Joint*[m_CountJoints];
         for(size_t i=0;i<m_CountJoints;i++)
             m_pJoints[i]=new Joint(m_Bus,(unsigned int)(i+1));
-        m_pDigitalIOs=new Joint*[m_CountDigitalIOs];
-        for(size_t i=0;i<m_CountDigitalIOs;i++)
-            m_pDigitalIOs[i]=new Joint(m_Bus,(unsigned int)(i+7));
+        m_pIOmodules=new Joint*[m_CountIOmodules];
+        for(size_t i=0;i<m_CountIOmodules;i++)
+            m_pIOmodules[i]=new Joint(m_Bus,(unsigned int)(i+7));
         m_JointStatePublisher=m_Node.advertise<sensor_msgs::JointState>("/joint_states", 50);
         m_RobotStatePublisher=m_Node.advertise<cpr_robot::RobotState>("/robot_state",50);
         m_InputChannelsPublisher=m_Node.advertise<cpr_robot::ChannelStates>("/InputChannels",50);
@@ -148,9 +149,9 @@ namespace cpr_robot
     //! \brief Destructor of the Robot class.
     Robot::~Robot()
     {
-        for(size_t i=0;i<m_CountDigitalIOs;i++)
-            delete m_pDigitalIOs[i];
-        delete[] m_pDigitalIOs;
+        for(size_t i=0;i<m_CountIOmodules;i++)
+            delete m_pIOmodules[i];
+        delete[] m_pIOmodules;
         for(size_t i=0;i<m_CountJoints;i++)
             delete m_pJoints[i];
         delete[] m_pJoints;
@@ -286,8 +287,8 @@ namespace cpr_robot
     {
         for(size_t i=0;i<m_CountJoints;i++)
             m_pJoints[i]->Init();
-        for(size_t i=0;i<m_CountDigitalIOs;i++)
-            m_pDigitalIOs[i]->Init();
+        for(size_t i=0;i<m_CountIOmodules;i++)
+            m_pIOmodules[i]->Init();
     }
 
     //! \brief Sets the name of a specific joint that will be used for communication over ROS topics and services.
@@ -362,9 +363,15 @@ namespace cpr_robot
         return m_pJoints[jointId]->get_MaxVeclocity();
     }
 
+    //! \brief Define and name a new input channel
+    //! \param onSeperateModule Set to true if the channel is controlled from a DIN-rail module not associated with a joint.
+    //! \param moduleIndex Index of the joint or DIN-rail module controlling the digital input.
+    //! \param channelIndex Index of the channel on the respective control module.
+    //! \param name The name that should be given to the input channel.
+    //! \return The ID of the newly defined digital input.
     uint32_t Robot::define_Input(const bool onSeperateModule, const uint8_t moduleIndex, const uint8_t channelIndex, const std::string& name)
     {
-        assert(onSeperateModule?moduleIndex<m_CountDigitalIOs:moduleIndex<m_CountJoints);
+        assert(onSeperateModule?moduleIndex<m_CountIOmodules:moduleIndex<m_CountJoints);
         assert(channelIndex<8);
         uint32_t id=(uint32_t)m_InputChannels.size();
         IOchannel channel;
@@ -376,9 +383,15 @@ namespace cpr_robot
         return id;
     }
 
+    //! \brief Define and name a new output channel
+    //! \param onSeperateModule Set to true if the channel is controlled from a DIN-rail module not associated with a joint.
+    //! \param moduleIndex Index of the joint or DIN-rail module controlling the digital output.
+    //! \param channelIndex Index of the channel on the respective control module.
+    //! \param name The name that should be given to the output channel.
+    //! \return The ID of the newly defined digital output.
     uint32_t Robot::define_Output(const bool onSeperateModule, const uint8_t moduleIndex, const uint8_t channelIndex, const std::string& name)
     {
-        assert(onSeperateModule?moduleIndex<m_CountDigitalIOs:moduleIndex<m_CountJoints);
+        assert(onSeperateModule?moduleIndex<m_CountIOmodules:moduleIndex<m_CountJoints);
         assert(channelIndex<8);
         uint32_t id=(uint32_t)m_OutputChannels.size();
         IOchannel channel;
@@ -390,29 +403,38 @@ namespace cpr_robot
         return id;
     }
         
+    //! \brief Set the state of a digital output.
+    //! \param index The ID of the digital output.
+    //! \param state The new state of the digital output.
     void Robot::set_Output(const uint32_t index, const bool state)
     {
         assert(index<m_OutputChannels.size());
         if(m_OutputChannels[index].OnSeparateModule)
-            m_pDigitalIOs[m_OutputChannels[index].ModuleIndex]->set_DigitalOutput(m_OutputChannels[index].ChannelIndex,state);
+            m_pIOmodules[m_OutputChannels[index].ModuleIndex]->set_DigitalOutput(m_OutputChannels[index].ChannelIndex,state);
         else
             m_pJoints[m_OutputChannels[index].ModuleIndex]->set_DigitalOutput(m_OutputChannels[index].ChannelIndex,state);
     }
     
+    //! \brief Get the state of a digital input.
+    //! \param index The ID of the digital input.
+    //! \return The current state of the digital input.
     bool Robot::get_Input(const uint32_t index) const
     {
         assert(index<m_InputChannels.size());
         if(m_InputChannels[index].OnSeparateModule)
-            return m_pDigitalIOs[m_InputChannels[index].ModuleIndex]->get_DigitalInput(m_InputChannels[index].ChannelIndex);
+            return m_pIOmodules[m_InputChannels[index].ModuleIndex]->get_DigitalInput(m_InputChannels[index].ChannelIndex);
         else
             return m_pJoints[m_InputChannels[index].ModuleIndex]->get_DigitalInput(m_InputChannels[index].ChannelIndex);
     }
     
+    //! \brief Get the state of a digital output.
+    //! \param index The ID of the digital output.
+    //! \return The current state of the digital output.
     bool Robot::get_Output(const uint32_t index) const
     {
         assert(index<m_OutputChannels.size());
         if(m_OutputChannels[index].OnSeparateModule)
-            return m_pDigitalIOs[m_OutputChannels[index].ModuleIndex]->get_DigitalOutput(m_OutputChannels[index].ChannelIndex);
+            return m_pIOmodules[m_OutputChannels[index].ModuleIndex]->get_DigitalOutput(m_OutputChannels[index].ChannelIndex);
         else
             return m_pJoints[m_OutputChannels[index].ModuleIndex]->get_DigitalOutput(m_OutputChannels[index].ChannelIndex);
     }

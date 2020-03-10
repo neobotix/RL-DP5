@@ -46,12 +46,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a91d3347c680ca092db8cc91b8e0efcf4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__robot_1_1MotorModule.html#a91d3347c680ca092db8cc91b8e0efcf4">Enable</a> ()</td></tr>
 <tr class="memdesc:a91d3347c680ca092db8cc91b8e0efcf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables motor motion.  <a href="#a91d3347c680ca092db8cc91b8e0efcf4">More...</a><br /></td></tr>
 <tr class="separator:a91d3347c680ca092db8cc91b8e0efcf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa09d9f7aeacd35782ca172764107148f"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__robot_1_1MotorModule.html#aa09d9f7aeacd35782ca172764107148f">get_CurrentPosition</a> (uint8_t &amp;timeStamp, std::chrono::high_resolution_clock::time_point &amp;receptionTime, uint8_t &amp;errorFlags, uint8_t &amp;dataBits) const</td></tr>
-<tr class="memdesc:aa09d9f7aeacd35782ca172764107148f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows to query the last response to a SetJoint command that has been received from the module.  <a href="#aa09d9f7aeacd35782ca172764107148f">More...</a><br /></td></tr>
-<tr class="separator:aa09d9f7aeacd35782ca172764107148f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e878e3389b6feeb8941ae88aef96d68"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__robot_1_1MotorModule.html#a4e878e3389b6feeb8941ae88aef96d68">get_CurrentPosition</a> (uint8_t &amp;timeStamp, std::chrono::high_resolution_clock::time_point &amp;receptionTime, uint8_t &amp;errorFlags, uint8_t &amp;dinputs) const</td></tr>
+<tr class="memdesc:a4e878e3389b6feeb8941ae88aef96d68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows to query the last response to a SetJoint command that has been received from the module.  <a href="#a4e878e3389b6feeb8941ae88aef96d68">More...</a><br /></td></tr>
+<tr class="separator:a4e878e3389b6feeb8941ae88aef96d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe5911c46c0520fcc10d729bd875174b"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__robot_1_1MotorModule.html#afe5911c46c0520fcc10d729bd875174b">get_DesiredPosition</a> () const</td></tr>
 <tr class="memdesc:afe5911c46c0520fcc10d729bd875174b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows to query the desired position of the joint that is controled by the DIN rail module.  <a href="#afe5911c46c0520fcc10d729bd875174b">More...</a><br /></td></tr>
 <tr class="separator:afe5911c46c0520fcc10d729bd875174b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09e1117f5ec4853fb4fc1130e3cef863"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__robot_1_1MotorModule.html#a09e1117f5ec4853fb4fc1130e3cef863">get_DigitalInputs</a> () const</td></tr>
+<tr class="memdesc:a09e1117f5ec4853fb4fc1130e3cef863"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current state of the digital inputs.  <a href="#a09e1117f5ec4853fb4fc1130e3cef863">More...</a><br /></td></tr>
+<tr class="separator:a09e1117f5ec4853fb4fc1130e3cef863"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa49075a3a161030af829e1d8aa878bbe"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__robot_1_1MotorModule.html#aa49075a3a161030af829e1d8aa878bbe">get_DigitalOutputs</a> () const</td></tr>
+<tr class="memdesc:aa49075a3a161030af829e1d8aa878bbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current state of the digital outputs.  <a href="#aa49075a3a161030af829e1d8aa878bbe">More...</a><br /></td></tr>
+<tr class="separator:aa49075a3a161030af829e1d8aa878bbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40effccdd83367238bb839149edd3f87"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__robot_1_1MotorModule.html#a40effccdd83367238bb839149edd3f87">get_Increment</a> () const</td></tr>
 <tr class="memdesc:a40effccdd83367238bb839149edd3f87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current encoder tick increment.  <a href="#a40effccdd83367238bb839149edd3f87">More...</a><br /></td></tr>
 <tr class="separator:a40effccdd83367238bb839149edd3f87"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -76,6 +82,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8d025200c2e6ea7c9a0d61752725b495"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__robot_1_1MotorModule.html#a8d025200c2e6ea7c9a0d61752725b495">set_DesiredPosition</a> (const int32_t ticks)</td></tr>
 <tr class="memdesc:a8d025200c2e6ea7c9a0d61752725b495"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows to set the desired position of the joint that is controled by the DIN rail module.  <a href="#a8d025200c2e6ea7c9a0d61752725b495">More...</a><br /></td></tr>
 <tr class="separator:a8d025200c2e6ea7c9a0d61752725b495"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c0afc11c9742d626eb0558a03077758"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__robot_1_1MotorModule.html#a8c0afc11c9742d626eb0558a03077758">set_DigitalOutputs</a> (const uint8_t doutputs)</td></tr>
+<tr class="memdesc:a8c0afc11c9742d626eb0558a03077758"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the state of the digital outputs.  <a href="#a8c0afc11c9742d626eb0558a03077758">More...</a><br /></td></tr>
+<tr class="separator:a8c0afc11c9742d626eb0558a03077758"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a00b6e1ca0a4009837bccbd44c8430e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__robot_1_1MotorModule.html#a9a00b6e1ca0a4009837bccbd44c8430e">set_Increment</a> (const int32_t ticks)</td></tr>
 <tr class="memdesc:a9a00b6e1ca0a4009837bccbd44c8430e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the desired encoder tick increment.  <a href="#a9a00b6e1ca0a4009837bccbd44c8430e">More...</a><br /></td></tr>
 <tr class="separator:a9a00b6e1ca0a4009837bccbd44c8430e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -145,9 +154,9 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:ab2a5cd85d3f75394524369b13b4315a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__robot_1_1MotorModule.html#ab2a5cd85d3f75394524369b13b4315a4">Command_ResetError</a> ()</td></tr>
 <tr class="memdesc:ab2a5cd85d3f75394524369b13b4315a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a ResetError command over the CAN bus to the DIN rail module.  <a href="#ab2a5cd85d3f75394524369b13b4315a4">More...</a><br /></td></tr>
 <tr class="separator:ab2a5cd85d3f75394524369b13b4315a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24822ed98d9ad7eabcf78e3a2f2c662c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__robot_1_1MotorModule.html#a24822ed98d9ad7eabcf78e3a2f2c662c">Command_SetJoint</a> (const int32_t ticks, const uint8_t dio)</td></tr>
-<tr class="memdesc:a24822ed98d9ad7eabcf78e3a2f2c662c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a SetJoint command over the CAN bus to the DIN rail module.  <a href="#a24822ed98d9ad7eabcf78e3a2f2c662c">More...</a><br /></td></tr>
-<tr class="separator:a24822ed98d9ad7eabcf78e3a2f2c662c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a237ca73f32255c3fd267221851ae4629"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__robot_1_1MotorModule.html#a237ca73f32255c3fd267221851ae4629">Command_SetJoint</a> (const int32_t ticks, const uint8_t doutput)</td></tr>
+<tr class="memdesc:a237ca73f32255c3fd267221851ae4629"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a SetJoint command over the CAN bus to the DIN rail module.  <a href="#a237ca73f32255c3fd267221851ae4629">More...</a><br /></td></tr>
+<tr class="separator:a237ca73f32255c3fd267221851ae4629"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a813a083413649c4e1b6545a5d8e532da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__robot_1_1MotorModule.html#a813a083413649c4e1b6545a5d8e532da">Command_SetZeroPosition</a> ()</td></tr>
 <tr class="memdesc:a813a083413649c4e1b6545a5d8e532da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a SetZeroPosition command over the CAN bus to the DIN rail module.  <a href="#a813a083413649c4e1b6545a5d8e532da">More...</a><br /></td></tr>
 <tr class="separator:a813a083413649c4e1b6545a5d8e532da"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,9 +184,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a27bf817a64c9c9a37fdf061a7e6f623c"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__robot_1_1MotorModule.html#a27bf817a64c9c9a37fdf061a7e6f623c">m_CurrentTimeStamp</a></td></tr>
 <tr class="memdesc:a27bf817a64c9c9a37fdf061a7e6f623c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The timestamp value that will be sent to the module with the next setposition command.  <a href="#a27bf817a64c9c9a37fdf061a7e6f623c">More...</a><br /></td></tr>
 <tr class="separator:a27bf817a64c9c9a37fdf061a7e6f623c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa7c91a45bc059b76a99022f6e249e5c"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__robot_1_1MotorModule.html#afa7c91a45bc059b76a99022f6e249e5c">m_DIO</a></td></tr>
-<tr class="memdesc:afa7c91a45bc059b76a99022f6e249e5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains the state of the digital inputs/outputs of the module.  <a href="#afa7c91a45bc059b76a99022f6e249e5c">More...</a><br /></td></tr>
-<tr class="separator:afa7c91a45bc059b76a99022f6e249e5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7392322597cdcff66c027169fd36b608"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__robot_1_1MotorModule.html#a7392322597cdcff66c027169fd36b608">m_DOutputs</a></td></tr>
+<tr class="memdesc:a7392322597cdcff66c027169fd36b608"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains the state of the digital outputs of the module.  <a href="#a7392322597cdcff66c027169fd36b608">More...</a><br /></td></tr>
+<tr class="separator:a7392322597cdcff66c027169fd36b608"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7deaee7eb575540b13e1e3f73c680ee1"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__robot_1_1MotorModule.html#a7deaee7eb575540b13e1e3f73c680ee1">m_ModuleId</a></td></tr>
 <tr class="memdesc:a7deaee7eb575540b13e1e3f73c680ee1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The module ID of the DIN rail motorcontrol module hat the instance of this class will communicate with.  <a href="#a7deaee7eb575540b13e1e3f73c680ee1">More...</a><br /></td></tr>
 <tr class="separator:a7deaee7eb575540b13e1e3f73c680ee1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -208,7 +217,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a DIN rail motorcontrol module from Commonplace Robotics GmbH. </p>
-<p>Instances of this class will hold information about the current state of the motor connected to the module and allow to control the module and motor. All position information is stored in ticks. Conversion to actual joint positions (angles measured in degrees) is done by the <a class="el" href="classcpr__robot_1_1Joint.html" title="Represents a single joint of a robot. ">Joint</a> class which holds a pointer to an instance of the <a class="el" href="classcpr__robot_1_1MotorModule.html" title="Represents a DIN rail motorcontrol module from Commonplace Robotics GmbH. ">MotorModule</a> class. </p>
+<p>Instances of this class will hold information about the current state of the motor connected to the module and allow to control the module and motor. All position information is stored in ticks. Conversion to actual joint positions (angles measured in degrees) is done by the <a class="el" href="classcpr__robot_1_1Joint.html" title="It is also used to get/set digital I/O states of the controller board associated with the joint and c...">Joint</a> class which holds a pointer to an instance of the <a class="el" href="classcpr__robot_1_1MotorModule.html" title="Represents a DIN rail motorcontrol module from Commonplace Robotics GmbH. ">MotorModule</a> class. </p>
 
 <p class="definition">Definition at line <a class="el" href="MotorModule_8h_source.html#l00011">11</a> of file <a class="el" href="MotorModule_8h_source.html">MotorModule.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -277,7 +286,7 @@ Static Private Attributes</h2></td></tr>
 <p>Destructor of the <a class="el" href="classcpr__robot_1_1MotorModule.html" title="Represents a DIN rail motorcontrol module from Commonplace Robotics GmbH. ">MotorModule</a> class. </p>
 <p>Terminates and joins the thread that is spinning in the write loop that sends periodic SetJoint commands to the module over the CAN bus. </p>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00062">62</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00090">90</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -307,7 +316,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Sends a DisableMotor command over the CAN bus to the DIN rail module. </p>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00192">192</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00220">220</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -336,7 +345,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Sends a EnableMotor command over the CAN bus to the DIN rail module. </p>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00209">209</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00237">237</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -365,12 +374,12 @@ Static Private Attributes</h2></td></tr>
 
 <p>Sends a ResetError command over the CAN bus to the DIN rail module. </p>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00175">175</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00203">203</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a24822ed98d9ad7eabcf78e3a2f2c662c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a24822ed98d9ad7eabcf78e3a2f2c662c">&#9670;&nbsp;</a></span>Command_SetJoint()</h2>
+<a id="a237ca73f32255c3fd267221851ae4629"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a237ca73f32255c3fd267221851ae4629">&#9670;&nbsp;</a></span>Command_SetJoint()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -388,7 +397,7 @@ Static Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const uint8_t&#160;</td>
-          <td class="paramname"><em>dio</em>&#160;</td>
+          <td class="paramname"><em>doutput</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -407,12 +416,12 @@ Static Private Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ticks</td><td>The desired joint position given measured encoder ticks. </td></tr>
-    <tr><td class="paramname">dio</td><td>The desired state of the digital I/Os. </td></tr>
+    <tr><td class="paramname">doutput</td><td>The desired state of the digital outputs. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00156">156</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00184">184</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -441,7 +450,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Sends a SetZeroPosition command over the CAN bus to the DIN rail module. </p>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00243">243</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00271">271</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -470,7 +479,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Sends a StartReferencing command over the CAN bus to the DIN rail module. </p>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00226">226</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00254">254</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -491,7 +500,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Disables motor motion. </p>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00306">306</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00334">334</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -512,12 +521,12 @@ Static Private Attributes</h2></td></tr>
 
 <p>Enables motor motion. </p>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00290">290</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00318">318</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
-<a id="aa09d9f7aeacd35782ca172764107148f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa09d9f7aeacd35782ca172764107148f">&#9670;&nbsp;</a></span>get_CurrentPosition()</h2>
+<a id="a4e878e3389b6feeb8941ae88aef96d68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e878e3389b6feeb8941ae88aef96d68">&#9670;&nbsp;</a></span>get_CurrentPosition()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -544,7 +553,7 @@ Static Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint8_t &amp;&#160;</td>
-          <td class="paramname"><em>dataBits</em>&#160;</td>
+          <td class="paramname"><em>dinputs</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -560,13 +569,13 @@ Static Private Attributes</h2></td></tr>
     <tr><td class="paramname">timeStamp</td><td>The timeStamp sent by the module in the last response to a SetJoint command. </td></tr>
     <tr><td class="paramname">receptionTime</td><td>The time at which the last response to a SetJoint command was received. </td></tr>
     <tr><td class="paramname">errorFlags</td><td>The error flags reported by the module in the last response to a SetJoint command. </td></tr>
-    <tr><td class="paramname">dataBits</td><td>The data bits received from the module in the last response to a SetJoint command. </td></tr>
+    <tr><td class="paramname">dinputs</td><td>The state of the digital inputs as reported by the module in the last response to a SetJoint command. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The physical motor position reported by the module in the last response to a SetJoint command. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00268">268</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00296">296</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -588,7 +597,51 @@ Static Private Attributes</h2></td></tr>
 <p>Allows to query the desired position of the joint that is controled by the DIN rail module. </p>
 <dl class="section return"><dt>Returns</dt><dd>The current desired joint position measured in encoder ticks. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00119">119</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00147">147</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a09e1117f5ec4853fb4fc1130e3cef863"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09e1117f5ec4853fb4fc1130e3cef863">&#9670;&nbsp;</a></span>get_DigitalInputs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t cpr_robot::MotorModule::get_DigitalInputs </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the current state of the digital inputs. </p>
+<dl class="section return"><dt>Returns</dt><dd>Bitmask with the state of the digital inputs, one bit per channel. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00047">47</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+
+</div>
+</div>
+<a id="aa49075a3a161030af829e1d8aa878bbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa49075a3a161030af829e1d8aa878bbe">&#9670;&nbsp;</a></span>get_DigitalOutputs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t cpr_robot::MotorModule::get_DigitalOutputs </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the current state of the digital outputs. </p>
+<dl class="section return"><dt>Returns</dt><dd>Bitmask with the state of the digital outputs, one bit per channel. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00060">60</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -632,7 +685,7 @@ Static Private Attributes</h2></td></tr>
 <p>Gets the maximally allowed encoder position. </p>
 <dl class="section return"><dt>Returns</dt><dd>The current upper bound of the range of allowed motor positions. Measured in ticks. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00337">337</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00365">365</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -654,7 +707,7 @@ Static Private Attributes</h2></td></tr>
 <p>Gets the minimally allowed encoder position. </p>
 <dl class="section return"><dt>Returns</dt><dd>The current lower bound of the range of allowed motor positions. Measured in ticks. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00351">351</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00379">379</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -676,7 +729,7 @@ Static Private Attributes</h2></td></tr>
 <p>Allows to query the ID of the DIN rail module. </p>
 <dl class="section return"><dt>Returns</dt><dd>The ID of the DIN rail module. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00088">88</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00116">116</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -698,7 +751,7 @@ Static Private Attributes</h2></td></tr>
 <p>Gets the constant offset to be added to the motor position ("zero position"), measured in ticks. </p>
 <dl class="section return"><dt>Returns</dt><dd>The offset measured in ticks. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00047">47</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00075">75</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -720,7 +773,7 @@ Static Private Attributes</h2></td></tr>
 <p>Gets the interval at which periodic SetJoint commands will be sent to the module in milliseconds. </p>
 <p>This value is currently hardcoded to 50ms. </p><dl class="section return"><dt>Returns</dt><dd>The interval measured in seconds. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00147">147</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00175">175</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -748,7 +801,35 @@ Static Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00126">126</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00154">154</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a8c0afc11c9742d626eb0558a03077758"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c0afc11c9742d626eb0558a03077758">&#9670;&nbsp;</a></span>set_DigitalOutputs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cpr_robot::MotorModule::set_DigitalOutputs </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t&#160;</td>
+          <td class="paramname"><em>doutputs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the state of the digital outputs. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">doutputs</td><td>The desrired states encoded as bitmask. Each bit corresponds to one channel. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00067">67</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -799,7 +880,7 @@ Static Private Attributes</h2></td></tr>
 <p>Sets the maximally allowed encoder position. </p>
 <dl class="section return"><dt>Returns</dt><dd>The new upper bound of the range of allowed motor positions. Measured in ticks. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00344">344</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00372">372</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -822,7 +903,7 @@ Static Private Attributes</h2></td></tr>
 <p>Sets the minimally allowed encoder position. </p>
 <dl class="section return"><dt>Returns</dt><dd>The new lower bound of the range of allowed motor positions. Measured in ticks. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00358">358</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00386">386</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -850,7 +931,7 @@ Static Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00054">54</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00082">82</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -871,7 +952,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Sets the encoder position to zero. </p>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00322">322</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00350">350</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -892,7 +973,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Starts the thread that is spinning in the write loop that sends periodic SetJoint commands to the module over the CAN bus. </p>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00080">80</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00108">108</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -913,7 +994,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Starts the referencing procedure. </p>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00313">313</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00341">341</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -934,7 +1015,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Terminates and joins the thread that is spinning in the write loop that sends periodic SetJoint commands to the module over the CAN bus. </p>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00068">68</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00096">96</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -963,7 +1044,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>The write loop that will asynchronuously send setposition messages to the module over the CAN bus. </p>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00101">101</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00129">129</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -999,7 +1080,7 @@ Static Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00095">95</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MotorModule_8cpp_source.html#l00123">123</a> of file <a class="el" href="MotorModule_8cpp_source.html">MotorModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -1082,8 +1163,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="afa7c91a45bc059b76a99022f6e249e5c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afa7c91a45bc059b76a99022f6e249e5c">&#9670;&nbsp;</a></span>m_DIO</h2>
+<a id="a7392322597cdcff66c027169fd36b608"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7392322597cdcff66c027169fd36b608">&#9670;&nbsp;</a></span>m_DOutputs</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1092,7 +1173,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t cpr_robot::MotorModule::m_DIO</td>
+          <td class="memname">uint8_t cpr_robot::MotorModule::m_DOutputs</td>
         </tr>
       </table>
   </td>
@@ -1102,7 +1183,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Contains the state of the digital inputs/outputs of the module. </p>
+<p>Contains the state of the digital outputs of the module. </p>
 
 <p class="definition">Definition at line <a class="el" href="MotorModule_8h_source.html#l00052">52</a> of file <a class="el" href="MotorModule_8h_source.html">MotorModule.h</a>.</p>
 
@@ -1560,7 +1641,7 @@ Static Private Attributes</h2></td></tr>
 <hr size="1"><div style="align: right;">
 <a href="http://wiki.ros.org/cpr_robot">cpr_robot</a><br />
 Author(s): </br />
-<small>autogenerated on Thu Jun 13 2019 10:47:30</small>
+<small>autogenerated on Tue Mar 10 2020 12:50:25</small>
 </div>
 </body>
 </html>

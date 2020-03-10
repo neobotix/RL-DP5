@@ -59,6 +59,9 @@ Protected Slots</h2></td></tr>
 <tr class="memitem:a95658f429ca681929ee72af87f62ce94"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#a95658f429ca681929ee72af87f62ce94">OnEnableButtonClicked</a> (bool bChecked=true)</td></tr>
 <tr class="memdesc:a95658f429ca681929ee72af87f62ce94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback slot handling clicks to the "Enable/Disable" button.  <a href="#a95658f429ca681929ee72af87f62ce94">More...</a><br /></td></tr>
 <tr class="separator:a95658f429ca681929ee72af87f62ce94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d7ef0c486c45de67a51ead53fc16929"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#a8d7ef0c486c45de67a51ead53fc16929">OnOutputButtonClicked</a> (int tag, bool bChecked=true)</td></tr>
+<tr class="memdesc:a8d7ef0c486c45de67a51ead53fc16929"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback slot handling clicks to the digital outputs buttons.  <a href="#a8d7ef0c486c45de67a51ead53fc16929">More...</a><br /></td></tr>
+<tr class="separator:a8d7ef0c486c45de67a51ead53fc16929"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1672149b82d5e09d4a6337021cca43d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#ac1672149b82d5e09d4a6337021cca43d">OnOverrideSliderValueChanged</a> (int value)</td></tr>
 <tr class="memdesc:ac1672149b82d5e09d4a6337021cca43d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback slot handling changes to the override slider value.  <a href="#ac1672149b82d5e09d4a6337021cca43d">More...</a><br /></td></tr>
 <tr class="separator:ac1672149b82d5e09d4a6337021cca43d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -89,12 +92,18 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:af1a8e718388e371a1b3d380353853431"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#af1a8e718388e371a1b3d380353853431">InitializeUI</a> ()</td></tr>
 <tr class="memdesc:af1a8e718388e371a1b3d380353853431"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes all relevant UI elements.  <a href="#af1a8e718388e371a1b3d380353853431">More...</a><br /></td></tr>
 <tr class="separator:af1a8e718388e371a1b3d380353853431"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09def00267ed9c7459b262f83a6b9cd9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#a09def00267ed9c7459b262f83a6b9cd9">InputChannelsCallback</a> (const cpr_robot::ChannelStates::ConstPtr &amp;msg)</td></tr>
+<tr class="memdesc:a09def00267ed9c7459b262f83a6b9cd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback that handles messages received over the /InputChannels ROS topic.  <a href="#a09def00267ed9c7459b262f83a6b9cd9">More...</a><br /></td></tr>
+<tr class="separator:a09def00267ed9c7459b262f83a6b9cd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e371cd8ca1aa26eef82c61ddaa93a7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#a7e371cd8ca1aa26eef82c61ddaa93a7b">OnOverrideChanged</a> ()</td></tr>
 <tr class="memdesc:a7e371cd8ca1aa26eef82c61ddaa93a7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates all UI elements associated with the override value of the robot.  <a href="#a7e371cd8ca1aa26eef82c61ddaa93a7b">More...</a><br /></td></tr>
 <tr class="separator:a7e371cd8ca1aa26eef82c61ddaa93a7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa019eb59585e0f1d31ff621367be775a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#aa019eb59585e0f1d31ff621367be775a">OnStatusFlagsChanged</a> ()</td></tr>
 <tr class="memdesc:aa019eb59585e0f1d31ff621367be775a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates all UI elements associated with the status flag reported by the robot.  <a href="#aa019eb59585e0f1d31ff621367be775a">More...</a><br /></td></tr>
 <tr class="separator:aa019eb59585e0f1d31ff621367be775a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af49e69c6fdc5f323aaa8c0718a1fb39e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#af49e69c6fdc5f323aaa8c0718a1fb39e">OutputChannelsCallback</a> (const cpr_robot::ChannelStates::ConstPtr &amp;msg)</td></tr>
+<tr class="memdesc:af49e69c6fdc5f323aaa8c0718a1fb39e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback that handles messages received over the /InputChannels ROS topic.  <a href="#af49e69c6fdc5f323aaa8c0718a1fb39e">More...</a><br /></td></tr>
+<tr class="separator:af49e69c6fdc5f323aaa8c0718a1fb39e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a319077ba01379334cfcf1393d9dfeb9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#a319077ba01379334cfcf1393d9dfeb9b">RobotStateCallback</a> (const cpr_robot::RobotState::ConstPtr &amp;msg)</td></tr>
 <tr class="memdesc:a319077ba01379334cfcf1393d9dfeb9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback that handles messages received over the /RobotState ROS topic.  <a href="#a319077ba01379334cfcf1393d9dfeb9b">More...</a><br /></td></tr>
 <tr class="separator:a319077ba01379334cfcf1393d9dfeb9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -116,6 +125,18 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:aed4833783aa8e0d18f951c356924b8d4"><td class="memItemLeft" align="right" valign="top">ros::ServiceClient&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#aed4833783aa8e0d18f951c356924b8d4">m_GetRobotInfoClient</a></td></tr>
 <tr class="memdesc:aed4833783aa8e0d18f951c356924b8d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client used to query information about the robot via the /GetRobotInfo ROS service.  <a href="#aed4833783aa8e0d18f951c356924b8d4">More...</a><br /></td></tr>
 <tr class="separator:aed4833783aa8e0d18f951c356924b8d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4c99b87a42680c0ab95658086620470"><td class="memItemLeft" align="right" valign="top">ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#ac4c99b87a42680c0ab95658086620470">m_InputChannelsSubscriber</a></td></tr>
+<tr class="memdesc:ac4c99b87a42680c0ab95658086620470"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscriber that will listen for joint states on the /InputChannels ROS topic.  <a href="#ac4c99b87a42680c0ab95658086620470">More...</a><br /></td></tr>
+<tr class="separator:ac4c99b87a42680c0ab95658086620470"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49b0162049d6887f067c4ca95469532b"><td class="memItemLeft" align="right" valign="top">QGroupBox&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#a49b0162049d6887f067c4ca95469532b">m_InputGroupBox</a></td></tr>
+<tr class="memdesc:a49b0162049d6887f067c4ca95469532b"><td class="mdescLeft">&#160;</td><td class="mdescRight">A group box widget that will contain the input channels.  <a href="#a49b0162049d6887f067c4ca95469532b">More...</a><br /></td></tr>
+<tr class="separator:a49b0162049d6887f067c4ca95469532b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac18e2b50a4fa009d134247eedfecf4d3"><td class="memItemLeft" align="right" valign="top">QGridLayout&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#ac18e2b50a4fa009d134247eedfecf4d3">m_InputLayout</a></td></tr>
+<tr class="memdesc:ac18e2b50a4fa009d134247eedfecf4d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Layout arranging the controls of the digital inputs.  <a href="#ac18e2b50a4fa009d134247eedfecf4d3">More...</a><br /></td></tr>
+<tr class="separator:ac18e2b50a4fa009d134247eedfecf4d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a642d76899de504608be211bf31236bc4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#a642d76899de504608be211bf31236bc4">m_Inputs</a></td></tr>
+<tr class="memdesc:a642d76899de504608be211bf31236bc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The digital inputs reported by the robot.  <a href="#a642d76899de504608be211bf31236bc4">More...</a><br /></td></tr>
+<tr class="separator:a642d76899de504608be211bf31236bc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae61c2afa8026071af8505de5445e74f7"><td class="memItemLeft" align="right" valign="top">QGridLayout&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#ae61c2afa8026071af8505de5445e74f7">m_JointsLayout</a></td></tr>
 <tr class="memdesc:ae61c2afa8026071af8505de5445e74f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Layout arranging the controls of the individual joints.  <a href="#ae61c2afa8026071af8505de5445e74f7">More...</a><br /></td></tr>
 <tr class="separator:ae61c2afa8026071af8505de5445e74f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -131,6 +152,18 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a6978e66039178ef430787b5852518537"><td class="memItemLeft" align="right" valign="top">ros::NodeHandle&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#a6978e66039178ef430787b5852518537">m_Node</a></td></tr>
 <tr class="memdesc:a6978e66039178ef430787b5852518537"><td class="mdescLeft">&#160;</td><td class="mdescRight">A handle to the current ROS node.  <a href="#a6978e66039178ef430787b5852518537">More...</a><br /></td></tr>
 <tr class="separator:a6978e66039178ef430787b5852518537"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8abfdec2b18cb13ddb4f42d0d10cd5b3"><td class="memItemLeft" align="right" valign="top">ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#a8abfdec2b18cb13ddb4f42d0d10cd5b3">m_OutputChannelsSubscriber</a></td></tr>
+<tr class="memdesc:a8abfdec2b18cb13ddb4f42d0d10cd5b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscriber that will listen for joint states on the /OutputChannels ROS topic.  <a href="#a8abfdec2b18cb13ddb4f42d0d10cd5b3">More...</a><br /></td></tr>
+<tr class="separator:a8abfdec2b18cb13ddb4f42d0d10cd5b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a288f00d3d222ee9f085726e2d45366f8"><td class="memItemLeft" align="right" valign="top">QGroupBox&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#a288f00d3d222ee9f085726e2d45366f8">m_OutputGroupBox</a></td></tr>
+<tr class="memdesc:a288f00d3d222ee9f085726e2d45366f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">A group box widget that will contain the output channels.  <a href="#a288f00d3d222ee9f085726e2d45366f8">More...</a><br /></td></tr>
+<tr class="separator:a288f00d3d222ee9f085726e2d45366f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17920bf28629ebe578b8e1e15de34cbc"><td class="memItemLeft" align="right" valign="top">QGridLayout&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#a17920bf28629ebe578b8e1e15de34cbc">m_OutputLayout</a></td></tr>
+<tr class="memdesc:a17920bf28629ebe578b8e1e15de34cbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Layout arranging the controls of the digital outputs.  <a href="#a17920bf28629ebe578b8e1e15de34cbc">More...</a><br /></td></tr>
+<tr class="separator:a17920bf28629ebe578b8e1e15de34cbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3abb21950232b8a1c20239c67eb60845"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#a3abb21950232b8a1c20239c67eb60845">m_Outputs</a></td></tr>
+<tr class="memdesc:a3abb21950232b8a1c20239c67eb60845"><td class="mdescLeft">&#160;</td><td class="mdescRight">The digital outputs reported by the robot.  <a href="#a3abb21950232b8a1c20239c67eb60845">More...</a><br /></td></tr>
+<tr class="separator:a3abb21950232b8a1c20239c67eb60845"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa002130e0ac251ab17271ae66f756869"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#aa002130e0ac251ab17271ae66f756869">m_Override</a></td></tr>
 <tr class="memdesc:aa002130e0ac251ab17271ae66f756869"><td class="mdescLeft">&#160;</td><td class="mdescRight">The override value reported by the robot.  <a href="#aa002130e0ac251ab17271ae66f756869">More...</a><br /></td></tr>
 <tr class="separator:aa002130e0ac251ab17271ae66f756869"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,9 +176,15 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a6561d3845bb6ebd5bb88de2734c0b490"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#a6561d3845bb6ebd5bb88de2734c0b490">m_OverrideSliderValid</a></td></tr>
 <tr class="memdesc:a6561d3845bb6ebd5bb88de2734c0b490"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating whether the position of the override slider has been properly initialized.  <a href="#a6561d3845bb6ebd5bb88de2734c0b490">More...</a><br /></td></tr>
 <tr class="separator:a6561d3845bb6ebd5bb88de2734c0b490"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b48d0d403cf20f1b651a466564643a8"><td class="memItemLeft" align="right" valign="top">QCheckBox **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#a0b48d0d403cf20f1b651a466564643a8">m_pInputs</a></td></tr>
+<tr class="memdesc:a0b48d0d403cf20f1b651a466564643a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array containing the checboxes for the digital inputs.  <a href="#a0b48d0d403cf20f1b651a466564643a8">More...</a><br /></td></tr>
+<tr class="separator:a0b48d0d403cf20f1b651a466564643a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade7adfc4817b469b83e64d45ae39c806"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcpr__rviz_1_1JointControl.html">JointControl</a> **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#ade7adfc4817b469b83e64d45ae39c806">m_pJointControls</a></td></tr>
 <tr class="memdesc:ade7adfc4817b469b83e64d45ae39c806"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array containing the control widgets for the individual joints.  <a href="#ade7adfc4817b469b83e64d45ae39c806">More...</a><br /></td></tr>
 <tr class="separator:ade7adfc4817b469b83e64d45ae39c806"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cacb5aa1dd2a71e681ec6646a193d47"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcpr__rviz_1_1TaggedButton.html">TaggedButton</a> **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#a7cacb5aa1dd2a71e681ec6646a193d47">m_pOutputs</a></td></tr>
+<tr class="memdesc:a7cacb5aa1dd2a71e681ec6646a193d47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array containing the buttons for the digital outputs.  <a href="#a7cacb5aa1dd2a71e681ec6646a193d47">More...</a><br /></td></tr>
+<tr class="separator:a7cacb5aa1dd2a71e681ec6646a193d47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0582f43bebf61c14875db5d2a592afdf"><td class="memItemLeft" align="right" valign="top">QPushButton&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpr__rviz_1_1RobotPanel.html#a0582f43bebf61c14875db5d2a592afdf">m_ReferenceButton</a></td></tr>
 <tr class="memdesc:a0582f43bebf61c14875db5d2a592afdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Button allowing to start the referencing procedure on the robot remotely.  <a href="#a0582f43bebf61c14875db5d2a592afdf">More...</a><br /></td></tr>
 <tr class="separator:a0582f43bebf61c14875db5d2a592afdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -191,7 +230,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00011">11</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00013">13</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
 
 </div>
 </div>
@@ -220,7 +259,7 @@ Private Attributes</h2></td></tr>
 
 <p>Destructor of the <a class="el" href="classcpr__rviz_1_1RobotPanel.html" title="Plugin for RViz that allows to move a robot remotely over ROS. ">RobotPanel</a> class. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00027">27</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00031">31</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
 
 </div>
 </div>
@@ -250,7 +289,7 @@ Private Attributes</h2></td></tr>
 
 <p>Queries information about the robot from the /GetRobotInfo ROS service. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00204">204</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00290">290</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
 
 </div>
 </div>
@@ -279,7 +318,7 @@ Private Attributes</h2></td></tr>
 
 <p>Sets up communication with ROS. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00120">120</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00172">172</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
 
 </div>
 </div>
@@ -308,7 +347,7 @@ Private Attributes</h2></td></tr>
 
 <p>Initializes all relevant members. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00111">111</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00157">157</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
 
 </div>
 </div>
@@ -337,7 +376,43 @@ Private Attributes</h2></td></tr>
 
 <p>Initializes all relevant UI elements. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00039">39</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00052">52</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a09def00267ed9c7459b262f83a6b9cd9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09def00267ed9c7459b262f83a6b9cd9">&#9670;&nbsp;</a></span>InputChannelsCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cpr_rviz::RobotPanel::InputChannelsCallback </td>
+          <td>(</td>
+          <td class="paramtype">const cpr_robot::ChannelStates::ConstPtr &amp;&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Callback that handles messages received over the /InputChannels ROS topic. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>The received message. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00215">215</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
 
 </div>
 </div>
@@ -367,7 +442,7 @@ Private Attributes</h2></td></tr>
 
 <p>Callback slot handling clicks to the "Connect/Disconnect" button. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00081">81</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00127">127</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
 
 </div>
 </div>
@@ -397,7 +472,53 @@ Private Attributes</h2></td></tr>
 
 <p>Callback slot handling clicks to the "Enable/Disable" button. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00102">102</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00148">148</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a8d7ef0c486c45de67a51ead53fc16929"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d7ef0c486c45de67a51ead53fc16929">&#9670;&nbsp;</a></span>OnOutputButtonClicked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cpr_rviz::RobotPanel::OnOutputButtonClicked </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bChecked</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Callback slot handling clicks to the digital outputs buttons. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tag</td><td>Channel number associated with the clicked button. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00111">111</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
 
 </div>
 </div>
@@ -426,7 +547,7 @@ Private Attributes</h2></td></tr>
 
 <p>Updates all UI elements associated with the override value of the robot. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00160">160</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00234">234</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
 
 </div>
 </div>
@@ -456,7 +577,7 @@ Private Attributes</h2></td></tr>
 
 <p>Callback slot handling changes to the override slider value. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00075">75</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00121">121</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
 
 </div>
 </div>
@@ -486,7 +607,7 @@ Private Attributes</h2></td></tr>
 
 <p>Callback slot handling clicks to the "Reference" button. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00090">90</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00136">136</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
 
 </div>
 </div>
@@ -515,7 +636,7 @@ Private Attributes</h2></td></tr>
 
 <p>Updates all UI elements associated with the status flag reported by the robot. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00168">168</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00242">242</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
 
 </div>
 </div>
@@ -545,7 +666,43 @@ Private Attributes</h2></td></tr>
 
 <p>Callback slot handling clicks to the "Set Zero" button. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00096">96</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00142">142</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
+
+</div>
+</div>
+<a id="af49e69c6fdc5f323aaa8c0718a1fb39e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af49e69c6fdc5f323aaa8c0718a1fb39e">&#9670;&nbsp;</a></span>OutputChannelsCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cpr_rviz::RobotPanel::OutputChannelsCallback </td>
+          <td>(</td>
+          <td class="paramtype">const cpr_robot::ChannelStates::ConstPtr &amp;&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Callback that handles messages received over the /InputChannels ROS topic. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>The received message. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00225">225</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
 
 </div>
 </div>
@@ -599,7 +756,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00225">225</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00311">311</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
 
 </div>
 </div>
@@ -635,7 +792,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00129">129</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8cpp_source.html#l00183">183</a> of file <a class="el" href="RobotPanel_8cpp_source.html">RobotPanel.cpp</a>.</p>
 
 </div>
 </div>
@@ -662,7 +819,7 @@ Private Attributes</h2></td></tr>
 
 <p>Button allowing to connect/disconnect the robot remotely. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00026">26</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00030">30</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
 
 </div>
 </div>
@@ -688,7 +845,7 @@ Private Attributes</h2></td></tr>
 
 <p>Layout aranging the control buttons horizontally. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00024">24</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00028">28</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
 
 </div>
 </div>
@@ -740,7 +897,7 @@ Private Attributes</h2></td></tr>
 
 <p>Button allowing to enable/disable motor motion on the robot remotely. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00028">28</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00032">32</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
 
 </div>
 </div>
@@ -770,6 +927,110 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="ac4c99b87a42680c0ab95658086620470"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4c99b87a42680c0ab95658086620470">&#9670;&nbsp;</a></span>m_InputChannelsSubscriber</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ros::Subscriber cpr_rviz::RobotPanel::m_InputChannelsSubscriber</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Subscriber that will listen for joint states on the /InputChannels ROS topic. </p>
+
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00068">68</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
+
+</div>
+</div>
+<a id="a49b0162049d6887f067c4ca95469532b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49b0162049d6887f067c4ca95469532b">&#9670;&nbsp;</a></span>m_InputGroupBox</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QGroupBox cpr_rviz::RobotPanel::m_InputGroupBox</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A group box widget that will contain the input channels. </p>
+
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00044">44</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
+
+</div>
+</div>
+<a id="ac18e2b50a4fa009d134247eedfecf4d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac18e2b50a4fa009d134247eedfecf4d3">&#9670;&nbsp;</a></span>m_InputLayout</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QGridLayout cpr_rviz::RobotPanel::m_InputLayout</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Layout arranging the controls of the digital inputs. </p>
+
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00046">46</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
+
+</div>
+</div>
+<a id="a642d76899de504608be211bf31236bc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a642d76899de504608be211bf31236bc4">&#9670;&nbsp;</a></span>m_Inputs</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::string&gt; cpr_rviz::RobotPanel::m_Inputs</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The digital inputs reported by the robot. </p>
+
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00024">24</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
+
+</div>
+</div>
 <a id="ae61c2afa8026071af8505de5445e74f7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae61c2afa8026071af8505de5445e74f7">&#9670;&nbsp;</a></span>m_JointsLayout</h2>
 
@@ -792,7 +1053,7 @@ Private Attributes</h2></td></tr>
 
 <p>Layout arranging the controls of the individual joints. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00038">38</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00042">42</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
 
 </div>
 </div>
@@ -818,7 +1079,7 @@ Private Attributes</h2></td></tr>
 
 <p>The top-level layout of this widget. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00040">40</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00052">52</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
 
 </div>
 </div>
@@ -870,7 +1131,7 @@ Private Attributes</h2></td></tr>
 
 <p>Label used to show the model deisgnation of the robot. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00042">42</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00054">54</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
 
 </div>
 </div>
@@ -900,6 +1161,110 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a8abfdec2b18cb13ddb4f42d0d10cd5b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8abfdec2b18cb13ddb4f42d0d10cd5b3">&#9670;&nbsp;</a></span>m_OutputChannelsSubscriber</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ros::Subscriber cpr_rviz::RobotPanel::m_OutputChannelsSubscriber</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Subscriber that will listen for joint states on the /OutputChannels ROS topic. </p>
+
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00070">70</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
+
+</div>
+</div>
+<a id="a288f00d3d222ee9f085726e2d45366f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a288f00d3d222ee9f085726e2d45366f8">&#9670;&nbsp;</a></span>m_OutputGroupBox</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QGroupBox cpr_rviz::RobotPanel::m_OutputGroupBox</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A group box widget that will contain the output channels. </p>
+
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00048">48</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
+
+</div>
+</div>
+<a id="a17920bf28629ebe578b8e1e15de34cbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17920bf28629ebe578b8e1e15de34cbc">&#9670;&nbsp;</a></span>m_OutputLayout</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QGridLayout cpr_rviz::RobotPanel::m_OutputLayout</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Layout arranging the controls of the digital outputs. </p>
+
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00050">50</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
+
+</div>
+</div>
+<a id="a3abb21950232b8a1c20239c67eb60845"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3abb21950232b8a1c20239c67eb60845">&#9670;&nbsp;</a></span>m_Outputs</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::string&gt; cpr_rviz::RobotPanel::m_Outputs</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The digital outputs reported by the robot. </p>
+
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00026">26</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
+
+</div>
+</div>
 <a id="aa002130e0ac251ab17271ae66f756869"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa002130e0ac251ab17271ae66f756869">&#9670;&nbsp;</a></span>m_Override</h2>
 
@@ -922,7 +1287,7 @@ Private Attributes</h2></td></tr>
 
 <p>The override value reported by the robot. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00046">46</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00058">58</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
 
 </div>
 </div>
@@ -948,7 +1313,7 @@ Private Attributes</h2></td></tr>
 
 <p>Label used to show the current override value of the robot. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00034">34</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00038">38</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
 
 </div>
 </div>
@@ -974,7 +1339,7 @@ Private Attributes</h2></td></tr>
 
 <p>Slider used to change the desired override value of the robot. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00036">36</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00040">40</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
 
 </div>
 </div>
@@ -1000,7 +1365,33 @@ Private Attributes</h2></td></tr>
 
 <p>Flag indicating whether the position of the override slider has been properly initialized. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00048">48</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00060">60</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
+
+</div>
+</div>
+<a id="a0b48d0d403cf20f1b651a466564643a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b48d0d403cf20f1b651a466564643a8">&#9670;&nbsp;</a></span>m_pInputs</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QCheckBox** cpr_rviz::RobotPanel::m_pInputs</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Array containing the checboxes for the digital inputs. </p>
+
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00064">64</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
 
 </div>
 </div>
@@ -1026,7 +1417,33 @@ Private Attributes</h2></td></tr>
 
 <p>Array containing the control widgets for the individual joints. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00050">50</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00062">62</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
+
+</div>
+</div>
+<a id="a7cacb5aa1dd2a71e681ec6646a193d47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cacb5aa1dd2a71e681ec6646a193d47">&#9670;&nbsp;</a></span>m_pOutputs</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcpr__rviz_1_1TaggedButton.html">TaggedButton</a>** cpr_rviz::RobotPanel::m_pOutputs</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Array containing the buttons for the digital outputs. </p>
+
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00066">66</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
 
 </div>
 </div>
@@ -1052,7 +1469,7 @@ Private Attributes</h2></td></tr>
 
 <p>Button allowing to start the referencing procedure on the robot remotely. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00030">30</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00034">34</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
 
 </div>
 </div>
@@ -1130,7 +1547,7 @@ Private Attributes</h2></td></tr>
 
 <p>The status flags reported by the robot. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00044">44</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00056">56</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
 
 </div>
 </div>
@@ -1156,7 +1573,7 @@ Private Attributes</h2></td></tr>
 
 <p>Button allowing to set the encoder positions on the robot remotely to zero. </p>
 
-<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00032">32</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RobotPanel_8h_source.html#l00036">36</a> of file <a class="el" href="RobotPanel_8h_source.html">RobotPanel.h</a>.</p>
 
 </div>
 </div>
@@ -1170,7 +1587,7 @@ Private Attributes</h2></td></tr>
 <hr size="1"><div style="align: right;">
 <a href="http://wiki.ros.org/cpr_robot">cpr_robot</a><br />
 Author(s): </br />
-<small>autogenerated on Thu Jun 13 2019 10:47:30</small>
+<small>autogenerated on Tue Mar 10 2020 12:50:25</small>
 </div>
 </body>
 </html>

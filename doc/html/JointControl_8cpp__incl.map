@@ -1,12 +1,12 @@
 <map id="JointControl.cpp" name="JointControl.cpp">
-<area shape="rect" id="node2" href="$cpr__robot_8h.html" title="cpr_robot.h" alt="" coords="1589,80,1675,107"/>
-<area shape="rect" id="node35" href="$qt__includes_8h.html" title="qt_includes.h" alt="" coords="4532,80,4631,107"/>
-<area shape="rect" id="node43" href="$JointControl_8h.html" title="JointControl.h" alt="" coords="4655,80,4758,107"/>
-<area shape="rect" id="node28" href="$Bus_8h.html" title="cpr_robot/Bus.h" alt="" coords="3089,155,3204,181"/>
-<area shape="rect" id="node29" href="$MotorModule_8h.html" title="cpr_robot/MotorModule.h" alt="" coords="3229,155,3395,181"/>
-<area shape="rect" id="node30" href="$Joint_8h.html" title="cpr_robot/Joint.h" alt="" coords="3419,155,3538,181"/>
-<area shape="rect" id="node31" href="$Robot_8h.html" title="cpr_robot/Robot.h" alt="" coords="3562,155,3689,181"/>
-<area shape="rect" id="node32" href="$igus__4DOF__SV_8h.html" title="cpr_robot/igus_4DOF_SV.h" alt="" coords="3713,155,3895,181"/>
-<area shape="rect" id="node33" href="$igus__5DOF__SV_8h.html" title="cpr_robot/igus_5DOF_SV.h" alt="" coords="3919,155,4102,181"/>
-<area shape="rect" id="node34" href="$CPRMover6_8h.html" title="cpr_robot/CPRMover6.h" alt="" coords="4127,155,4289,181"/>
+<area shape="rect" id="node2" href="$cpr__robot_8h.html" title="cpr_robot.h" alt="" coords="1651,80,1738,107"/>
+<area shape="rect" id="node37" href="$qt__includes_8h.html" title="qt_includes.h" alt="" coords="4796,80,4895,107"/>
+<area shape="rect" id="node46" href="$JointControl_8h.html" title="JointControl.h" alt="" coords="4919,80,5022,107"/>
+<area shape="rect" id="node29" href="$Bus_8h.html" title="cpr_robot/Bus.h" alt="" coords="3292,155,3407,181"/>
+<area shape="rect" id="node30" href="$MotorModule_8h.html" title="cpr_robot/MotorModule.h" alt="" coords="3431,155,3598,181"/>
+<area shape="rect" id="node31" href="$Joint_8h.html" title="cpr_robot/Joint.h" alt="" coords="3622,155,3741,181"/>
+<area shape="rect" id="node32" href="$Robot_8h.html" title="cpr_robot/Robot.h" alt="" coords="3765,155,3891,181"/>
+<area shape="rect" id="node34" href="$igus__4DOF__SV_8h.html" title="cpr_robot/igus_4DOF_SV.h" alt="" coords="3915,155,4098,181"/>
+<area shape="rect" id="node35" href="$igus__5DOF__SV_8h.html" title="cpr_robot/igus_5DOF_SV.h" alt="" coords="4122,155,4305,181"/>
+<area shape="rect" id="node36" href="$CPRMover6_8h.html" title="cpr_robot/CPRMover6.h" alt="" coords="4329,155,4492,181"/>
 </map>
