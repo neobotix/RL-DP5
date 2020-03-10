@@ -88,6 +88,13 @@ namespace cpr_robot
             default:
                 ROS_ERROR("Received invalid command from %s: %ui",req.Sender.c_str(),req.CommandId);
                 return false;
+            case COMMAND_SETZERO:
+                ROS_INFO("COMMAND_SETZERO from %s.",req.Sender.c_str());
+                for(size_t i=0;i<m_CountJoints;i++)
+                    m_pJoints[i]->SetZero();
+                for(size_t i=0;i<m_CountIOmodules;i++)
+                    m_pIOmodules[i]->SetZero();
+                return true;           
             case COMMAND_OVERRIDE:
                 ROS_INFO("COMMAND_OVERRIDE from %s. Override=%lf%%",req.Sender.c_str(),100.0*req.PayloadFloat);
                 m_Override=req.PayloadFloat;
@@ -96,23 +103,31 @@ namespace cpr_robot
                 ROS_INFO("COMMAND_CONNECT from %s.",req.Sender.c_str());
                 for(uint32_t i=0;i<m_CountJoints;i++)
                     m_pJoints[i]->Start();
+                for(size_t i=0;i<m_CountIOmodules;i++)
+                    m_pIOmodules[i]->Start();
                 m_Bus.Start();
                 return true;
             case COMMAND_DISCONNECT:
                 ROS_INFO("COMMAND_DISCONNECT from %s.",req.Sender.c_str());
                 for(uint32_t i=0;i<m_CountJoints;i++)
                     m_pJoints[i]->Stop();
+                for(size_t i=0;i<m_CountIOmodules;i++)
+                    m_pIOmodules[i]->Stop();
                 m_Bus.Stop();
                 return true;
             case COMMAND_ENABLE:
                 ROS_INFO("COMMAND_ENABLE from %s.",req.Sender.c_str());
                 for(size_t i=0;i<m_CountJoints;i++)
                     m_pJoints[i]->EnableMotor();
+                for(size_t i=0;i<m_CountIOmodules;i++)
+                    m_pIOmodules[i]->EnableMotor();
                 return true;
             case COMMAND_DISABLE:
                 ROS_INFO("COMMAND_DISABLE from %s.",req.Sender.c_str());
                 for(size_t i=0;i<m_CountJoints;i++)
                     m_pJoints[i]->DisableMotor();
+                for(size_t i=0;i<m_CountIOmodules;i++)
+                    m_pIOmodules[i]->DisableMotor();
                 return true;
             case COMMAND_STARTREFERENCING:
                 ROS_INFO("COMMAND_STARTREFERENCING from %s.",req.Sender.c_str());
@@ -372,7 +387,7 @@ namespace cpr_robot
     uint32_t Robot::define_Input(const bool onSeperateModule, const uint8_t moduleIndex, const uint8_t channelIndex, const std::string& name)
     {
         assert(onSeperateModule?moduleIndex<m_CountIOmodules:moduleIndex<m_CountJoints);
-        assert(channelIndex<8);
+        assert(channelIndex<7);
         uint32_t id=(uint32_t)m_InputChannels.size();
         IOchannel channel;
         channel.OnSeparateModule=onSeperateModule;
@@ -392,7 +407,7 @@ namespace cpr_robot
     uint32_t Robot::define_Output(const bool onSeperateModule, const uint8_t moduleIndex, const uint8_t channelIndex, const std::string& name)
     {
         assert(onSeperateModule?moduleIndex<m_CountIOmodules:moduleIndex<m_CountJoints);
-        assert(channelIndex<8);
+        assert(channelIndex<7);
         uint32_t id=(uint32_t)m_OutputChannels.size();
         IOchannel channel;
         channel.OnSeparateModule=onSeperateModule;
