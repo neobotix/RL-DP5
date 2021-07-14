@@ -322,7 +322,9 @@ namespace cpr_robot
     void Robot::set_JointType(const size_t jointId, bool linear_actuator)
     {
         assert(jointId<m_CountJoints);
-        m_LinearActuator = linear_actuator;
+        if(linear_actuator) {
+            m_LinearActuator = linear_actuator;
+        }
         m_pJoints[jointId]->set_JointType(linear_actuator);
     }
 

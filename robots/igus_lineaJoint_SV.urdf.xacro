@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="igus_4DOF_SV">
+
+<!-- URDF file for the Commonplace Robotics Mover4 robot arm -->
+<!-- Version 1.1 from Oct. 04th, 2016. -->
+  <link name="world"/>
+  <joint name="base_joint" type="fixed">
+    <parent link="world" />
+    <child link = "linear_link" />
+    <origin xyz="0.0 0.0 0.0" rpy="-1.57 0 0" />
+  </joint>
+  <link name="linear_link">
+    <visual>
+	  <origin rpy="0 -1.57 0" xyz="0 0 0"/>
+      <geometry>
+          <mesh filename="package://cpr_robot/robots/igus_linea_axis/vertical_axis.dae"  scale="0.001 0.001 0.001"/>
+        </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+          <mesh filename="package://cpr_robot/robots/igus_linea_axis/vertical_axis.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+  </link>
+  <link name="igus_base_link">
+    <visual>
+	  <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+          <mesh filename="package://cpr_robot/robots/igus_linea_axis/Joint0.dae"  scale="0.001 0.001 0.001"/>
+        </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+          <mesh filename="package://cpr_robot/robots/igus_linea_axis/Joint0Coll.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+  </link>
+  <joint name="arm_joint" type="prismatic">
+    <parent link="linear_link" />
+    <child link = "igus_base_link" />
+    <origin xyz="0.0 -0.148 0.0" rpy="1.57 0 1.57" />
+    <axis xyz="-1 0 0"/>
+    <limit effort="100" velocity="1.0" lower = "0.0" upper = "1.0"/>
+    <dynamics damping="1000.0"/>
+  </joint>
+</robot>
+
+

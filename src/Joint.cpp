@@ -57,11 +57,7 @@ namespace cpr_robot
     {
         if (linear_actuator) {
             m_LinearActuator = linear_actuator;     
-        }
-        else {
-            m_LinearActuator = false;
-        }
-       
+        }       
     }
 
     //! \brief Gets the current position of the joint.

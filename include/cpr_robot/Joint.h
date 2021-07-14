@@ -34,7 +34,7 @@ namespace cpr_robot
         //! The maximum angular velocity of the joint in radians per second.
         double m_MaxVelocity;
         //! Type of the linear actuator
-        bool m_LinearActuator;
+        bool m_LinearActuator = false;
         //! The error flags reported by the firmware of the module that is controlling the joint.
         uint8_t m_ErrorFlags;
         //! The number of encoder ticks representing exactly one rotation of the motor that is driving this joint.
