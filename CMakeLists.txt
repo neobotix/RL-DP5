@@ -155,6 +155,18 @@ add_executable(igus_5DOF_SV
 target_link_libraries(igus_5DOF_SV ${catkin_LIBRARIES})
 add_dependencies(igus_5DOF_SV cpr_robot_generate_messages_cpp)
 
+add_executable(igus_lineaJoint_SV 
+  src/main_igus_lineaJoint_SV.cpp 
+  src/Bus.cpp 
+  src/MotorModule.cpp 
+  src/Robot.cpp 
+  src/Joint.cpp 
+  src/Joint.cpp 
+  src/igus_lineaJoint_SV.cpp 
+)
+target_link_libraries(igus_lineaJoint_SV ${catkin_LIBRARIES})
+add_dependencies(igus_lineaJoint_SV cpr_robot_generate_messages_cpp)
+
 add_executable(CPRMover6 
   src/main_CPRMover6.cpp 
   src/Bus.cpp 

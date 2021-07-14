@@ -23,6 +23,8 @@ namespace cpr_robot
         double m_CurrentPosition;
         //! The current angular velocity of the joint computed from the change in encoder position and joint parameters in degrees per second.
         double m_CurrentVelocity;
+        //! The radius of Pulley to determine the position of the linear_actuator joint
+        double m_PulleyRadius;
         //! Reserved for future use with closed loop joints. Currently always zero.
         double m_CurrentEffort;
         //! The total gear ratio of the joint.
@@ -31,6 +33,8 @@ namespace cpr_robot
         double m_DesiredVelocity;
         //! The maximum angular velocity of the joint in radians per second.
         double m_MaxVelocity;
+        //! Type of the linear actuator
+        bool m_LinearActuator;
         //! The error flags reported by the firmware of the module that is controlling the joint.
         uint8_t m_ErrorFlags;
         //! The number of encoder ticks representing exactly one rotation of the motor that is driving this joint.
@@ -51,6 +55,7 @@ namespace cpr_robot
         virtual void OnWrite(double override);
         int32_t PositionToTicks(const double position) const;
         double TicksToPosition(const int32_t ticks) const;
+        double TicksToPosition(const int32_t ticks, bool linear_actuator) const;
     public:
         void Init();
         void Read();
@@ -58,6 +63,8 @@ namespace cpr_robot
         void PublishState(sensor_msgs::JointState& msg);
         const std::string& get_JointName() const;
         void set_JointName(const std::string& jointName);
+        void set_PulleyRadius(double radius);
+        void set_JointType(bool linear_actuator);
         int32_t get_TicksPerMotorRotation() const;
         void set_TicksPerMotorRotation(const int32_t ticks);
         double get_GearRatio() const;

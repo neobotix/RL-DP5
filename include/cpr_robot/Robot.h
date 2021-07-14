@@ -73,6 +73,10 @@ namespace cpr_robot
         Joint** m_pIOmodules;
         //! The model designation of the robot.
         std::string m_ModelName;
+        //! The Joint type.
+        std::string m_JointType;
+        //! flag variable.
+        bool m_LinearActuator = false;
         //! The current override value used to control the speed of the joints.
         double m_Override;
         //! Vector containing all defined output channels.
@@ -90,6 +94,7 @@ namespace cpr_robot
         void set_ModelName(const std::string& name);
         const std::string& get_ModelName();
         void set_JointName(const size_t jointId, const std::string& name);
+        void set_JointType(const size_t jointId, bool linear_actuator);
         const std::string& get_JointName(const size_t jointId);
         void set_GearRatio(const size_t jointId, const double ratio);
         double get_GearRatio(const size_t jointId);
@@ -102,6 +107,7 @@ namespace cpr_robot
         double get_MinPosition(const size_t jointId) const;
         void set_MinPosition(const size_t jointId, const double position);
         void set_MotorOffset(const size_t jointId, const int32_t ticks);
+        void set_PulleyRadius(const size_t jointId, double radius);
         int32_t get_MotorOffset(const size_t jointId);
         Robot(const size_t countJoints, const size_t countDigitalIOs);
         virtual void OnInit();

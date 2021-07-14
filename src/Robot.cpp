@@ -28,7 +28,11 @@ namespace cpr_robot
         if(req.JointId<m_CountJoints)
         {
             res.JointName=m_pJoints[req.JointId]->get_JointName();
-            res.JointType=0;
+            if(m_LinearActuator) {
+                res.JointType=1;    
+            } else {
+            res.JointType=0;            
+            }
             return true;
         }
         else
@@ -313,6 +317,19 @@ namespace cpr_robot
     {
         assert(jointId<m_CountJoints);
         m_pJoints[jointId]->set_JointName(name);
+    }
+
+    void Robot::set_JointType(const size_t jointId, bool linear_actuator)
+    {
+        assert(jointId<m_CountJoints);
+        m_LinearActuator = linear_actuator;
+        m_pJoints[jointId]->set_JointType(linear_actuator);
+    }
+
+    void Robot::set_PulleyRadius(const size_t jointId, double radius)
+    {
+        assert(jointId<m_CountJoints);
+        m_pJoints[jointId]->set_PulleyRadius(radius);
     }
 
     //! \brief Gets the name of a specific joint that is used for communication over ROS topics and services.

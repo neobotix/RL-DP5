@@ -26,8 +26,8 @@ namespace cpr_rviz
         double m_Velocity;
         //! Flag indicating whether the joint has been referenced.
         bool m_bIsReferenced;
-        //! The joint type. Currently this is not used
-        uint32_t m_JointType;
+        //! The joint type. Currently this is not used 0-revolute and 1-prismatic
+        bool m_JointType;
         //! The top-level layout of the widget.
         QHBoxLayout m_MainLayout;
         //! A group box widget that will contain the controls.

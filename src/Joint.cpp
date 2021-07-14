@@ -51,6 +51,19 @@ namespace cpr_robot
         m_JointName=jointName;
     }
 
+    //! \brief Sets the type of the joints for the linear actuator.
+    //! \param jointName The name of the joint as used in message over /JointJog and /joint_states ROS topics.
+    void Joint::set_JointType(bool linear_actuator)
+    {
+        if (linear_actuator) {
+            m_LinearActuator = linear_actuator;     
+        }
+        else {
+            m_LinearActuator = false;
+        }
+       
+    }
+
     //! \brief Gets the current position of the joint.
     //! \return The current position in degrees.
     double Joint::get_CurrentPosition() const
@@ -202,16 +215,22 @@ namespace cpr_robot
     {
         double motorRotations=position*m_GearRatio/(2.0*M_PI);
         int32_t ticks=(int32_t)(motorRotations*((double)m_TicksPerMotorRotation));
+        if (m_LinearActuator) {
+            ticks /= m_PulleyRadius;
+        }
         return ticks;
     }
     
     //! \brief Converts a motor position to a joint position.
     //! \param ticks Motor position in encoder ticks.
-    //! \return Corresponding joint position in radians.
+    //! \return Corresponding joint position in radians or meters.
     double Joint::TicksToPosition(const int32_t ticks) const
     {
         double motorRotations=((double)ticks)/((double)m_TicksPerMotorRotation);
         double position=2.0*M_PI*motorRotations/m_GearRatio;
+        if (m_LinearActuator) {
+            position *= m_PulleyRadius; // returns the position in meters (Unit in ROS)
+        }
         return position;
     }
 
@@ -305,6 +324,11 @@ namespace cpr_robot
     void Joint::set_GearRatio(const double ratio)
     {
         m_GearRatio=ratio;
+    }
+
+    void Joint::set_PulleyRadius(const double radius)
+    {
+        m_PulleyRadius=radius;
     }
 
     //! \brief Will send a command to enable motor motion to the firmware of the module that is controlling the motor of the joint.

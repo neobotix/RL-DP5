@@ -90,7 +90,12 @@ namespace cpr_rviz
     void JointControl::OnVelocityChanged()
     {
         std::stringstream sstr;
-        sstr << ::std::fixed << std::setprecision(1) << (180.0*m_Velocity/M_PI) << " °/s";
+        std::cout<<m_JointType<<std::endl;
+        if(m_JointType == 1) {
+            sstr << ::std::fixed << std::setprecision(1) << (180.0*m_Velocity/M_PI) << " m/s";
+        } else {
+            sstr << ::std::fixed << std::setprecision(1) << (180.0*m_Velocity/M_PI) << " °/s";
+        }
         m_VelocityLabel.setText(sstr.str().c_str());
     }
 
@@ -98,7 +103,12 @@ namespace cpr_rviz
     void JointControl::OnPositionChanged()
     {
         std::stringstream sstr;
-        sstr << ::std::fixed << std::setprecision(1) << (180.0*m_Position/M_PI) << " °";
+        if(m_JointType == 1) {
+            sstr << ::std::fixed << std::setprecision(1) << (180.0*m_Position/M_PI) << " m";
+        }
+        else {
+            sstr << ::std::fixed << std::setprecision(1) << (180.0*m_Position/M_PI) << " °";
+        }
         if(!m_bIsReferenced)
             sstr << " (unreferenced)";
         m_PositionLabel.setText(sstr.str().c_str());
