@@ -105,7 +105,13 @@ namespace cpr_robot
             {
                 if(msg.velocities.size()>i)
                 {
-                    m_DesiredVelocity=msg.velocities[i]*m_MaxVelocity;
+                    if (m_LinearActuator) {
+                        m_DesiredVelocity=msg.velocities[i];
+                    }
+                    else
+                    {
+                        m_DesiredVelocity=msg.velocities[i]*m_MaxVelocity;
+                    }
                 }
             }
         }
@@ -119,9 +125,12 @@ namespace cpr_robot
     }
     
     //! \brief Gets the maximum allowed angular velocity of the joint.
-    //! \return The currently allowed angular velocity in degrees per second.
+    //! \return The currently allowed angular velocity in degrees per second and linear velocity in m/s.
     double Joint::get_MaxVeclocity() const
     {
+        if (m_LinearActuator) {
+            return m_MaxVelocity;
+        }
         return 180.0*m_MaxVelocity/M_PI;
     }
     
