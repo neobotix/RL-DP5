@@ -138,6 +138,9 @@ namespace cpr_robot
     //! \param velocity The new allowed angular velocity in degrees per second.
     void Joint::set_MaxVelocity(const double velocity)
     {
+        if (m_LinearActuator) {
+            m_MaxVelocity=velocity;
+        }
         m_MaxVelocity=M_PI*velocity/180.0;
     }
     

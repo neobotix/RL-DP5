@@ -10,12 +10,12 @@ namespace cpr_robot
         set_ModelName("igus_lineaJoint_SV");
         set_GearRatio(0,50.0);
         set_JointName(0,"arm_joint");
-        set_JointType(0, true);
+        set_JointType(0, true); // true - Prismatic joints, by default - revolute joint
         set_PulleyRadius(0, 1);
         set_TicksPerMotorRotation(0,2000);
         set_MaxVelocity(0,0.3);
         set_MinPosition(0,0.0);
-        set_MaxPosition(0,350.0);
+        set_MaxPosition(0,350.0); // In meters
         set_MotorOffset(0,0);
         define_Output(true,0,0,"Digital out 1");
         define_Input(true,0,0,"Digital in 1");

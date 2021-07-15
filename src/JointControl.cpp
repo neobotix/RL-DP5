@@ -31,9 +31,15 @@ namespace cpr_rviz
         m_GroupLayout.addRow(&m_VelocitySlider);
         m_GroupLayout.addRow(&m_StopButton);
         m_StopButton.setText(tr("STOP"));
-        m_VelocitySlider.setMinimum(-100);
-        m_VelocitySlider.setMaximum(100);
-        m_VelocitySlider.setTickInterval(100);
+        if (m_JointType == 0) {
+            m_VelocitySlider.setMinimum(-100);
+            m_VelocitySlider.setMaximum(100);
+            m_VelocitySlider.setTickInterval(100);
+        } else {
+            m_VelocitySlider.setMinimum(-3);
+            m_VelocitySlider.setMaximum(3);
+            m_VelocitySlider.setTickInterval(3);
+        }
         m_VelocitySlider.setTickPosition(QSlider::TicksBelow);
         m_GroupBox.setLayout(&m_GroupLayout);
         m_GroupBox.setTitle((m_JointName+":").c_str());
@@ -90,9 +96,8 @@ namespace cpr_rviz
     void JointControl::OnVelocityChanged()
     {
         std::stringstream sstr;
-        std::cout<<m_JointType<<std::endl;
         if(m_JointType == 1) {
-            sstr << ::std::fixed << std::setprecision(1) << (180.0*m_Velocity/M_PI) << " m/s";
+            sstr << ::std::fixed << std::setprecision(1) << m_Velocity/10.0 << " m/s";
         } else {
             sstr << ::std::fixed << std::setprecision(1) << (180.0*m_Velocity/M_PI) << " °/s";
         }
@@ -104,7 +109,7 @@ namespace cpr_rviz
     {
         std::stringstream sstr;
         if(m_JointType == 1) {
-            sstr << ::std::fixed << std::setprecision(1) << (180.0*m_Position/M_PI) << " m";
+            sstr << ::std::fixed << std::setprecision(1) << m_Position << " m";
         }
         else {
             sstr << ::std::fixed << std::setprecision(1) << (180.0*m_Position/M_PI) << " °";
