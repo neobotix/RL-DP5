@@ -107,6 +107,7 @@ namespace cpr_robot
                 {
                     if (m_LinearActuator) {
                         m_DesiredVelocity=msg.velocities[i];
+						ROS_INFO("received velocity for the linear joints: %f", m_DesiredVelocity);
                     }
                     else
                     {
@@ -155,7 +156,14 @@ namespace cpr_robot
     //! \param position The new lower bound for the position of the joint in degrees.
     void Joint::set_MinPosition(const double position)
     {
-        m_pModule->set_MinPosition(PositionToTicks(M_PI*position/180.0));
+       if(m_LinearActuator)
+        {
+        	m_pModule->set_MinPosition(PositionToTicks(position));
+        }
+        else
+        {
+            m_pModule->set_MinPosition(PositionToTicks(M_PI*position/180.0));
+        }
     }
     
     //! \brief Gets the upper position bound of the joint.
@@ -169,7 +177,16 @@ namespace cpr_robot
     //! \param position The new upper bound for the position of the joint in degrees.
     void Joint::set_MaxPosition(const double position)
     {
-        m_pModule->set_MaxPosition(M_PI*PositionToTicks(position)/180.0);
+       if(m_LinearActuator)
+        {
+			ROS_INFO("received max_position for the linear joints: %d", PositionToTicks(position));
+        	m_pModule->set_MaxPosition(PositionToTicks(position));
+
+        }
+        else
+        {
+            m_pModule->set_MaxPosition(PositionToTicks(M_PI*position/180.0));
+        }
     }
     
     //! \brief Gets the zero position of the motor.
@@ -222,10 +239,10 @@ namespace cpr_robot
     int32_t Joint::PositionToTicks(const double position) const
     {
         double motorRotations=position*m_GearRatio/(2.0*M_PI);
-        int32_t ticks=(int32_t)(motorRotations*((double)m_TicksPerMotorRotation));
         if (m_LinearActuator) {
-            ticks /= m_PulleyRadius;
+            motorRotations /= m_PulleyRadius;
         }
+        int32_t ticks=(int32_t)(motorRotations*((double)m_TicksPerMotorRotation));
         return ticks;
     }
     

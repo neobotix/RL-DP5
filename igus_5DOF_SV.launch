@@ -1,6 +1,6 @@
 <launch>
 	<param name="robot_type" value="igus_5DOF_SV"/>
-	<param name="robot_description" textfile="$(find cpr_robot)/robots/igus_5DOF_SV.urdf.xacro" />
+	<param name="robot_description" textfile="$(find cpr_robot)/robots/igus_lineaJoint_SV.urdf.xacro" />
 
 	<param name="use_gui" value="True"/>
 	<!--node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node-->

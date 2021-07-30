@@ -28,7 +28,7 @@ namespace cpr_robot
         if(req.JointId<m_CountJoints)
         {
             res.JointName=m_pJoints[req.JointId]->get_JointName();
-            if(m_LinearActuator) {
+            if(res.JointName == "arm_joint") {
                 res.JointType=1;    
             } else {
             res.JointType=0;            
@@ -67,10 +67,10 @@ namespace cpr_robot
         m_ModelName="Unknown Model";
         m_pJoints=new Joint*[m_CountJoints];
         for(size_t i=0;i<m_CountJoints;i++)
-            m_pJoints[i]=new Joint(m_Bus,(unsigned int)(i+1));
+            m_pJoints[i]=new Joint(m_Bus,(unsigned int)(i+2));
         m_pIOmodules=new Joint*[m_CountIOmodules];
         for(size_t i=0;i<m_CountIOmodules;i++)
-            m_pIOmodules[i]=new Joint(m_Bus,(unsigned int)(i+7));
+            m_pIOmodules[i]=new Joint(m_Bus,(unsigned int)(i+14));
         m_JointStatePublisher=m_Node.advertise<sensor_msgs::JointState>("/joint_states", 50);
         m_RobotStatePublisher=m_Node.advertise<cpr_robot::RobotState>("/robot_state",50);
         m_InputChannelsPublisher=m_Node.advertise<cpr_robot::ChannelStates>("/InputChannels",50);

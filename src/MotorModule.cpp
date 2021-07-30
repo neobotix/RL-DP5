@@ -158,7 +158,7 @@ namespace cpr_robot
 		int32_t m=std::min(m_MotorMinPosition,m_MotorMaxPosition);
 		if(m_MotorPosition<m)
 		{
-			ROS_INFO("Module %u: Clamping position %i to minium of %i ticks.",m_ModuleId,m_MotorPosition,m);
+			ROS_INFO("Module %u: Clamping position %i to minimum of %i ticks.",m_ModuleId,m_MotorPosition,m);
 			m_MotorPosition=m;
 		}
 		if(m_MotorPosition>M)
@@ -184,7 +184,7 @@ namespace cpr_robot
 	void MotorModule::Command_SetJoint(const int32_t ticks, const uint8_t doutput)
 	{
 		struct can_frame frame;
-		frame.can_id = (canid_t)(m_ModuleId << 4);
+		frame.can_id = (canid_t)(m_ModuleId << 3);
 		frame.can_dlc = 8;
 		frame.data[0] = 0x14;
 		frame.data[1] = 0x00;
@@ -203,7 +203,7 @@ namespace cpr_robot
 	void MotorModule::Command_ResetError()
 	{
 		struct can_frame frame;
-		frame.can_id = (canid_t)(m_ModuleId << 4);
+		frame.can_id = (canid_t)(m_ModuleId << 3);
 		frame.can_dlc = 2;
 		frame.data[0] = 0x01;
 		frame.data[1] = 0x06;
@@ -220,7 +220,7 @@ namespace cpr_robot
 	void MotorModule::Command_DisableMotor()
 	{
 		struct can_frame frame;
-		frame.can_id = (canid_t)(m_ModuleId << 4);
+		frame.can_id = (canid_t)(m_ModuleId << 3);
 		frame.can_dlc = 2;
 		frame.data[0] = 0x01;
 		frame.data[1] = 0x0a;
@@ -237,7 +237,7 @@ namespace cpr_robot
 	void MotorModule::Command_EnableMotor()
 	{
 		struct can_frame frame;
-		frame.can_id = (canid_t)(m_ModuleId << 4);
+		frame.can_id = (canid_t)(m_ModuleId << 3);
 		frame.can_dlc = 2;
 		frame.data[0] = 0x01;
 		frame.data[1] = 0x09;
@@ -254,7 +254,7 @@ namespace cpr_robot
 	void MotorModule::Command_StartReferencing()
 	{
 		struct can_frame frame;
-		frame.can_id = (canid_t)(m_ModuleId << 4);
+		frame.can_id = (canid_t)(m_ModuleId << 3);
 		frame.can_dlc = 2;
 		frame.data[0] = 0x01;
 		frame.data[1] = 0x0b;
@@ -271,7 +271,7 @@ namespace cpr_robot
 	void MotorModule::Command_SetZeroPosition()
 	{
 		struct can_frame frame;
-		frame.can_id = (canid_t)(m_ModuleId << 4);
+		frame.can_id = (canid_t)(m_ModuleId << 3);
 		frame.can_dlc = 4;
 		frame.data[0] = 0x01;
 		frame.data[1] = 0x08;
@@ -295,7 +295,7 @@ namespace cpr_robot
 	//! \return The physical motor position reported by the module in the last response to a SetJoint command.
 	int32_t MotorModule::get_CurrentPosition(uint8_t& timeStamp, std::chrono::high_resolution_clock::time_point& receptionTime, uint8_t& errorFlags, uint8_t& dinputs) const
 	{
-		const canid_t id = (canid_t)((m_ModuleId << 4) + 1);
+		const canid_t id = (canid_t)((m_ModuleId << 3) + 1);
 		bool bValid=false;
 		struct can_frame frame = m_Bus.get_LastFrame(id, receptionTime, bValid);
 		if(bValid)

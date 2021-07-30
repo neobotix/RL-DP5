@@ -31,15 +31,17 @@ namespace cpr_rviz
         m_GroupLayout.addRow(&m_VelocitySlider);
         m_GroupLayout.addRow(&m_StopButton);
         m_StopButton.setText(tr("STOP"));
-        if (m_JointType == 0) {
-            m_VelocitySlider.setMinimum(-100);
-            m_VelocitySlider.setMaximum(100);
-            m_VelocitySlider.setTickInterval(100);
-        } else {
-            m_VelocitySlider.setMinimum(-3);
-            m_VelocitySlider.setMaximum(3);
-            m_VelocitySlider.setTickInterval(3);
-        }
+		if (m_JointName == "arm_joint") {
+			m_VelocitySlider.setMinimum(-4);
+        	m_VelocitySlider.setMaximum(4);
+        	m_VelocitySlider.setTickInterval(1);	
+		}
+		else
+		{
+			m_VelocitySlider.setMinimum(-100);
+        	m_VelocitySlider.setMaximum(100);
+        	m_VelocitySlider.setTickInterval(100);	
+		}       
         m_VelocitySlider.setTickPosition(QSlider::TicksBelow);
         m_GroupBox.setLayout(&m_GroupLayout);
         m_GroupBox.setTitle((m_JointName+":").c_str());
@@ -97,7 +99,7 @@ namespace cpr_rviz
     {
         std::stringstream sstr;
         if(m_JointType == 1) {
-            sstr << ::std::fixed << std::setprecision(1) << m_Velocity/10.0 << " m/s";
+            sstr << ::std::fixed << std::setprecision(1) << (180.0*m_Velocity/M_PI)*0.02285 << " m/s";
         } else {
             sstr << ::std::fixed << std::setprecision(1) << (180.0*m_Velocity/M_PI) << " °/s";
         }
@@ -109,10 +111,10 @@ namespace cpr_rviz
     {
         std::stringstream sstr;
         if(m_JointType == 1) {
-            sstr << ::std::fixed << std::setprecision(1) << m_Position << " m";
+            sstr << ::std::fixed << std::setprecision(2) << (180.0*m_Position/M_PI)*0.02285 << " m";
         }
         else {
-            sstr << ::std::fixed << std::setprecision(1) << (180.0*m_Position/M_PI) << " °";
+            sstr << ::std::fixed << std::setprecision(2) << (180.0*m_Position/M_PI) << " °";
         }
         if(!m_bIsReferenced)
             sstr << " (unreferenced)";
@@ -167,7 +169,11 @@ namespace cpr_rviz
         control_msgs::JointJog msg;
         msg.header.stamp=ros::Time::now();
         msg.joint_names.push_back(m_JointName);
-        double velocity=0.01*(double)value;
+		if(m_JointName == "arm_joint")
+		{
+			value = (double)value*0.02285 * 100;
+		}
+        double velocity=  (double)value*0.01;
         msg.velocities.push_back(velocity);
         m_JointJogPublisher.publish(msg);
     }
