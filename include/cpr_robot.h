@@ -50,5 +50,5 @@
 #include "cpr_robot/igus_lineaJoint_SV.h"
 #include "cpr_robot/CPRMover6.h"
 
-extern Robot* g_robot;
+extern cpr_robot::Robot* g_robot;
 //! \namespace cpr_robot Provides everything needed to control a robot over a CAN bus connection within a ROS environment.

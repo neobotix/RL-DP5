@@ -1,7 +1,7 @@
 #include <cpr_robot.h>
 #include <iostream>
 #include <sstream>
-Robot* g_robot = nullptr;
+cpr_robot::Robot* g_robot = nullptr;
 
 namespace cpr_robot
 {
