@@ -125,6 +125,7 @@ namespace cpr_robot
                     m_pJoints[i]->EnableMotor();
                 for(size_t i=0;i<m_CountIOmodules;i++)
                     m_pIOmodules[i]->EnableMotor();
+                set_Output(0, false);
                 return true;
             case COMMAND_DISABLE:
                 ROS_INFO("COMMAND_DISABLE from %s.",req.Sender.c_str());
@@ -132,6 +133,7 @@ namespace cpr_robot
                     m_pJoints[i]->DisableMotor();
                 for(size_t i=0;i<m_CountIOmodules;i++)
                     m_pIOmodules[i]->DisableMotor();
+                set_Output(0, true);
                 return true;
             case COMMAND_STARTREFERENCING:
                 ROS_INFO("COMMAND_STARTREFERENCING from %s.",req.Sender.c_str());
