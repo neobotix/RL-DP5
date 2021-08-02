@@ -17,6 +17,7 @@
 #include <cassert>
 #include <chrono>
 #include <sstream>
+#include <mutex>
 
 #ifndef PF_CAN
 #define PF_CAN 29

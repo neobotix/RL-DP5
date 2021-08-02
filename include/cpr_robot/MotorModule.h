@@ -54,6 +54,7 @@ namespace cpr_robot
 		std::thread* m_pWriteThread; 
 		//! The timestamp value that will be sent to the module with the next setposition command.
 		uint8_t m_CurrentTimeStamp; 
+		std::mutex m_motor_mutex;
 		static void WriteThread(MotorModule* pModule);
 		void WriteLoop();
 		void Command_SetJoint(const int32_t ticks, const uint8_t doutput);

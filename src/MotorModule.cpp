@@ -9,6 +9,7 @@ namespace cpr_robot
 	//! \param ticks Desired increment measured in ticks.
 	void MotorModule::set_Increment(const int32_t ticks)
 	{
+		std::lock_guard<std::mutex> lock(m_motor_mutex);
 		m_MotorIncrement=ticks;
 	}
 		
@@ -131,8 +132,13 @@ namespace cpr_robot
 		ROS_INFO("Module %u: %s",m_ModuleId, "Write thread started.");
 		while (m_bIsRunning)
 		{
+			double increment = 0;
+			{
+				std::lock_guard<std::mutex> lock(m_motor_mutex);
+				increment = m_MotorIncrement;
+			}
 			std::chrono::high_resolution_clock::time_point last=std::chrono::high_resolution_clock::now();
-			set_DesiredPosition(m_MotorPosition+m_MotorIncrement);
+			set_DesiredPosition(m_MotorPosition+increment);
 			Command_SetJoint(m_MotorPosition, m_DOutputs);
 			std::chrono::high_resolution_clock::time_point current=std::chrono::high_resolution_clock::now();
 			int64_t ms=(std::chrono::duration_cast<std::chrono::milliseconds>(current - last)).count();
