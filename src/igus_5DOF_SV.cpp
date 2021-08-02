@@ -66,7 +66,6 @@ namespace cpr_robot
         define_Output(true,0,4,"Digital out 5");
         define_Output(true,0,5,"Digital out 6");
         define_Output(true,0,6,"Digital out 7");
-        define_Output(true,0,7,"Digital out 8");
         define_Input(true,0,0,"Digital in 1");
         define_Input(true,0,1,"Digital in 2");
         define_Input(true,0,2,"Digital in 3");
