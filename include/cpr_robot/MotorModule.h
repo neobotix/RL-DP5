@@ -31,7 +31,7 @@ namespace cpr_robot
         static constexpr uint32_t STATUSFLAG_MASK_ANY_ERROR = 0x000000ff; 
 	private:
 		//! The interval at which periodic SetJoint commands will be sent to the module in milliseconds.
-		static constexpr int64_t m_UpdateInterval = 20; 
+		static constexpr int64_t m_UpdateInterval = 50; 
 		//! The module ID of the DIN rail motorcontrol module hat the instance of this class will communicate with.
 		const uint8_t m_ModuleId; 
 		//! Reference to an instance of the Bus class, providing for communication over the CAN bus.
