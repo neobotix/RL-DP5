@@ -111,14 +111,14 @@ namespace cpr_robot
         int32_t get_MotorOffset(const size_t jointId);
         Robot(const size_t countJoints, const size_t countDigitalIOs);
         virtual void OnInit();
-        public:
-            void set_Output(const uint32_t index, const bool state);
-            bool get_Output(const uint32_t index) const;
-            bool get_Input(const uint32_t index) const;
-            void Init();
-            void Read();
-            void Write();
-            void PublishState();
-            virtual ~Robot();
+        void set_Output(const uint32_t index, const bool state);
+        bool get_Output(const uint32_t index) const;
+        bool get_Input(const uint32_t index) const;
+    public:
+        void Init();
+        void Read();
+        void Write();
+        void PublishState();
+        virtual ~Robot();
     };
 }

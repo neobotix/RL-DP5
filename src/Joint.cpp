@@ -268,17 +268,6 @@ namespace cpr_robot
         {
             double seconds=m_pModule->get_UpdateInterval();
             double desiredPositionIncrement=m_DesiredVelocity*seconds*override;
-            if(m_LinearActuator)
-            {
-                if(desiredPositionIncrement = 0.000)
-                {
-                    g_robot->set_Output(0, true);
-                }
-                else
-                {
-                    g_robot->set_Output(0, false);
-                }
-            }
             int32_t desiredTicks=PositionToTicks(desiredPositionIncrement);
             m_pModule->set_Increment(desiredTicks);
         }

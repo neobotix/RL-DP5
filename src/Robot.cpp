@@ -1,7 +1,6 @@
 #include <cpr_robot.h>
 #include <iostream>
 #include <sstream>
-Robot* g_robot = nullptr;
 
 namespace cpr_robot
 {
@@ -80,7 +79,6 @@ namespace cpr_robot
         m_GetJointInfoServer=m_Node.advertiseService("/GetJointInfo",&Robot::GetJointInfoHandler, this);
         m_RobotCommandServer=m_Node.advertiseService("/RobotCommand",&Robot::RobotCommandHandler, this);
         m_Override=0.25;
-        g_robot = this;
     }
 
     //! \brief Callback function handling requests to the /RobotCommand ROS service.
