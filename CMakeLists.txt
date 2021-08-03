@@ -19,6 +19,7 @@ find_package(catkin REQUIRED COMPONENTS
   control_msgs
   genmsg
   rviz
+  controller_manager
 )
 
 ## System dependencies are found with CMake's conventions
@@ -152,7 +153,14 @@ add_executable(igus_5DOF_SV
   src/Joint.cpp 
   src/igus_5DOF_SV.cpp 
 )
+
+add_executable(IgusTrajectoryFollower 
+  src/IgusTrajectoryFollower.cpp
+)
+
 target_link_libraries(igus_5DOF_SV ${catkin_LIBRARIES})
+target_link_libraries(IgusTrajectoryFollower ${catkin_LIBRARIES})
+
 add_dependencies(igus_5DOF_SV cpr_robot_generate_messages_cpp)
 
 add_executable(igus_lineaJoint_SV 

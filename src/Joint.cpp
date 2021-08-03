@@ -267,6 +267,10 @@ namespace cpr_robot
         if(m_ErrorFlags==0x00)
         {
             double seconds=m_pModule->get_UpdateInterval();
+            if(m_DesiredVelocity >= 0.025 && m_LinearActuator)
+            {
+                ROS_FATAL_STREAM("Cannot send velocity commands more than 2.5 cm/s^2");
+            }
             double desiredPositionIncrement=m_DesiredVelocity*seconds*override;
             int32_t desiredTicks=PositionToTicks(desiredPositionIncrement);
             m_pModule->set_Increment(desiredTicks);
