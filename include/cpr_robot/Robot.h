@@ -1,14 +1,18 @@
 #pragma once
 
 #include <vector>
+#include <hardware_interface/joint_command_interface.h>
+#include <hardware_interface/joint_state_interface.h>
+#include <hardware_interface/robot_hw.h>
+#include <controller_manager/controller_manager.h>
 
 namespace cpr_robot
 {
-	//! \class Robot Robot.h <cpr_robot.h>
-	//! \brief Abstract class representing a generic robot. 
-	//!
-	//! This class hold all information associated with a robot: joints, connection status and information about the specific model. It serves as base class for model specific implementations and handles publishing information on ROS topics and services as well as listening to ROS topics for commands.
-    class Robot
+    //! \class Robot Robot.h <cpr_robot.h>
+    //! \brief Abstract class representing a generic robot. 
+    //!
+    //! This class hold all information associated with a robot: joints, connection status and information about the specific model. It serves as base class for model specific implementations and handles publishing information on ROS topics and services as well as listening to ROS topics for commands.
+    class Robot: public hardware_interface::RobotHW
     {
     private:
         //! \brief This struct holds information about a digital input or output channel: whether it is on a sperate IO-board or associated to a joint and the index of the module/joint.
@@ -109,11 +113,18 @@ namespace cpr_robot
         void set_MotorOffset(const size_t jointId, const int32_t ticks);
         void set_PulleyRadius(const size_t jointId, double radius);
         int32_t get_MotorOffset(const size_t jointId);
+        void set_PosMode(const size_t jointId, bool mode);
         Robot(const size_t countJoints, const size_t countDigitalIOs);
         virtual void OnInit();
         void set_Output(const uint32_t index, const bool state);
         bool get_Output(const uint32_t index) const;
         bool get_Input(const uint32_t index) const;
+        hardware_interface::JointStateInterface jnt_state_interface;
+        hardware_interface::PositionJointInterface jnt_pos_interface;
+        double cmd[6];
+        double pos[6];
+        double vel[6];
+        double eff[6];
     public:
         void Init();
         void Read();

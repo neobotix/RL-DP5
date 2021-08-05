@@ -2,10 +2,10 @@
 
 namespace cpr_robot
 {
-	//! \class Joint Joint.h <cpr_robot.h>
-	//! \brief Represents a single joint of a robot. 
-	//!
-	//! This class contains information about the current state of the joint (position, speed) as well as the parameters for the joint (gear ratio, ticks per motor rotation). Conversion between encoder ticks and the actual position of the joint (measured in degrees) is done by this class.
+    //! \class Joint Joint.h <cpr_robot.h>
+    //! \brief Represents a single joint of a robot. 
+    //!
+    //! This class contains information about the current state of the joint (position, speed) as well as the parameters for the joint (gear ratio, ticks per motor rotation). Conversion between encoder ticks and the actual position of the joint (measured in degrees) is done by this class.
     //! It is also used to get/set digital I/O states of the controller board associated with the joint and can be used for this alone also, i.e. with a pure DIO-module.
     class Joint
     {
@@ -35,6 +35,12 @@ namespace cpr_robot
         double m_MaxVelocity;
         //! Type of the linear actuator
         bool m_LinearActuator = false;
+        // Stores the position command of the joint
+        double m_PosCommand;
+        // Flag for setting the position mode, true by default
+        bool m_PosMode = true;
+        // Flag for checking if the hominh is complete
+        bool m_Homing;
         //! The error flags reported by the firmware of the module that is controlling the joint.
         uint8_t m_ErrorFlags;
         //! The number of encoder ticks representing exactly one rotation of the motor that is driving this joint.
@@ -76,6 +82,7 @@ namespace cpr_robot
         double get_CurrentVelocity() const;
         double get_CurrentEffort() const;
         double get_DesiredVelocity() const;
+        void set_DesiredPosition(double cmd);
         double get_MaxVeclocity() const;
         void set_MaxVelocity(const double velocity);
         double get_MinPosition() const;
@@ -87,6 +94,7 @@ namespace cpr_robot
         int32_t get_MotorOffset() const;
         void set_MotorOffset(const int32_t ticks);
         Joint(Bus& canBus, const uint32_t moduleId);
+        void set_PosMode(bool mode);
         virtual ~Joint();
         void EnableMotor();
         void DisableMotor();

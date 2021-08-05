@@ -55,6 +55,8 @@ namespace cpr_robot
 		//! The timestamp value that will be sent to the module with the next setposition command.
 		uint8_t m_CurrentTimeStamp; 
 		std::mutex m_motor_mutex;
+		// Flag for setting the position mode
+        bool m_PosMode;
 		static void WriteThread(MotorModule* pModule);
 		void WriteLoop();
 		void Command_SetJoint(const int32_t ticks, const uint8_t doutput);
@@ -79,6 +81,7 @@ namespace cpr_robot
 		void set_MinPosition(const int32_t ticks);
 		int32_t get_Offset() const;
 		void set_Offset(const int32_t ticks);
+		void set_PosMode(bool mode);
 		uint8_t get_ModuleId() const;
 		MotorModule(Bus& canbus, const uint8_t moduleId);
 		virtual ~MotorModule();

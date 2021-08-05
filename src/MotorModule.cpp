@@ -126,6 +126,11 @@ namespace cpr_robot
 		pModule->WriteLoop();
 	}
 
+	void MotorModule::set_PosMode(bool mode)
+	{
+		m_PosMode = mode;
+	}
+
 	//! \brief The write loop that will asynchronuously send setposition messages to the module over the CAN bus.
 	void MotorModule::WriteLoop()
 	{
@@ -138,7 +143,12 @@ namespace cpr_robot
 				increment = m_MotorIncrement;
 			}
 			std::chrono::high_resolution_clock::time_point last=std::chrono::high_resolution_clock::now();
-			set_DesiredPosition(m_MotorPosition+increment);
+			if(m_PosMode) {
+				set_DesiredPosition(increment);
+			}
+			else{
+				set_DesiredPosition(m_MotorPosition+increment);
+			}
 			Command_SetJoint(m_MotorPosition, m_DOutputs);
 			std::chrono::high_resolution_clock::time_point current=std::chrono::high_resolution_clock::now();
 			int64_t ms=(std::chrono::duration_cast<std::chrono::milliseconds>(current - last)).count();

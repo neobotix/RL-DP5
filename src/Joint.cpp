@@ -107,7 +107,7 @@ namespace cpr_robot
                 {
                     if (m_LinearActuator) {
                         m_DesiredVelocity=msg.velocities[i];
-						ROS_INFO("received velocity for the linear joints: %f", m_DesiredVelocity);
+                        ROS_INFO("received velocity for the linear joints: %f", m_DesiredVelocity);
                     }
                     else
                     {
@@ -158,7 +158,7 @@ namespace cpr_robot
     {
        if(m_LinearActuator)
         {
-        	m_pModule->set_MinPosition(PositionToTicks(position));
+            m_pModule->set_MinPosition(PositionToTicks(position));
         }
         else
         {
@@ -179,8 +179,8 @@ namespace cpr_robot
     {
        if(m_LinearActuator)
         {
-			ROS_INFO("received max_position for the linear joints: %d", PositionToTicks(position));
-        	m_pModule->set_MaxPosition(PositionToTicks(position));
+            ROS_INFO("received max_position for the linear joints: %d", PositionToTicks(position));
+            m_pModule->set_MaxPosition(PositionToTicks(position));
 
         }
         else
@@ -259,6 +259,21 @@ namespace cpr_robot
         return position;
     }
 
+    //! \brief Sets the desired position from the hardware interface
+    void Joint::set_DesiredPosition(double JointPos)
+    {
+        m_PosCommand = JointPos;
+    }
+
+    //! \brief Sets the position mode by default
+    void Joint::set_PosMode(bool mode)
+    {
+        if (mode) {
+            m_PosMode = mode;
+        }
+        m_pModule->set_PosMode(mode);
+    }
+
     //! \brief Sends the current motion commands to the firmware in the module that is controlling the motor of the joint.
     //! This virtual function is intended to be overridable by derived classes, but should then be called from the override.
     //! \param override The override factor applied to the currently desired velocity. Should be a value between 0 and 1.
@@ -266,14 +281,27 @@ namespace cpr_robot
     {
         if(m_ErrorFlags==0x00)
         {
-            double seconds=m_pModule->get_UpdateInterval();
-            if(m_DesiredVelocity >= 0.025 && m_LinearActuator)
+            double desiredPositionIncrement = 0;
+
+            // Velocity mode
+            if (m_Homing && !m_PosMode)
             {
-                ROS_FATAL_STREAM("Cannot send velocity commands more than 2.5 cm/s^2");
+                if(m_DesiredVelocity >= 0.025 && m_LinearActuator)
+                {
+                    ROS_FATAL_STREAM("Cannot send velocity commands more than 2.5 cm/s^2");
+                }
+                double seconds=m_pModule->get_UpdateInterval();
+                desiredPositionIncrement=m_DesiredVelocity*seconds*override; 
             }
-            double desiredPositionIncrement=m_DesiredVelocity*seconds*override;
+            
+            // Position mode
+            if (m_Homing && m_PosMode)
+            {
+                desiredPositionIncrement = m_PosCommand - m_CurrentPosition;
+            }
+
             int32_t desiredTicks=PositionToTicks(desiredPositionIncrement);
-            m_pModule->set_Increment(desiredTicks);
+            m_pModule->set_Increment(desiredTicks);    
         }
     }
 
@@ -388,6 +416,7 @@ namespace cpr_robot
     void Joint::StartReferencing()
     {
         m_pModule->StartReferencing();
+        m_Homing = true;
     }
 
     //! \brief Will send a command to reset the encoder position for the joint to the firmware of the module that is controlling the motor of the joint.

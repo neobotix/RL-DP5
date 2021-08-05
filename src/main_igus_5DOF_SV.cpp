@@ -25,12 +25,15 @@ int main(int argc, char **argv)
    * NodeHandle destructed will close down the node.
    */
 
-  
-  cpr_robot::igus_5DOF_SV robot;
+  ros::AsyncSpinner spinner(1); 
+  spinner.start();
 
+  cpr_robot::igus_5DOF_SV robot;
+  ros::Duration period(0.1);  
+
+  controller_manager::ControllerManager cm(&robot);
   robot.Init();
   
-
   ros::Rate loop_rate(10);
 
   /**
@@ -44,9 +47,9 @@ int main(int argc, char **argv)
      */
     robot.Read();
     robot.PublishState();
+    ros::Time now = ros::Time::now();
+  cm.update(now, period);
     robot.Write();
-    ros::spinOnce();
-
     loop_rate.sleep();
   }
 

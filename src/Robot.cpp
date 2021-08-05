@@ -79,6 +79,53 @@ namespace cpr_robot
         m_GetJointInfoServer=m_Node.advertiseService("/GetJointInfo",&Robot::GetJointInfoHandler, this);
         m_RobotCommandServer=m_Node.advertiseService("/RobotCommand",&Robot::RobotCommandHandler, this);
         m_Override=0.25;
+        hardware_interface::JointStateHandle state_handle_a("arm_joint", &pos[0], &vel[0], &eff[0]);
+        jnt_state_interface.registerHandle(state_handle_a);
+
+        hardware_interface::JointStateHandle state_handle_b("joint1", &pos[1], &vel[1], &eff[1]);
+        jnt_state_interface.registerHandle(state_handle_b);
+
+        hardware_interface::JointStateHandle state_handle_c("joint2", &pos[2], &vel[2], &eff[2]);
+        jnt_state_interface.registerHandle(state_handle_c);
+
+        hardware_interface::JointStateHandle state_handle_d("joint3", &pos[3], &vel[3], &eff[3]);
+        jnt_state_interface.registerHandle(state_handle_d);
+
+        hardware_interface::JointStateHandle state_handle_e("joint4", &pos[4], &vel[4], &eff[4]);
+        jnt_state_interface.registerHandle(state_handle_e);
+
+        hardware_interface::JointStateHandle state_handle_f("joint5", &pos[5], &vel[5], &eff[5]);
+        jnt_state_interface.registerHandle(state_handle_f);
+
+        hardware_interface::JointStateHandle state_handle_g("joint6", &pos[6], &vel[6], &eff[6]);
+        jnt_state_interface.registerHandle(state_handle_g);
+
+        registerInterface(&jnt_state_interface);
+
+        // connect and register the joint velocity interface
+        hardware_interface::JointHandle pos_handle_a(jnt_state_interface.getHandle("arm_joint"), &cmd[0]);
+        jnt_pos_interface.registerHandle(pos_handle_a);
+
+        hardware_interface::JointHandle pos_handle_b(jnt_state_interface.getHandle("joint1"), &cmd[1]);
+        jnt_pos_interface.registerHandle(pos_handle_b);
+
+        hardware_interface::JointHandle pos_handle_c(jnt_state_interface.getHandle("joint2"), &cmd[2]);
+        jnt_pos_interface.registerHandle(pos_handle_c);
+
+        hardware_interface::JointHandle pos_handle_d(jnt_state_interface.getHandle("joint3"), &cmd[3]);
+        jnt_pos_interface.registerHandle(pos_handle_d);
+
+        hardware_interface::JointHandle pos_handle_e(jnt_state_interface.getHandle("joint4"), &cmd[4]);
+        jnt_pos_interface.registerHandle(pos_handle_e);
+
+        hardware_interface::JointHandle pos_handle_f(jnt_state_interface.getHandle("joint5"), &cmd[5]);
+        jnt_pos_interface.registerHandle(pos_handle_f);
+
+        hardware_interface::JointHandle pos_handle_g(jnt_state_interface.getHandle("joint6"), &cmd[6]);
+        jnt_pos_interface.registerHandle(pos_handle_g);
+
+
+        registerInterface(&jnt_pos_interface);
     }
 
     //! \brief Callback function handling requests to the /RobotCommand ROS service.
@@ -201,6 +248,11 @@ namespace cpr_robot
         for(size_t i=0;i<m_CountJoints;i++)
             m_pJoints[i]->PublishState(joint_states);
         m_JointStatePublisher.publish(joint_states);
+        for(int i = 0; i<6; ++i) {
+            pos[i] = joint_states.position[i];
+            vel[i] = joint_states.velocity[i];
+            eff[i] = joint_states.effort[i];
+        }
         cpr_robot::ChannelStates inputChannels;
         inputChannels.Header.stamp = ros::Time::now();
         for(size_t i=0;i<m_InputChannels.size();i++)
@@ -291,7 +343,12 @@ namespace cpr_robot
     void Robot::Write()
     {
         for(size_t i=0;i<m_CountJoints;i++)
-            m_pJoints[i]->Write(m_Override);
+            {
+                //ROS_INFO("cmd_vel[%li] = %f", i, cmd[i]);
+                m_pJoints[i]->set_DesiredPosition(cmd[i]);
+                m_pJoints[i]->Write(m_Override);
+            }
+
     }
 
     //! \brief Initializes the robot. 
@@ -335,6 +392,13 @@ namespace cpr_robot
         assert(jointId<m_CountJoints);
         m_pJoints[jointId]->set_PulleyRadius(radius);
     }
+
+    // Sets position mode by default
+    void Robot::set_PosMode(const size_t jointId, bool mode)
+    {
+         m_pJoints[jointId]->set_PosMode(mode);
+    }
+
 
     //! \brief Gets the name of a specific joint that is used for communication over ROS topics and services.
     //! \param jointId The ID of the joint whos name is to be retrieved.

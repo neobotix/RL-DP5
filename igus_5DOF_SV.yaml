@@ -1,26 +1,14 @@
-position_joint_trajectory_controller:
-  type: velocity_controllers/JointTrajectoryController
-  joints:
+controller:  
+  name: controller
+  type: position_controllers/JointTrajectoryController
+  joints: 
     - arm_joint
-    - joint_1
-    - joint_2
-    - joint_3
-    - joint_4
-    - joint_5
-    - joint_6
+    - joint1
+    - joint2
+    - joint3
+    - joint4
+    - joint5
+    - joint6
   constraints:
-    goal_time: 0.5
-    arm_joint:
-      goal: 0.05
-    joint_1:
-      goal: 0.05
-    joint_2:
-      goal: 0.05
-    joint_3:
-      goal: 0.05
-    joint_4:
-      goal: 0.05
-    joint_5:
-      goal: 0.05
-    joint_6:
-      goal: 0.05
+    goal_time: 0.06
+    state_publish_rate: 20
