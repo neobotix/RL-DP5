@@ -173,7 +173,6 @@ namespace cpr_robot
                 for(size_t i=0;i<m_CountIOmodules;i++)
                     m_pIOmodules[i]->EnableMotor();
                 set_Output(0, false);
-                m_MotorOn = true;
                 return true;
             case COMMAND_DISABLE:
                 ROS_INFO("COMMAND_DISABLE from %s.",req.Sender.c_str());
@@ -182,11 +181,9 @@ namespace cpr_robot
                 for(size_t i=0;i<m_CountIOmodules;i++)
                     m_pIOmodules[i]->DisableMotor();
                 set_Output(0, true);
-                m_MotorOn = false;
                 return true;
             case COMMAND_STARTREFERENCING:
                 ROS_INFO("COMMAND_STARTREFERENCING from %s.",req.Sender.c_str());
-                m_Homing = true;
                 for(size_t i=0;i<m_CountJoints;i++)
                     m_pJoints[i]->StartReferencing();
                 return true;
@@ -245,44 +242,39 @@ namespace cpr_robot
     //! \brief Publishes the current state of the robot on the /joint_states and /RobotState ROS topics.
     void Robot::PublishState()
     {
-        if(m_Homing && m_MotorOn) {
-            sensor_msgs::JointState joint_states;
-            joint_states.header.stamp = ros::Time::now();
-            m_JointStatePublisher.publish(joint_states);
-            for(size_t i=0;i<m_CountJoints;i++)
-                m_pJoints[i]->PublishState(joint_states);
-            m_JointStatePublisher.publish(joint_states);
-            for(int i = 0; i<6; ++i) {
-                pos[i] = joint_states.position[i];
-                vel[i] = joint_states.velocity[i];
-                eff[i] = joint_states.effort[i];
-            }
-            cpr_robot::ChannelStates inputChannels;
-            inputChannels.Header.stamp = ros::Time::now();
-            for(size_t i=0;i<m_InputChannels.size();i++)
-                inputChannels.state.push_back(get_Input(i));
-            m_InputChannelsPublisher.publish(inputChannels);
-            cpr_robot::ChannelStates outputChannels;
-            outputChannels.Header.stamp = ros::Time::now();
-            for(size_t i=0;i<m_OutputChannels.size();i++)
-                outputChannels.state.push_back(get_Output(i));
-            m_OutputChannelsPublisher.publish(outputChannels);
-            cpr_robot::RobotState robot_state;
-            robot_state.Header.stamp=ros::Time::now();
-            robot_state.Override=m_Override;
-            robot_state.StatusFlags=0;
-            for(size_t i=0;i<m_CountJoints;i++)
-            {
-                robot_state.StatusFlags|=(uint32_t)m_pJoints[i]->get_ErrorFlags();
-                robot_state.StatusFlags|=((uint32_t)(m_pJoints[i]->get_IsReferenced()?1:0))<<(16+i);
-            }
-            if(!m_Bus.get_IsConnected())
-                robot_state.StatusFlags|=STATUSFLAG_DISCONNECTED;
-            m_RobotStatePublisher.publish(robot_state);
+        sensor_msgs::JointState joint_states;
+        joint_states.header.stamp = ros::Time::now();
+        m_JointStatePublisher.publish(joint_states);
+        for(size_t i=0;i<m_CountJoints;i++)
+            m_pJoints[i]->PublishState(joint_states);
+        m_JointStatePublisher.publish(joint_states);
+        for(int i = 0; i<6; ++i) {
+            pos[i] = joint_states.position[i];
+            vel[i] = joint_states.velocity[i];
+            eff[i] = joint_states.effort[i];
         }
-        else {
-            ROS_INFO_STREAM_ONCE("Publishing will start only after the homing is done");
+        cpr_robot::ChannelStates inputChannels;
+        inputChannels.Header.stamp = ros::Time::now();
+        for(size_t i=0;i<m_InputChannels.size();i++)
+            inputChannels.state.push_back(get_Input(i));
+        m_InputChannelsPublisher.publish(inputChannels);
+        cpr_robot::ChannelStates outputChannels;
+        outputChannels.Header.stamp = ros::Time::now();
+        for(size_t i=0;i<m_OutputChannels.size();i++)
+            outputChannels.state.push_back(get_Output(i));
+        m_OutputChannelsPublisher.publish(outputChannels);
+        cpr_robot::RobotState robot_state;
+        robot_state.Header.stamp=ros::Time::now();
+        robot_state.Override=m_Override;
+        robot_state.StatusFlags=0;
+        for(size_t i=0;i<m_CountJoints;i++)
+        {
+            robot_state.StatusFlags|=(uint32_t)m_pJoints[i]->get_ErrorFlags();
+            robot_state.StatusFlags|=((uint32_t)(m_pJoints[i]->get_IsReferenced()?1:0))<<(16+i);
         }
+        if(!m_Bus.get_IsConnected())
+            robot_state.StatusFlags|=STATUSFLAG_DISCONNECTED;
+        m_RobotStatePublisher.publish(robot_state);
     }
 
     //! \brief Gets the upper bound for the position of a specific joint.

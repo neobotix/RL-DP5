@@ -125,8 +125,6 @@ namespace cpr_robot
         double pos[6];
         double vel[6];
         double eff[6];
-        bool m_Homing = false;
-        bool m_MotorOn = false;
     public:
         void Init();
         void Read();

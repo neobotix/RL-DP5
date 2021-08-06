@@ -39,10 +39,6 @@ namespace cpr_robot
         double m_PosCommand;
         // Flag for setting the position mode, true by default
         bool m_PosMode = true;
-        // Flag for checking if the homing is complete
-        bool m_Homing = false;
-        // Flag for checking if the motors are enabled
-        bool m_MotorOn = false;
         //! The error flags reported by the firmware of the module that is controlling the joint.
         uint8_t m_ErrorFlags;
         //! The number of encoder ticks representing exactly one rotation of the motor that is driving this joint.
