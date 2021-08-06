@@ -300,6 +300,10 @@ namespace cpr_robot
                 desiredPositionIncrement = m_PosCommand - m_CurrentPosition;
             }
 
+            if (!m_Homing)
+            {
+                ROS_INFO_STREAM_ONCE("Waiting for the homing to complete");
+            }
             int32_t desiredTicks=PositionToTicks(desiredPositionIncrement);
             m_pModule->set_Increment(desiredTicks);    
         }
@@ -391,12 +395,14 @@ namespace cpr_robot
     //! \brief Will send a command to enable motor motion to the firmware of the module that is controlling the motor of the joint.
     void Joint::EnableMotor()
     {
+        m_Homing = true;
         m_pModule->Enable();
     }
 
     //! \brief Will send a command to disable motor motion to the firmware of the module that is controlling the motor of the joint.
     void Joint::DisableMotor()
     {
+        m_Homing = false;
         m_pModule->Disable();
     }
 
@@ -416,7 +422,6 @@ namespace cpr_robot
     void Joint::StartReferencing()
     {
         m_pModule->StartReferencing();
-        m_Homing = true;
     }
 
     //! \brief Will send a command to reset the encoder position for the joint to the firmware of the module that is controlling the motor of the joint.
