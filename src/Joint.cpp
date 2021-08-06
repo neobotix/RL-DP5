@@ -284,7 +284,7 @@ namespace cpr_robot
             double desiredPositionIncrement = 0;
 
             // Velocity mode
-            if (m_Homing && !m_PosMode)
+            if (m_MotorOn && m_Homing && !m_PosMode)
             {
                 if(m_DesiredVelocity >= 0.025 && m_LinearActuator)
                 {
@@ -295,7 +295,7 @@ namespace cpr_robot
             }
             
             // Position mode
-            if (m_Homing && m_PosMode)
+            if (m_MotorOn && m_Homing && m_PosMode)
             {
                 desiredPositionIncrement = m_PosCommand - m_CurrentPosition;
             }
@@ -395,14 +395,14 @@ namespace cpr_robot
     //! \brief Will send a command to enable motor motion to the firmware of the module that is controlling the motor of the joint.
     void Joint::EnableMotor()
     {
-        m_Homing = true;
+        m_MotorOn = true;
         m_pModule->Enable();
     }
 
     //! \brief Will send a command to disable motor motion to the firmware of the module that is controlling the motor of the joint.
     void Joint::DisableMotor()
     {
-        m_Homing = false;
+        m_MotorOn = false;
         m_pModule->Disable();
     }
 
@@ -421,6 +421,7 @@ namespace cpr_robot
     //! \brief Will send a command to begin the referencing procedure for the joint to the firmware of the module that is controlling the motor of the joint.
     void Joint::StartReferencing()
     {
+        m_Homing = true;
         m_pModule->StartReferencing();
     }
 
