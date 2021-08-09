@@ -53,6 +53,7 @@ namespace cpr_robot
         ros::Subscriber m_JointJogSubscriber;
         double ReadPosition(uint8_t& timeStamp, std::chrono::high_resolution_clock::time_point& receptionTime,uint8_t& errorFlags, uint8_t& dataBits);
         void JointJogCallback(const control_msgs::JointJog& msg);
+        bool m_homing = false;
     protected:
         virtual void OnInit();
         virtual void OnRead();
@@ -100,5 +101,6 @@ namespace cpr_robot
         void SetZero();
         void Start();
         void Stop();
+        void EnableRosController();
     };
 }

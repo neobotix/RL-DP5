@@ -265,6 +265,11 @@ namespace cpr_robot
         m_PosCommand = JointPos;
     }
 
+    void Joint::EnableRosController()
+    {
+        m_homing = true;
+    }
+
     //! \brief Sets the position mode by default
     void Joint::set_PosMode(bool mode)
     {
@@ -293,7 +298,7 @@ namespace cpr_robot
             }
             
             // Position mode
-            else
+            if(m_PosMode && m_homing)
             {
                 desiredPositionIncrement = m_PosCommand - m_CurrentPosition;
             }

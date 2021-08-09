@@ -40,11 +40,14 @@
 #include "cpr_robot/RobotState.h"
 #include "cpr_robot/ChannelStates.h"
 #include "cpr_robot/RobotCommand.h"
+#include "cpr_robot/CheckHoming.h"
 
 #include "cpr_robot/Bus.h"
 #include "cpr_robot/MotorModule.h"
 #include "cpr_robot/Joint.h"
 #include "cpr_robot/Robot.h"
 #include "cpr_robot/igus_5DOF_SV.h"
+
+
 
 //! \namespace cpr_robot Provides everything needed to control a robot over a CAN bus connection within a ROS environment.

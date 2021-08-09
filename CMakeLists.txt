@@ -68,6 +68,7 @@ add_service_files(
   GetRobotInfo.srv
   GetJointInfo.srv
   RobotCommand.srv
+  CheckHoming.srv
 )
 
 ## Generate actions in the 'action' folder

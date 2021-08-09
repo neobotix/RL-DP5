@@ -78,6 +78,7 @@ namespace cpr_robot
         m_GetRobotInfoServer=m_Node.advertiseService("/GetRobotInfo",&Robot::GetRobotInfoHandler, this);
         m_GetJointInfoServer=m_Node.advertiseService("/GetJointInfo",&Robot::GetJointInfoHandler, this);
         m_RobotCommandServer=m_Node.advertiseService("/RobotCommand",&Robot::RobotCommandHandler, this);
+        m_RosPositioController==m_Node.advertiseService("/StartRosController",&Robot::RosControllerHandler, this);
         m_Override=0.25;
         hardware_interface::JointStateHandle state_handle_a("arm_joint", &pos[0], &vel[0], &eff[0]);
         jnt_state_interface.registerHandle(state_handle_a);
@@ -126,6 +127,15 @@ namespace cpr_robot
 
 
         registerInterface(&jnt_pos_interface);
+    }
+
+    bool Robot::RosControllerHandler(cpr_robot::CheckHoming::Request  &req, cpr_robot::CheckHoming::Response &res)
+    {
+        is_homing = true;
+        res.success = true;
+        for(size_t i=0;i<m_CountJoints;i++)
+            m_pJoints[i]->EnableRosController();
+        return true;
     }
 
     //! \brief Callback function handling requests to the /RobotCommand ROS service.
