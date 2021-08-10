@@ -303,6 +303,11 @@ namespace cpr_robot
                 desiredPositionIncrement = m_PosCommand - m_CurrentPosition;
             }
 
+            else
+            {
+                desiredPositionIncrement = m_CurrentPosition;
+            }
+
             if(!m_LinearActuator)
             {
                 int32_t desiredTicks=PositionToTicks(desiredPositionIncrement);
