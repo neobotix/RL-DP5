@@ -298,7 +298,7 @@ namespace cpr_robot
             }
             
             // Position mode
-            if(m_PosMode && m_homing)
+            if(m_PosMode && m_homing && m_Count>0)
             {
                 desiredPositionIncrement = m_PosCommand;
             }
@@ -312,6 +312,7 @@ namespace cpr_robot
             {
                 int32_t desiredTicks=PositionToTicks(desiredPositionIncrement);
                 m_pModule->set_Increment(desiredTicks);
+                m_Count++;
             }
         }
     }
@@ -403,6 +404,7 @@ namespace cpr_robot
     void Joint::EnableMotor()
     {
         m_pModule->Enable();
+        m_Count = 0;
     }
 
     //! \brief Will send a command to disable motor motion to the firmware of the module that is controlling the motor of the joint.

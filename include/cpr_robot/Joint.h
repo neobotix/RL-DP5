@@ -54,6 +54,7 @@ namespace cpr_robot
         double ReadPosition(uint8_t& timeStamp, std::chrono::high_resolution_clock::time_point& receptionTime,uint8_t& errorFlags, uint8_t& dataBits);
         void JointJogCallback(const control_msgs::JointJog& msg);
         bool m_homing = false;
+        double m_Count = 0;
     protected:
         virtual void OnInit();
         virtual void OnRead();
