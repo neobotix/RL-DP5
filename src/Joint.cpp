@@ -300,7 +300,7 @@ namespace cpr_robot
             // Position mode
             if(m_PosMode && m_homing)
             {
-                desiredPositionIncrement = m_PosCommand - m_CurrentPosition;
+                desiredPositionIncrement = m_PosCommand;
             }
 
             else
