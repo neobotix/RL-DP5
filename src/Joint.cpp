@@ -308,12 +308,9 @@ namespace cpr_robot
                 desiredPositionIncrement = m_CurrentPosition;
             }
 
-            if(!m_LinearActuator)
-            {
-                int32_t desiredTicks=PositionToTicks(desiredPositionIncrement);
-                m_pModule->set_Increment(desiredTicks);
-                m_Count++;
-            }
+            int32_t desiredTicks=PositionToTicks(desiredPositionIncrement);
+            m_pModule->set_Increment(desiredTicks);
+            m_Count++;
         }
     }
 
@@ -428,10 +425,9 @@ namespace cpr_robot
     //! \brief Will send a command to begin the referencing procedure for the joint to the firmware of the module that is controlling the motor of the joint.
     void Joint::StartReferencing()
     {
-        if(!m_LinearActuator)
-        {
-            m_pModule->StartReferencing();
-        }
+
+        m_pModule->StartReferencing();
+
     }
 
     //! \brief Will send a command to reset the encoder position for the joint to the firmware of the module that is controlling the motor of the joint.
