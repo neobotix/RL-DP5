@@ -12,3 +12,15 @@ controller:
   constraints:
     goal_time: 0.06
     state_publish_rate: 20
+    joint1:
+      goal: 0.1                     
+    joint2:
+      goal: 0.1
+    joint3:
+      goal: 0.1
+    joint4:
+      goal: 0.1
+    joint5:
+      goal: 0.1  
+    joint6:
+      goal: 0.1

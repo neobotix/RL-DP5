@@ -59,13 +59,6 @@ namespace cpr_robot
         set_MotorOffset(4,0);
         set_MotorOffset(5,0);
         set_MotorOffset(6,0);
-        set_PosMode(0, true); // true - position mode, by default - true
-        set_PosMode(1, true); // true - position mode, by default - true
-        set_PosMode(2, true); // true - position mode, by default - true
-        set_PosMode(3, true); // true - position mode, by default - true
-        set_PosMode(4, true); // true - position mode, by default - true
-        set_PosMode(5, true); // true - position mode, by default - true
-        set_PosMode(6, true); // true - position mode, by default - true
         define_Output(true,0,0,"Digital out 1");
         define_Output(true,0,1,"Digital out 2");
         define_Output(true,0,2,"Digital out 3");

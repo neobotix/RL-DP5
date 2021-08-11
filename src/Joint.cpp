@@ -270,13 +270,6 @@ namespace cpr_robot
         m_homing = true;
     }
 
-    //! \brief Sets the position mode by default
-    void Joint::set_PosMode(bool mode)
-    {
-        m_PosMode= mode;
-        m_pModule->set_PosMode(m_PosMode);
-    }
-
     //! \brief Sends the current motion commands to the firmware in the module that is controlling the motor of the joint.
     //! This virtual function is intended to be overridable by derived classes, but should then be called from the override.
     //! \param override The override factor applied to the currently desired velocity. Should be a value between 0 and 1.
@@ -287,8 +280,9 @@ namespace cpr_robot
             double desiredPositionIncrement = 0;
 
             // Velocity mode
-            if (!m_PosMode)
+            if (!m_homing)
             {
+                m_pModule->set_PosMode(false);
                 if(m_DesiredVelocity >= 0.025 && m_LinearActuator)
                 {
                     ROS_FATAL_STREAM("Cannot send velocity commands more than 2.5 cm/s^2");
@@ -296,20 +290,23 @@ namespace cpr_robot
                 double seconds=m_pModule->get_UpdateInterval();
                 desiredPositionIncrement=m_DesiredVelocity*seconds*override; 
             }
-            
             // Position mode
-            if(m_PosMode && m_homing && m_Count>0)
-            {
-                desiredPositionIncrement = m_PosCommand;
-            }
-
             else
             {
-                desiredPositionIncrement = m_CurrentPosition;
-            }
+                m_pModule->set_PosMode(true);
+                if(m_Count>20)
+                {
+                    desiredPositionIncrement = m_PosCommand;
+                }
 
+                else
+                {
+                    desiredPositionIncrement = m_CurrentPosition * 0.5 + m_PosCommand * (1 - 0.5); //low pass - reduce jerks
+                }
+            }
             int32_t desiredTicks=PositionToTicks(desiredPositionIncrement);
             m_pModule->set_Increment(desiredTicks);
+
             m_Count++;
         }
     }

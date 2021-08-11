@@ -116,7 +116,6 @@ namespace cpr_robot
         void set_MotorOffset(const size_t jointId, const int32_t ticks);
         void set_PulleyRadius(const size_t jointId, double radius);
         int32_t get_MotorOffset(const size_t jointId);
-        void set_PosMode(const size_t jointId, bool mode);
         Robot(const size_t countJoints, const size_t countDigitalIOs);
         virtual void OnInit();
         void set_Output(const uint32_t index, const bool state);
@@ -129,6 +128,7 @@ namespace cpr_robot
         double vel[6];
         double eff[6];
         bool is_homing = false;
+        double m_Count = 0;
     public:
         void Init();
         void Read();

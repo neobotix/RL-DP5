@@ -403,13 +403,6 @@ namespace cpr_robot
         m_pJoints[jointId]->set_PulleyRadius(radius);
     }
 
-    // Sets position mode by default
-    void Robot::set_PosMode(const size_t jointId, bool mode)
-    {
-         m_pJoints[jointId]->set_PosMode(mode);
-    }
-
-
     //! \brief Gets the name of a specific joint that is used for communication over ROS topics and services.
     //! \param jointId The ID of the joint whos name is to be retrieved.
     //! \return The name of the joint.

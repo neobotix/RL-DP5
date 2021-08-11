@@ -51,6 +51,7 @@ namespace cpr_robot
         std::chrono::high_resolution_clock::time_point m_LastUpdate;
         //! The ROS subscriber for the /JointJog topic which will receive jog messages.
         ros::Subscriber m_JointJogSubscriber;
+        std::mutex m_count_mutex;
         double ReadPosition(uint8_t& timeStamp, std::chrono::high_resolution_clock::time_point& receptionTime,uint8_t& errorFlags, uint8_t& dataBits);
         void JointJogCallback(const control_msgs::JointJog& msg);
         bool m_homing = false;
@@ -94,7 +95,7 @@ namespace cpr_robot
         int32_t get_MotorOffset() const;
         void set_MotorOffset(const int32_t ticks);
         Joint(Bus& canBus, const uint32_t moduleId);
-        void set_PosMode(bool mode);
+        void set_PosMode();
         virtual ~Joint();
         void EnableMotor();
         void DisableMotor();
