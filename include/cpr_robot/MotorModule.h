@@ -56,7 +56,7 @@ namespace cpr_robot
 		uint8_t m_CurrentTimeStamp; 
 		std::mutex m_motor_mutex;
 		// Flag for setting the position mode
-        bool m_PosMode;
+        bool m_PosMode = false;
 		static void WriteThread(MotorModule* pModule);
 		void WriteLoop();
 		void Command_SetJoint(const int32_t ticks, const uint8_t doutput);
