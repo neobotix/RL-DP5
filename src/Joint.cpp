@@ -270,6 +270,11 @@ namespace cpr_robot
         m_homing = true;
     }
 
+    void Joint::DisableRosController()
+    {
+        m_homing = false;
+    }
+
     //! \brief Sends the current motion commands to the firmware in the module that is controlling the motor of the joint.
     //! This virtual function is intended to be overridable by derived classes, but should then be called from the override.
     //! \param override The override factor applied to the currently desired velocity. Should be a value between 0 and 1.

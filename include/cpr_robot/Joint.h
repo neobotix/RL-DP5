@@ -104,5 +104,6 @@ namespace cpr_robot
         void Start();
         void Stop();
         void EnableRosController();
+        void DisableRosController();
     };
 }

@@ -40,7 +40,8 @@
 #include "cpr_robot/RobotState.h"
 #include "cpr_robot/ChannelStates.h"
 #include "cpr_robot/RobotCommand.h"
-#include "cpr_robot/CheckHoming.h"
+#include "cpr_robot/EnablePositionMode.h"
+#include "cpr_robot/DisablePositionMode.h"
 
 #include "cpr_robot/Bus.h"
 #include "cpr_robot/MotorModule.h"

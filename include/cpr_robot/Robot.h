@@ -70,7 +70,9 @@ namespace cpr_robot
         //! Allows the robot to receive commands over the /RobotCommand ROS service.
         ros::ServiceServer m_RobotCommandServer;
         //! Allows the user to enable the position controller from ROS
-        ros::ServiceServer m_RosPositioController;
+        ros::ServiceServer m_RosPositionEnableController;
+        //! Allows the user to disable the position controller from ROS
+        ros::ServiceServer m_RosPositionDisableController;
         //! Instance of the Bus class that will be used to communicate with the firmware of the modules that are controlling the robot.
         Bus m_Bus;
         //! Pointer to an array of instances of the Joint class. One entry per joint.
@@ -92,7 +94,8 @@ namespace cpr_robot
         bool GetRobotInfoHandler(cpr_robot::GetRobotInfo::Request  &req, cpr_robot::GetRobotInfo::Response &res);
         bool GetJointInfoHandler(cpr_robot::GetJointInfo::Request  &req, cpr_robot::GetJointInfo::Response &res);
         bool RobotCommandHandler(cpr_robot::RobotCommand::Request  &req, cpr_robot::RobotCommand::Response &res);
-        bool RosControllerHandler(cpr_robot::CheckHoming::Request  &req, cpr_robot::CheckHoming::Response &res);
+        bool EnablePositionController(cpr_robot::EnablePositionMode::Request  &req, cpr_robot::EnablePositionMode::Response &res);
+        bool DisablePositionController(cpr_robot::DisablePositionMode::Request  &req, cpr_robot::DisablePositionMode::Response &res);
     protected:
         uint32_t define_Input(const bool onSeperateModule, const uint8_t moduleIndex, const uint8_t channelIndex, const std::string& name);
         uint32_t define_Output(const bool onSeperateModule, const uint8_t moduleIndex, const uint8_t channelIndex, const std::string& name);
@@ -127,7 +130,6 @@ namespace cpr_robot
         double pos[6];
         double vel[6];
         double eff[6];
-        bool is_homing = false;
         double m_Count = 0;
     public:
         void Init();
