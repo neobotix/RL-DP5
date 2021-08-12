@@ -21,6 +21,8 @@ This is by default started automatically when the robot is switched on.
 
 6. If you want to operate the robot arm in the "Position Mode", you need to call a ROS-Service:
 
+	**It is always necessary to perform referencing before switching to the position mode.**
+
 	`rosservice call /StartPositionController "{}"`
 
 7. It is now not possible to jog the robot using the sliders that are available in RViz. In order to jog in position mode, please run the following command:
@@ -37,5 +39,6 @@ Feel free to move the robot using the position control.
 
 Note 2: MoveIt package by default supports position interface, therefore it is a must to switch to position mode, while it is desired by the user to use MoveIt. 
 
+If you have any questions, feel free to contact us at: ros@neobotix.de
 
 
