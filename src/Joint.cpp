@@ -268,6 +268,7 @@ namespace cpr_robot
     void Joint::EnableRosController()
     {
         m_homing = true;
+        m_Count = 0;
     }
 
     void Joint::DisableRosController()
@@ -299,14 +300,14 @@ namespace cpr_robot
             else
             {
                 m_pModule->set_PosMode(true);
-                if(m_Count>20)
+                if(m_Count>50)
                 {
                     desiredPositionIncrement = m_PosCommand;
                 }
 
                 else
                 {
-                    desiredPositionIncrement = m_CurrentPosition * 0.5 + m_PosCommand * (1 - 0.5); //low pass - reduce jerks
+                    desiredPositionIncrement = m_CurrentPosition* 0.5 + m_PosCommand * (1 - 0.5); //low pass - reduce jerks
                 }
             }
             int32_t desiredTicks=PositionToTicks(desiredPositionIncrement);
