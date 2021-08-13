@@ -11,10 +11,10 @@ namespace cpr_robot
         set_GearRatio(0,15.0);
         set_GearRatio(1,50.0);
         set_GearRatio(2,50.0);
-        set_GearRatio(3,-38.0);
+        set_GearRatio(3,-50.0);
         set_GearRatio(4,-38.0);
         set_GearRatio(5,-28.0);
-        set_GearRatio(6, 32.0);
+        set_GearRatio(6, 4.0);
         set_JointType(0, true); // true - Prismatic joints, by default - revolute joint
         set_PulleyRadius(0, 0.02285);
         set_JointName(0,"arm_joint");
@@ -39,19 +39,19 @@ namespace cpr_robot
         set_MaxVelocity(5,60.0);
         set_MaxVelocity(6,30.0);
         set_MinPosition(0,0.0);
-        set_MaxPosition(0,0.95); // In meters 350
+        set_MaxPosition(0,0.75); // In meters 350
         set_MinPosition(1,-140.0);
         set_MaxPosition(1,140.0);
         set_MinPosition(2,-45.0);
         set_MaxPosition(2,70.0);
-        set_MinPosition(3,-90.0);
-        set_MaxPosition(3,60.0);
-        set_MinPosition(4,-30.0);
-        set_MaxPosition(4,120.0);
-        set_MinPosition(5,-10.0);
-        set_MaxPosition(5,10.0);
-        set_MinPosition(6,-90.0);
-        set_MaxPosition(6,90.0);
+        set_MinPosition(3,-25.0);
+        set_MaxPosition(3,90.0);
+        set_MinPosition(4,-65.0);
+        set_MaxPosition(4,90.0);
+        set_MinPosition(5,-180.0);
+        set_MaxPosition(5,180.0);
+        set_MinPosition(6,-180.0);
+        set_MaxPosition(6,180.0);
         set_MotorOffset(0,0);
         set_MotorOffset(1,0);
         set_MotorOffset(2,0);
