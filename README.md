@@ -15,7 +15,7 @@ This is by default started automatically when the robot is switched on.
 
 3. Once RViz is open, enable the Motors by pressing the "Enable" button that can be found in RViz.
 
-4. Reference the robot, in order to reset any errors accumulated by the encoder due to unforeseen reasons such as gravity, manual movement etc. 
+4. Reference the robot, in order to reset any errors accumulated by the encoder due to unforeseen reasons such as gravity, manual movement etc. Now you need to Enable the motors once again.  
 
 5. By default the robot arm is set to "Velocity Mode", Once the enable button is pressed, you will be able to use the individual sliders for the joints that can be found below the Enable button. 
 
