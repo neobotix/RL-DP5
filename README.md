@@ -25,7 +25,7 @@ This is by default started automatically when the robot is switched on.
 
 	`rosservice call /StartPositionController "{}"`
 
-7. It is now not possible to jog the robot using the sliders that are available in RViz. In order to jog in position mode, please run the following command:
+7. In order to jog in position mode, please run the following command:
 	
 	`rosrun rqt_joint_trajectory_controller rqt_joint_trajectory_controller `
 
@@ -37,7 +37,7 @@ Feel free to move the robot using the position control.
 
 	`rosservice call /StopPositionController "{}"`
 
-Note 2: MoveIt package by default supports position interface, therefore it is a must to switch to position mode, while it is desired by the user to use MoveIt. 
+Note 2: MoveIt package for this robot by default supports position interface, therefore it is a must to switch to position mode, while it is desired by the user to use MoveIt. 
 
 If you have any questions, feel free to contact us at: ros@neobotix.de
 
