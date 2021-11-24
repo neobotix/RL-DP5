@@ -33,7 +33,7 @@ Select the appropriate controller (there will be just one) and press the red but
 
 Feel free to move the robot using the position control. 
 
-8. If you want to switch back to the "Position Mode", you need to call a ROS-Service:
+8. If you want to switch back to the "Velocity Mode", you need to call a ROS-Service:
 
 	`rosservice call /StopPositionController "{}"`
 
