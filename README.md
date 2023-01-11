@@ -1,5 +1,5 @@
 # RL-DP5
-Software package for RL-DP5 Igus arm with extended DoF's. This package was initially developed by Neobotix GmbH, but now the package is considered to be community driven, since we are not active in the projects that invlove RL-DP5. 
+Software package for RL-DP5 Igus arm with extended DoF's. This package was initially developed by Neobotix GmbH, but now the package is considered to be community driven, since we are not active in the projects that involve RL-DP5. 
 
 This package was designed to work with the mobile manipulator mm-400 mounted with RL-DP5 with the linear actuator. This package provides all the necessary ros-controller interface for connecting with the MoveIt planning pipeline.
 
