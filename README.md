@@ -1,6 +1,8 @@
 # RL-DP5
 Software package for RL-DP5 Igus arm with extended DoF's
 
+This package was designed to work with the mobile manipulator mm-400 mounted with RL-DP5 with the linear actuator. This package provides all the necessary ros-controller interface for connecting with the MoveIt planning pipeline.
+
 Note 1: This package assumes that the user is using the default setup provided by the Neobotix. 
 
 1. Start the robot bringup by running
@@ -39,6 +41,5 @@ Feel free to move the robot using the position control.
 
 Note 2: MoveIt package for this robot by default supports position interface, therefore it is a must to switch to position mode, while it is desired by the user to use MoveIt. 
 
-If you have any questions, feel free to contact us at: ros@neobotix.de
 
 
